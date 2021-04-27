@@ -1,5 +1,5 @@
 # My-note.
+
 This is a repository for my notes with GitNote.
 
-
-我修改一下看看。20210426
+这是一个关于我的Markdown笔记的代码仓库。目前仅有 **main** 分支
