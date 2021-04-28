@@ -102,6 +102,26 @@ Send ^{v}
 return
 ```
 
+### 打开文件
+
+macOS上是：“Alt（command） + o”
+
+```
+!o::
+Send ^{o}
+return
+```
+
+### 保存文件
+
+macOS上是：“Alt（command） + s”
+
+```
+!s::
+Send ^{s}
+return
+```
+
 ## 新建文件
 
 macOS上是：“Alt（command） + n”
