@@ -102,6 +102,39 @@ Send ^{v}
 return
 ```
 
+### 全选
+
+macOS上是：“Alt（command） + a”
+
+```
+!a::
+Send ^{a}
+return
+```
+
+### 复制整行
+
+从行首到行尾
+
+macOS上是：“Shift + Alt（command） + $\rightarrow$”
+
+```
+!+Right::
+Send +{End}
+return
+```
+
+从行尾到行首
+
+macOS上是：“Shift + Alt（command） + $\rightarrow$”
+
+```
+!+Left::
+Send +{Home}
+return
+```
+
+
 ### 打开文件
 
 macOS上是：“Alt（command） + o”
