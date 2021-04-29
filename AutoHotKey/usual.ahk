@@ -34,6 +34,11 @@ return
 Send ^{x}
 return
 
+;撤销上一次的操作
+!z::
+Send ^{z}
+return
+
 ;全选
 !a::
 Send ^{a}

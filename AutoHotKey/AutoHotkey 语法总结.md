@@ -112,6 +112,16 @@ Send ^{x}
 return
 ```
 
+### 撤销上一次操作
+
+macOS上是：“Alt（command） + z”
+
+```
+!z::
+Send ^{z}
+return
+```
+
 ### 全选
 
 macOS上是：“Alt（command） + a”
