@@ -29,6 +29,11 @@ return
 Send ^{v}
 return
 
+;剪切
+!x::
+Send ^{x}
+return
+
 ;全选
 !a::
 Send ^{a}
