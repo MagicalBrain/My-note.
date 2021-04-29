@@ -206,3 +206,15 @@ macOS上是：“Alt（command） + n”
 Send ^{t}
 return
 ```
+
+## windows10系统的一些操作
+
+### 回到桌面
+
+macOS上是：“Alt（command） + d”
+
+```
+!d::
+Send #{d}
+return
+```
