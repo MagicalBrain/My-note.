@@ -102,6 +102,16 @@ Send ^{v}
 return
 ```
 
+### 剪切
+
+macOS上是：“Alt（command） + x”
+
+```
+!x::
+Send ^{x}
+return
+```
+
 ### 全选
 
 macOS上是：“Alt（command） + a”
