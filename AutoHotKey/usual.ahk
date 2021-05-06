@@ -4,8 +4,8 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ;禁用一些可能会干扰到的快捷键
-!::
-return
+;!::
+;return
 
 ;移动光标
 !Left::
@@ -81,3 +81,8 @@ return
 !d::
 Send #{d}
 return
+
+;尝试解决打不出感叹号的问题
+;+1::
+;Send {!}1
+;return
