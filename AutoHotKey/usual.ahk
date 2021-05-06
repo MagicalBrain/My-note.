@@ -50,11 +50,13 @@ return
 
 ;从行首到行尾
 !+Right::
+KeyWait, Right, D
 Send +{End}
 return
 
 ;从行尾到行首
 !+Left::
+KeyWait, Left, D
 Send +{Home}
 return
 
