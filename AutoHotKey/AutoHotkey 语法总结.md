@@ -190,6 +190,7 @@ return
 ### 新建标签页
 
 macOS上是：“Alt（command） + t”
+
 ```
 !t::
 Send ^{t}
@@ -206,6 +207,22 @@ macOS上是：“Alt（command） + n”
 Send ^{t}
 return
 ```
+
+### 关掉标签页的操作
+
+macOS上是：“Alt（command） + w”
+
+```
+!w::
+Send ^{w}
+return
+```
+
+### 浏览器切换标签页的操作
+
+macOS上是：“Alt（command） + number”
+
+感觉没啥必要，首先会和别的软件的快捷键冲突，而且自带```Ctrl + Tab```切换页面。
 
 ## windows10系统的一些操作
 

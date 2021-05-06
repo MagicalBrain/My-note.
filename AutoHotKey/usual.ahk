@@ -68,14 +68,24 @@ return
 Send ^{o}
 return
 
-;新建文件以及打开新的标签页
+;浏览器操作
+;打开新窗口
 !n::
 Send ^{n}
 return
 
+;打开新的标签页
 !t::
 Send ^{t}
 return
+
+;关掉标签页
+!w::
+Send ^{w}
+return
+
+;系统操作
+;新建文件同浏览器的新建窗口
 
 ;回到桌面
 !d::
