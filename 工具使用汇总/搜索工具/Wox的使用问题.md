@@ -7,3 +7,6 @@
 [参考链接](https://blog.csdn.net/qq_36916091/article/details/113804669)
 
 首先确保Wox是运行正常的，然后查找Everything的问题。
+
+插件目录：
+C:\Users\37487\AppData\Local\Wox\app-1.4.1129\Plugins
