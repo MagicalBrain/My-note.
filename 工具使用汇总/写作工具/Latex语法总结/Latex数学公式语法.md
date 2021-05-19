@@ -315,11 +315,11 @@ $$\dots = \cdots$$
 
 $$
 \left\{  
-             \begin{array}{lr}  
-             x=\dfrac{3\pi}{2}(1+2t)\cos(\dfrac{3\pi}{2}(1+2t)), &  \\  
-             y=s, & 0\leq s\leq L,|t|\leq1.\\  
-             z=\dfrac{3\pi}{2}(1+2t)\sin(\dfrac{3\pi}{2}(1+2t)), &    
-             \end{array}  
+  \begin{array}{lr}  
+  x=\dfrac{3\pi}{2}(1+2t)\cos(\dfrac{3\pi}{2}(1+2t)), &  \\  
+  y=s, & 0\leq s\leq L,|t|\leq1.\\  
+  z=\dfrac{3\pi}{2}(1+2t)\sin(\dfrac{3\pi}{2}(1+2t)), &    
+  \end{array}  
 \right.  
 $$
 
