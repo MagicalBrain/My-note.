@@ -236,6 +236,17 @@ Send #{d}
 return
 ```
 
+### 关闭程序
+
+macOS上是：“Alt（command） + q”
+
+```
+!q::
+Send !{F4}
+return
+```
+
+
 ## AutoHotKey脚本使用遇到过的问题
 
 ### 脚本存在bug？

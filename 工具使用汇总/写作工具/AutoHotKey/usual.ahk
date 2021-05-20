@@ -71,6 +71,11 @@ return
 Send ^{o}
 return
 
+;关闭文件
+!q::
+Send !{F4}
+return
+
 ;浏览器操作
 ;打开新窗口
 !n::
