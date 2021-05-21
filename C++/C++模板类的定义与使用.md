@@ -1,9 +1,5 @@
 ﻿# C++模板类的定义与使用
 
-标签（空格分隔）： C++
-
----
-
 ```c++
 #pragma once
 #include <iostream>
