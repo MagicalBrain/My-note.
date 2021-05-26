@@ -1,6 +1,14 @@
 # Linux常用的命令
 
+[toc]
+
 ## 一、进程管理
+
+**查看进程**
+
+```
+top
+```
 
 **杀死该用户所用进程**
 
@@ -51,21 +59,42 @@ https://blog.csdn.net/qq_33205418/article/details/83026617
 ```
 mv file1 file2
 ```
+file1是要修改的文件名，file2是修改后的名字
 
 ### 文件复制
 
+```
+cp filename1 filename2
+```
 
+将```filename1```文件复制到```filename2```路径下。
+如果```filename2```不写，就是在当前目录下复制一份。
 
 ## 四、文件传输
 
 ### 1、上传文件到远程服务器
 
+无论是上传还是下载，都是在本地主机上打开终端执行命令
+
 ```
-scp
+scp -r filename01 ubuntu@129.204.104.75:filename02
 ```
 
 ### 2、下载远程服务器的文件到本地
 
+首先要在本地机打开终端，并执行命令：
+
 ```
-scp
+scp -r [host]@[IP_address]:filename02 filename01 
+```
+
+```host```为远程主机名
+```IP_address```为远程主机的IP地址
+```filename02```为要下载下来的远程主机上的文件名。
+```filename01```为要下载的目录。
+
+例如：下载名为ubuntu的远程主机上的文件
+
+```
+scp -r ubuntu@129.204.104.75:filename02 filename01 
 ```
