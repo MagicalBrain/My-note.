@@ -104,3 +104,19 @@ scp -r [host]@[IP_address]:filename02 filename01
 ```
 scp -r ubuntu@129.204.104.75:filename02 filename01 
 ```
+
+## 六、管理文件编辑权限
+
+使用```chmod```命令
+
+例如将只读文件改权限为```all user```均可编辑，则可：
+```
+sudo chmod a+w filename
+```
+
+[参考链接][参考链接]
+
+[参考链接]:[[参考链接]](https://www.runoob.com/linux/linux-comm-chmod.html)
+
+## 七、查看网络地址（IP）
+
