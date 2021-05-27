@@ -55,7 +55,7 @@ cmake --version
 使用cmake首先得有个CMakeList.txt文件，你需要把配置信息写在该文件中，然后通过cmake去处理该文件。
  将设有下面一个helloworld.cpp文件
  
-
+```cpp
 //helloworld.cpp文件
 #include<iostream>
 using namespace std;
@@ -63,8 +63,10 @@ int main(){
     cout<<"hello world!"<<endl;
     return 0;
 }
+```
 这时候我们就可以写个如下的CMakeList.txt文件
 
+```
 #cmake最小需要版本
 cmake_minimum_required(VERSION 2.8)
  
@@ -76,24 +78,27 @@ aux_source_directory(DIR_SRC ./)
  
 #生成程序
 add_executable(helloworld ${DIR_SRC})
+```
 然后执行如下命令
-
+```
 $mkdir build
 $cd build
 $cmake ..
 $make
 $./helloworld
-
+```
 这样就编译好程序并运行。
 
 添加静态库或者动态库
 
 而假设我们程序用到了在/usr/lib下的一个静态库libmy.a，那就需要添加如下两个命令
+
+```
 #库所在位置
 link_directories(/usr/lib)
 
 #程序编译时候链接库
 target_link_libraries(helloworld my)
-————————————————
-版权声明：本文为CSDN博主「光子乘羽」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+```
+
 原文链接：https://blog.csdn.net/hanshuning/article/details/100540218
