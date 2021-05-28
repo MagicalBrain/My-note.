@@ -73,3 +73,5 @@ sudo make install
 [参考链接2]:https://www.cnblogs.com/youxin/p/4073703.html
 
 希望有用，如果不行，可能得卸载了重新安装，问题是卸载不知道怎么卸载才干净。
+
+## 跑一下官方的demo验证安装
