@@ -76,6 +76,24 @@ cp filename1 filename2
 
 ## 四、文件压缩和解压
 
+### tar命令
+
+用来解压和压缩```tar.xxx```文件的
+
+#### tar.gz
+
+压缩```tar.gz```文件
+
+解压```tar.gz```文件
+
+```
+tar -zxvf 文件名.tar.gz
+```
+
+[参考链接][参考链接]
+
+[参考链接]:https://www.cnblogs.com/anno-ymy/p/10429396.html
+
 ## 五、文件传输
 
 ### 1、上传文件到远程服务器

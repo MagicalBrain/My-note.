@@ -25,7 +25,7 @@ g++  HYDeviceDemo.cpp -o hydevicedemo.o  -I ../include
 #include "include/head.h"
 ```
 
-则是：
+则不需要再gcc命令中指明路径，但是要在```#include "[filename]"```里写清楚文件的相对路径。
 
 ## include第三方库
 
@@ -46,3 +46,30 @@ g++ `pkg-config opencv4 --cflags` HYDeviceDemo.cpp -o hydevicedemo.o `pkg-config
 ```
 
 **如果项目所包含的文件太多，还是推荐使用Cmake**
+
+## 使用gcc/g++编译动态库和静态库
+
+### 生成静态库：.a
+
+```
+gcc -c try1.c
+ 
+gcc -c try2.c
+ 
+ar cqs libtry.a try1.o try2.o
+# 或
+ar r libtry.a try1.o try2.o
+```
+
+先使用```gcc -c```编译```try1.c, try2.c```成```try1.o, try2.o```文件。
+再使用```ar```命令把```try1.o, try2.o```生成```libtry.a```静态库
+
+### 生成动态库：.so
+
+```
+gcc -shared -o libtry.so try.c
+```
+
+把```try.c```生成```libtry.so```动态库
+
+如果将多个```.c```或者```.cpp```文件生成```.so```文件失败，可能是需要再gcc命令的最后加上```-fPTC```参数。
