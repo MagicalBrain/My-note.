@@ -33,3 +33,11 @@ gcc input.c -o output.out
 ```
 gcc -fsanitize=address -g twoSum.c
 ```
+
+## 设置c++11标准支持
+
+加上如下命令即可：
+
+```
+-std=c++11
+```

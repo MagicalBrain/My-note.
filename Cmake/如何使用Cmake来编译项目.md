@@ -56,6 +56,10 @@ make
 begin to learn how to use Cmake!
 ```
 
+## 查找并链接三方库
+
+使用`find_package`命令。
+
 ## 以下是一个项目的CMakeLists.txt
 
 仅仅是作为参考
