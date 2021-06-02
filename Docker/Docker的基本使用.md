@@ -64,4 +64,16 @@ docker run -it ubuntu:18.04
 ```
 docker start ID
 docker exec -it ID /bin/bash
+# 或
+docker exec -it name /bin/bash
 ```
+
+### 在容器和宿主机之间复制文件
+
+推荐使用`powershell`。
+
+```
+docker cp filename1 name:filename2
+```
+
+命令类似`scp`

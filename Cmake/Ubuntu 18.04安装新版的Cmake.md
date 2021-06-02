@@ -18,7 +18,7 @@ wget http://www.cmake.org/files/v3.16/cmake-3.16.6.tar.gz
 
 下载好后解压：
 ```
-tar zxvf cmake-3.19.0-rc1.tar.gz
+tar -zxvf cmake-3.19.0-rc1.tar.gz
 ```
 
 ## 3、安装
