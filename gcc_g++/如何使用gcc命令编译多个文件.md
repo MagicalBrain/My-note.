@@ -41,9 +41,29 @@ g++ `pkg-config opencv4 --cflags` HYDeviceDemo.cpp -o hydevicedemo.o `pkg-config
 
 ----
 
+例如：
+
 ```
 g++ `pkg-config opencv4 --cflags` HYDeviceDemo.cpp -o hydevicedemo.o `pkg-config opencv4 --libs` -I ../include
 ```
+
+使用`-l`或者`-L`指令
+
+`-l`指令是从系统的环境路径指定一个库来链接。
+`-lname`即链接一个名为`name`的库
+
+在`-l`指令和参数前加`-L`是指明库的路径为当前目录
+
+例如：
+```
+g++ ... -lname
+```
+是直接从`/usr/local/lib`目录里找`name`库文件
+
+```
+g++ ... -L -lname
+```
+是直接从当前目录里找`name`库文件
 
 **如果项目所包含的文件太多，还是推荐使用Cmake**
 
@@ -73,3 +93,11 @@ gcc -shared -o libtry.so try.c
 把```try.c```生成```libtry.so```动态库
 
 如果将多个```.c```或者```.cpp```文件生成```.so```文件失败，可能是需要再gcc命令的最后加上```-fPTC```参数。
+
+### 检查库里是否含有对应的符号及其实现
+
+先cd到库的目录下
+
+```
+nm -D 库名  | grep 函数名
+```

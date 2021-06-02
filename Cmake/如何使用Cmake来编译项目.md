@@ -56,9 +56,63 @@ make
 begin to learn how to use Cmake!
 ```
 
-## 查找并链接三方库
+## 三方库
+
+### 查找并链接三方库
 
 使用`find_package`命令。
+
+```
+# 导入protobuf库
+find_package(protobuf REQUIRED)
+if (protobuf_FOUND)
+    include_directories(${protobuf_INCLUDE_DIRS})
+    link_directories(${protobuf_LIBRARY_DIRS})
+    add_definitions(${protobuf_DEFINITIONS})
+    message(STATUS "found protobuf ${protobuf_VERSION} Library ${protobuf_LIBRARIES}")
+endif (protobuf_FOUND)
+```
+
+### 生成库
+
+```
+# 生成库
+## 生成静态库
+add_library(${PROJECT_NAME}_static STATIC src/HYGRPCClient.cpp src/HYWebSocketClient.cpp src/HYSensorClient.cpp)
+
+## 生成动态库
+add_library(${PROJECT_NAME} SHARED src/HYGRPCClient.cpp src/HYWebSocketClient.cpp src/HYSensorClient.cpp)
+```
+
+#### 同时生成静态库和动态库
+
+```
+# 生成库
+## 生成静态库
+add_library(${PROJECT_NAME}_static STATIC src/HYGRPCClient.cpp src/HYWebSocketClient.cpp src/HYSensorClient.cpp)
+
+## 生成动态库
+add_library(${PROJECT_NAME} SHARED src/HYGRPCClient.cpp src/HYWebSocketClient.cpp src/HYSensorClient.cpp)
+
+# 指定静态库的输出名称
+set_target_properties(${PROJECT_NAME}_static PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+
+# 使动态库和静态库同时存在
+set_target_properties(${PROJECT_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+set_target_properties(${PROJECT_NAME}_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+```
+
+[参考链接][参考链接]
+
+[参考链接]:https://my.oschina.net/iamhere/blog/515660
+
+## 添加编译指令选项
+
+### 添加C++11标准
+
+```
+add_compile_options(-std=c++11)
+```
 
 ## 以下是一个项目的CMakeLists.txt
 
