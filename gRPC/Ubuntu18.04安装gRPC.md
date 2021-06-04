@@ -25,7 +25,7 @@ git clone --recurse-submodules -b v1.37.1 https://github.com/grpc/grpc
 如果遇到网络问题，则试试
 
 ```
-git clone git clone -branch v1.37.1 https://github.com/grpc/grpc
+git clone -branch v1.37.1 https://github.com/grpc/grpc
 cd grpc
 git submodule update --init
 ```
@@ -33,7 +33,7 @@ git submodule update --init
 这里要注意版本问题。
 如果是要下载1.38.0，则是：
 ```
-git clone git clone -branch v1.37.1 https://github.com/grpc/grpc
+git clone -b v1.38.0 https://github.com/grpc/grpc
 ```
 
 很有可能会遇到网络问题，多试几次就好。
