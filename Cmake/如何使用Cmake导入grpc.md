@@ -39,3 +39,7 @@ if (websocketpp_FOUND)
     message("websocketpp Library_dirs ${websocketpp_LIBRARY_DIRS}")
 endif (websocketpp_FOUND)
 ```
+
+其实上面的都不需要，导入gRPC关键在于include```common.cmake```文件。
+
+而websocketpp库只有头文件，只要确保`/usr/local/include/`里有websocketpp的头文件即可，或者`include`安装目录也行。
