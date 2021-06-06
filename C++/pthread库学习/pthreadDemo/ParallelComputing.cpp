@@ -29,8 +29,15 @@ int main()
         arr2[i] = rand() / 9999;
     }
 
+    /*
+    * timeval是一个时间对象类，包含于头文件——sys/time.h
+    * 只有两个成员变量：
+    * sec:秒
+    * usec：微秒
+    */
     struct timeval tv1, tv2;
     gettimeofday(&tv1, NULL);
+    
     // 绑定线程，开始分叉
     for (thread = 0; thread < thread_count; ++thread)
     // 将线程hello，和给hello的参数绑定到线程上
@@ -40,8 +47,9 @@ int main()
     // 结束线程
     for (thread = 0; thread < thread_count; ++thread)
         pthread_join(thread_handles[thread], NULL);
+    
     gettimeofday(&tv2, NULL);
-    // 输出高维加法执行时间
+    // 输出高维加法执行时间，单位为：微秒us
     printf("Spliting the date to 4 pieces takes %ld us\n",
         (tv2.tv_sec - tv1.tv_sec) * 1000000 + tv2.tv_usec - tv1.tv_usec);
 
