@@ -7,3 +7,11 @@
 ## /etc/issue
 
 https://blog.csdn.net/hunanchenxingyu/article/details/45293199
+
+## 查看修改结果
+
+这个方法不用注销登录
+
+```
+sudo run-parts /etc/update-motd.d
+```

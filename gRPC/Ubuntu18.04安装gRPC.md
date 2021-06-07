@@ -42,7 +42,7 @@ git clone -b v1.38.0 https://github.com/grpc/grpc
 
 a.
 ```
-mkdir -p cmake/build && cmake/build
+mkdir -p cmake/build && cd cmake/build
 ```
 
 b.
@@ -73,5 +73,22 @@ sudo make install
 [参考链接2]:https://www.cnblogs.com/youxin/p/4073703.html
 
 希望有用，如果不行，可能得卸载了重新安装，问题是卸载不知道怎么卸载才干净。
+
+## libprotoc.so.26找不到
+
+/usr/local/bin/protoc: error while loading shared libraries: libprotoc.so.26: cannot open shared object file: No such file or directory
+
+## openssl找不到
+
+```
+CMake Error at /usr/local/share/cmake-3.14/Modules/FindPackageHandleStandardArgs.cmake:137 (message):
+  Could NOT find OpenSSL, try to set the path to OpenSSL root folder in the
+  system variable OPENSSL_ROOT_DIR (missing: OPENSSL_CRYPTO_LIBRARY
+  OPENSSL_INCLUDE_DIR)
+```
+
+https://blog.csdn.net/wanxuexiang/article/details/89647737
+
+看样子还是得重新装openssl啊
 
 ## 跑一下官方的demo验证安装
