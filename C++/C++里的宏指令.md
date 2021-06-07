@@ -6,4 +6,12 @@
 
 ## ifndef
 
+```cpp
+#ifndef NAME
+//todo
+#endif
+```
+
+如果宏`NAME`没有定义就会执行`#ifndef`里的语句
+
 **注意**：别忘了和```#endif```成对使用

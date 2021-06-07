@@ -55,7 +55,9 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_GTK
 
 ### 安装opencv
 
+问题1：找不到 feature2d/test/test_detectors_regression.impl.hpp 文件
 
+https://blog.csdn.net/xiewenrui1996/article/details/108683866
 
 ### 配置opencv环境变量
 
