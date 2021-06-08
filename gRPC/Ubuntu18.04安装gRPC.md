@@ -62,6 +62,17 @@ sudo make install
 
 就安装完成了。
 
+## 安装完gRPC，别忘了安装abseil
+
+```
+mkdir -p third_party/abseil-cpp/cmake/build
+pushd third_party/abseil-cpp/cmake/build
+cmake -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \  -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \  ../..
+make -j
+make install
+popd
+```
+
 ## 如果protoc的安装有问题
 
 [参考链接1][参考链接1]
@@ -91,4 +102,92 @@ https://blog.csdn.net/wanxuexiang/article/details/89647737
 
 看样子还是得重新装openssl啊
 
+https://blog.csdn.net/u012670181/article/details/104102110
+
+可能会出现的错误：
+ubuntu 18.04 openssl: relocation error: openssl: symbol EVP_mdc2 version OPENSSL_1_1_0 not defined i
+
+解决方案：
+
+https://blog.csdn.net/lc11535/article/details/111769295
+
+https://www.5axxw.com/questions/content/b78m2c
+
+使用export命令修改`LD_LIBRARY_PATH`
+
+```
+export LD_LIBRARY_PATH=/usr/local/ssl/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+```
+
+`/usr/local/ssl/lib`即`openssl`安装的动态库路径
+
+最后
+
+https://blog.csdn.net/wanxuexiang/article/details/89647737
+
+直接手动指明openssl的安装路径：
+```
+cmake -DOPENSSL_ROOT_DIR=/usr/local/ssl -DOPENSSL_LIBRARIES=/usr/local/ssl/lib ../..
+```
+
 ## 跑一下官方的demo验证安装
+
+首先cd到demo所在的目录：
+```
+cd examples/cpp/helloworld
+```
+
+创建`build`文件夹
+```
+mkdir cmake/build
+```
+
+在`build`文件夹里运行：
+```
+cmake -DCMAKE_PREFIX_PATH=$MY_INSTALL_DIR ../..
+make -j$(nproc)
+```
+
+运行服务端程序：
+```
+./greeter_server
+```
+
+在另外一个终端里cd到当前目录运行客户端程序
+```
+./greeter_client
+```
+
+输出结果：
+```
+Greeter received: Hello world
+```
+
+### 在cmake编译example时遇到的问题
+
+#### openssl库找不到
+
+参照上面的openssl解决办法
+
+#### protobuf库找不到
+
+cmake报错信息：
+```
+CMake Error at CMakeLists.txt:5 (find_package):
+  Could not find a package configuration file provided by "Protobuf" with any
+  of the following names:
+
+    ProtobufConfig.cmake
+    protobuf-config.cmake
+
+  Add the installation prefix of "Protobuf" to CMAKE_PREFIX_PATH or set
+  "Protobuf_DIR" to a directory containing one of the above files.  If
+  "Protobuf" provides a separate development package or SDK, be sure it has
+  been installed.
+```
+
+如果之前安装过，那就时安装的方式不对，现在新版本只能用cmake来安装，之前可能是用脚本或者什么可执行文件安装的，都不行。
+
+#### abseil.....某个头文件找不到
+
+直接将`/grpc/third_party/abseil-cpp/`下的`absl`文件夹复制到`/usr/local/include`路径下
