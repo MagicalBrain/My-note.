@@ -94,6 +94,11 @@ tar -zxvf 文件名.tar.gz
 
 [参考链接]:https://www.cnblogs.com/anno-ymy/p/10429396.html
 
+使用`tar`指令解压文件到指定目录：
+```
+tar -zxvf filename.tar.gz -C file
+```
+
 ## 五、文件传输
 
 ### 1、上传文件到远程服务器

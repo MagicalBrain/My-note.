@@ -33,22 +33,6 @@ if (OpenCV_FOUND)
     message("OpenCV Library_dirs ${OpenCV_LIBRARY_DIRS}")
 endif (OpenCV_FOUND)
 
-# 导入opencv库
-find_package(PCL REQUIRED)
-if (PCL_FOUND)
-    include_directories(${PCL_INCLUDE_DIRS})
-    link_directories(${PCL_LIBRARY_DIRS})
-    add_definitions(${PCL_DEFINITIONS})
-    message(STATUS "found PCL ${PCL_VERSION} Library ${PCL_LIBRARIES}")
-
-    message("*****")
-    message("PCL include ${PCL_INCLUDE_DIRS}")
-    message("PCL link ${PCL_LIBRARY_DIRS}")
-    message("PCL definitions ${PCL_DEFINITIONS}")
-    message("PCL Library ${PCL_LIBRARIES}")
-    message("PCL Library_dirs ${PCL_LIBRARY_DIRS}")
-endif (PCL_FOUND)
-
 # 生成proto文件部分
 include(common.cmake)
 #set(_REFLECTION grpc++_reflection)
@@ -77,14 +61,12 @@ include_directories(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/proto/Ge
 
 # 生成库
 ## 生成静态库
-add_library(${PROJECT_NAME}_static STATIC src/HYGRPCClient.cpp src/HYWebSocketClient.cpp src/HYSensorClient.cpp 
-    #include/HYSensorClient.h include/HYGRPCClient.h include/HYWebSocketClient.h
+add_library(${PROJECT_NAME}_static STATIC src/HYGRPCClient.cpp src/HYWebSocketClient.cpp src/HYSensorClient.cpp  
     ${PROTO}/HYGRPCService.grpc.pb.cc ${PROTO}/HYGRPCService.grpc.pb.h ${PROTO}/HYGRPCService.pb.cc ${PROTO}/HYGRPCService.pb.h)
 
 ## 生成动态库
 add_library(${PROJECT_NAME} SHARED src/HYGRPCClient.cpp src/HYWebSocketClient.cpp src/HYSensorClient.cpp 
-    #include/HYSensorClient.h include/HYGRPCClient.h include/HYWebSocketClient.h
-    ${PROTO}/HYGRPCService.grpc.pb.cc ${PROTO}/HYGRPCService.grpc.pb.h ${PROTO}/HYGRPCService.pb.cc ${PROTO}/HYGRPCService.pb.h)
+${PROTO}/HYGRPCService.grpc.pb.cc ${PROTO}/HYGRPCService.grpc.pb.h ${PROTO}/HYGRPCService.pb.cc ${PROTO}/HYGRPCService.pb.h)
 
 # 指定静态库的输出名称
 set_target_properties(${PROJECT_NAME}_static PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
@@ -97,13 +79,10 @@ set_target_properties(${PROJECT_NAME}_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_static
     ${Boost_LIBRARIES}
     ${OpenCV_LIBRARIES}
-    ${PCL_LIBRARIES}
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}
 )
-
-# target_include_directories(${PROJECT_NAME} include)
 
 # 设置install路径
 if (NOT CMAKE_INSTALL_PREFIX)
@@ -113,9 +92,4 @@ endif (NOT CMAKE_INSTALL_PREFIX)
 # install
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_static
     DESTINATION ${CMAKE_INSTALL_PREFIX}
-    )
-
-install(FILES
-    include/HYSensorClient.h include/HYGRPCClient.h include/HYWebSocketClient.h include/HYDeviceSDK.h
-    DESTINATION /usr/local/include
     )
