@@ -23,11 +23,24 @@ sudo apt install libpcl-dev
 sudo apt install pcl-tools
 ```
 
-### 使用cmake从源码编译安装
+#### 预编译版本的pcl的卸载
 
 ```
-cmake -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr \ -DBUILD_GPU=ON-DBUILD_apps=ON -DBUILD_examples=ON \ -DCMAKE_INSTALL_PREFIX=/usr ..
+sudo apt remove libpcl-dev
 ```
+
+### 使用cmake从源码编译安装
+
+https://blog.csdn.net/mystyle_/article/details/109827365
+
+```
+cd pcl 
+mkdir release 
+cd release
+cmake -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr/local/lib \ -DBUILD_GPU=ON -DBUILD_apps=ON -DBUILD_examples=ON \ -DCMAKE_INSTALL_PREFIX=../ ..
+```
+
+这里的`-DCMAKE_BUILD_TYPE=None`，因为不知道装boost库的时候，boost是release还是啥版本的，要注意一下，如果后面编译有问题，可能是这里出问题
 
 ### cmake可能遇到的错误
 

@@ -2,13 +2,16 @@ cmake_minimum_required (VERSION 3.13)
 project(HYDeviceDemo LANGUAGES CXX)
 
 # 导入boost库
-find_package(Boost REQUIRED)
-if (Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS})
-    link_directories(${Boost_LIBRARY_DIRS})
-    add_definitions(${Boost_DEFINITIONS})
-    message(STATUS "found Boost ${Boost_VERSION} Library ${Boost_LIBRARIES}")
-endif (Boost_FOUND)
+#find_package(Boost REQUIRED)
+#if (Boost_FOUND)
+#    include_directories(${Boost_INCLUDE_DIRS})
+#    link_directories(${Boost_LIBRARY_DIRS})
+#    add_definitions(${Boost_DEFINITIONS})
+#    message(STATUS "found Boost ${Boost_VERSION} Library ${Boost_LIBRARIES}")
+#endif (Boost_FOUND)
+
+find_package(Boost 1.74.0 COMPONENTS thread log log_setup)
+include_directories(${Boost_INCLUDE_DIRS})
 
 # 导入opencv库
 find_package(OpenCV REQUIRED)
@@ -65,6 +68,8 @@ add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
 # 链接库
 target_link_libraries(${PROJECT_NAME} 
     ${Boost_LIBRARIES}
+    Boost::log
+    Boost::log_setup
     ${OpenCV_LIBRARIES}
     ${PCL_LIBRARIES}
     ${HYDeviceSDK_LIBRARIES}

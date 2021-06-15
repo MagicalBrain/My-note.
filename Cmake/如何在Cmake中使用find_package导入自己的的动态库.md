@@ -16,3 +16,13 @@ mark_as_advanced(YYL_INCLUDE_DIRS YYL_LIBS )
 ```
 
 其中`YYL`是库目录文件夹名，`yyl`是库文件名
+
+`HYDeviceSDK`目录下的`HYDeviceSDKConfig.cmake`
+```
+find_library(HYDeviceSDK_LIBRARYS NAMES HYDeviceSDK PATHS "/usr/local/lib" )
+HYDeviceSDK_LIBRARY_DIRS
+find_path(HYDeviceSDK_INCLUDE_DIRS  
+    NAMES HYDeviceSDK.h HYGRPCClient.h HYWebSocketClient.h HYSensorClient.h  
+    PATHS "/usr/local/include")
+set(HYDeviceSDK_FOUND TRUE)
+```
