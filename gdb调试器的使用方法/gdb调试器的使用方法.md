@@ -1,5 +1,13 @@
 # gdb调试器的使用方法
 
+## cmake
+
+```
+SET(CMAKE_BUILD_TYPE "Debug")
+SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
+SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
+```
+
 ## 确认可执行文件是否支持gdb调试
 
 运行命令
@@ -69,7 +77,7 @@ continue
 
 ## 调试core文件
 
-当程序core dump时，可能会产生core文件，它能够很大程序帮助我们定位问题。但前提是系统没有限制core文件的产生。可以使用命令limit -c查看：
+当程序core dump时，可能会产生core文件，它能够很大程序帮助我们定位问题。但前提是系统没有限制core文件的产生。可以使用命令ulimit -c查看：
 
 ```bash
 ulimit -c
@@ -78,7 +86,7 @@ ulimit -c
 如果结果是0，那么恭喜你，即便程序core dump了也不会有core文件留下。我们需要让core文件能够产生：
 
 ```bash
-ulimit -c unlimied  #表示不限制core文件大小
+ulimit -c unlimited  #表示不限制core文件大小
 ulimit -c 10        #设置最大大小，单位为块，一块默认为512字节
 ```
 上面两种方式可选其一。第一种无限制，第二种指定最大产生的大小。
@@ -89,3 +97,4 @@ $ gdb 程序文件名 core文件名
 ## 参考链接
 
 https://zhuanlan.zhihu.com/p/74897601
+https://www.yanbinghu.com/2018/09/26/61877.html
