@@ -56,3 +56,128 @@ Aborted (core dumped)
 
 实时显示，又称之为“回显”。
 
+```bash
+Thread 1 "HYDeviceDemo" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe3e8)
+    at /home/hrl/test4HYDeviceSDK/HYDeviceDemo.cpp:188
+188                 sensor->playback(callback);
+(gdb) step
+[New Thread 0x7fffecca6700 (LWP 12886)]
+std::__shared_ptr_access<hy::HYSensorClient, (__gnu_cxx::_Lock_policy)2, false, false>::operator-> (
+    this=0x7fffffffdf40) at /usr/include/c++/7/bits/shared_ptr_base.h:969
+969             return _M_get();
+(gdb) step
+std::__shared_ptr_access<hy::HYSensorClient, (__gnu_cxx::_Lock_policy)2, false, false>::_M_get (this=0x7fffffffdf40)
+    at /usr/include/c++/7/bits/shared_ptr_base.h:975
+975           { return static_cast<const __shared_ptr<_Tp, _Lp>*>(this)->get(); }
+(gdb) step
+std::__shared_ptr<hy::HYSensorClient, (__gnu_cxx::_Lock_policy)2>::get (this=0x7fffffffdf40)
+    at /usr/include/c++/7/bits/shared_ptr_base.h:1258
+1258          { return _M_ptr; }
+(gdb) step
+std::__shared_ptr_access<hy::HYSensorClient, (__gnu_cxx::_Lock_policy)2, false, false>::operator-> (
+    this=0x7fffffffdf40) at /usr/include/c++/7/bits/shared_ptr_base.h:970
+970           }
+(gdb) step
+std::function<void (cv::Mat const&, int)>::function(std::function<void (cv::Mat const&, int)> const&) (
+    this=0x7fffffffe1e0, __x=...) at /usr/include/c++/7/bits/std_function.h:673
+673         : _Function_base()
+(gdb) step
+std::_Function_base::_Function_base (this=0x7fffffffe1e0) at /usr/include/c++/7/bits/std_function.h:271
+271         _Function_base() : _M_manager(nullptr) { }
+(gdb) step
+std::function<void (cv::Mat const&, int)>::function(std::function<void (cv::Mat const&, int)> const&) (
+    this=0x7fffffffe1e0, __x=...) at /usr/include/c++/7/bits/std_function.h:675
+675           if (static_cast<bool>(__x))
+(gdb) step
+std::function<void (cv::Mat const&, int)>::operator bool() const (this=0x7fffffffe010)
+    at /usr/include/c++/7/bits/std_function.h:583
+583           { return !_M_empty(); }
+(gdb) step
+std::_Function_base::_M_empty (this=0x7fffffffe010) at /usr/include/c++/7/bits/std_function.h:279
+279         bool _M_empty() const { return !_M_manager; }
+(gdb) step
+std::function<void (cv::Mat const&, int)>::function(std::function<void (cv::Mat const&, int)> const&) (
+    this=0x7fffffffe1e0, __x=...) at /usr/include/c++/7/bits/std_function.h:677
+677               __x._M_manager(_M_functor, __x._M_functor, __clone_functor);
+(gdb) step
+std::_Function_base::_Base_manager<void (*)(cv::Mat const&, int)>::_M_manager (__dest=..., __source=...,
+    __op=std::__clone_functor) at /usr/include/c++/7/bits/std_function.h:212
+212             _M_manager(_Any_data& __dest, const _Any_data& __source,
+(gdb) step
+215               switch (__op)
+(gdb) step
+227                   _M_clone(__dest, __source, _Local_storage());
+(gdb) step
+std::_Function_base::_Base_manager<void (*)(cv::Mat const&, int)>::_M_clone (__dest=..., __source=...)
+    at /usr/include/c++/7/bits/std_function.h:183
+183               ::new (__dest._M_access()) _Functor(__source._M_access<_Functor>());
+(gdb) s
+std::_Any_data::_M_access<void (*)(cv::Mat const&, int)> (this=0x7fffffffe010)
+    at /usr/include/c++/7/bits/std_function.h:117
+117           { return *static_cast<const _Tp*>(_M_access()); }
+(gdb) s
+std::_Any_data::_M_access (this=0x7fffffffe010) at /usr/include/c++/7/bits/std_function.h:107
+107         const void* _M_access() const { return &_M_pod_data[0]; }
+(gdb) s
+std::_Any_data::_M_access (this=0x7fffffffe1e0) at /usr/include/c++/7/bits/std_function.h:106
+106         void*       _M_access()       { return &_M_pod_data[0]; }
+(gdb) s
+operator new (__p=0x7fffffffe1e0) at /usr/include/c++/7/new:169
+169     { return __p; }
+(gdb) s
+std::_Function_base::_Base_manager<void (*)(cv::Mat const&, int)>::_M_clone (__dest=..., __source=...)
+    at /usr/include/c++/7/bits/std_function.h:184
+184             }
+(gdb) s
+std::_Function_base::_Base_manager<void (*)(cv::Mat const&, int)>::_M_manager (__dest=..., __source=...,
+    __op=std::__clone_functor) at /usr/include/c++/7/bits/std_function.h:228
+228                   break;
+(gdb) s
+234               return false;
+(gdb) s
+235             }
+(gdb) s
+std::function<void (cv::Mat const&, int)>::function(std::function<void (cv::Mat const&, int)> const&) (
+    this=0x7fffffffe1e0, __x=...) at /usr/include/c++/7/bits/std_function.h:678
+678               _M_invoker = __x._M_invoker;
+(gdb) s
+679               _M_manager = __x._M_manager;
+(gdb) s
+681         }
+(gdb) s
+[New Thread 0x7fffdffff700 (LWP 12887)]
+[Thread 0x7fffdffff700 (LWP 12887) exited]
+std::function<void (cv::Mat const&, int)>::~function() (this=0x7fffffffe1e0, __in_chrg=<optimized out>)
+    at /usr/include/c++/7/bits/std_function.h:389
+389         class function<_Res(_ArgTypes...)>
+```
+
+```bash
+Thread 1 "HYDeviceDemo" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe3e8)
+    at /home/hrl/test4HYDeviceSDK/HYDeviceDemo.cpp:188
+188                 sensor->playback(callback);
+(gdb) s
+std::__shared_ptr_access<hy::HYSensorClient, (__gnu_cxx::_Lock_policy)2, false, false>::operator-> (
+    this=0x7fffffffdf40) at /usr/include/c++/7/bits/shared_ptr_base.h:969
+969             return _M_get();
+(gdb) finish
+Run till exit from #0  std::__shared_ptr_access<hy::HYSensorClient, (__gnu_cxx::_Lock_policy)2, false, false>::operator-> (this=0x7fffffffdf40) at /usr/include/c++/7/bits/shared_ptr_base.h:969
+[New Thread 0x7fffecca6700 (LWP 12923)]
+0x0000555555579ab1 in main (argc=1, argv=0x7fffffffe3e8) at /home/hrl/test4HYDeviceSDK/HYDeviceDemo.cpp:188
+188                 sensor->playback(callback);
+Value returned is $1 = (std::__shared_ptr_access<hy::HYSensorClient, (__gnu_cxx::_Lock_policy)2, false, false>::element_type *) 0x5555557c9ba0
+(gdb) s
+std::function<void (cv::Mat const&, int)>::function(std::function<void (cv::Mat const&, int)> const&) (
+    this=0x7fffffffe1e0, __x=...) at /usr/include/c++/7/bits/std_function.h:673
+673         : _Function_base()
+(gdb) finish
+Run till exit from #0  std::function<void (cv::Mat const&, int)>::function(std::function<void (cv::Mat const&, int)> const&) (this=0x7fffffffe1e0, __x=...) at /usr/include/c++/7/bits/std_function.h:673
+0x0000555555579ad8 in main (argc=1, argv=0x7fffffffe3e8) at /home/hrl/test4HYDeviceSDK/HYDeviceDemo.cpp:188
+188                 sensor->playback(callback);
+(gdb) s
+[New Thread 0x7fffdffff700 (LWP 12924)]
+[Thread 0x7fffdffff700 (LWP 12924) exited]
+std::function<void (cv::Mat const&, int)>::~function() (this=0x7fffffffe1e0, __in_chrg=<optimized out>)
+    at /usr/include/c++/7/bits/std_function.h:389
+389         class function<_Res(_ArgTypes...)>
+```
