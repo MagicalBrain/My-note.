@@ -271,6 +271,10 @@ int main(int argc, char** argv)
 }
 
 void LiveShow(const cv::Mat& image, int pos) {
+    if (pos == 0)
+        cv::imwrite("LiveImage-0.png", image);
+    else if (pos == 1)
+        cv::imwrite("LiveImage-1.png", image);
+    else return ;
     std::cout << "获取实时图像" << std::endl;
-    cv::imshow("LiveImage", image);
 }
