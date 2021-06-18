@@ -33,3 +33,26 @@ terminate called after throwing an instance of 'std::invalid_argument'
   what():  stoi
 Aborted (core dumped)
 ```
+
+## 21-06-18
+
+问题；
+1. websocket协议都遇到了同样的问题——live函数报错，stoi无法将字符串转换为整型
+2. playback函数所调用的回调函数的定义
+
+### live设置实时曝光，stoi报错
+
+这个错误只发生在websocket协议连接相机
+
+```bash
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  stoi
+Aborted (core dumped)
+```
+
+黄工更新了HYpick，避免了stoi的错误
+
+### playback函数所调用的回调函数如何写才可以正常实时显示相机的画面
+
+实时显示，又称之为“回显”。
+

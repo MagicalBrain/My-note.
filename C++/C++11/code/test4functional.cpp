@@ -10,6 +10,7 @@ std::function<string(int a, int b)> fun3;
 
 void norm1(int a) {
     cout << "普通函数" << endl;
+    cout << a << endl;
 }
 
 static void norm2(string str) {
@@ -22,6 +23,12 @@ auto lambda = [](int a, int b) -> string{
     return "boy";
 };
 
+void func2func2(std::function<void(int a)> func) {
+    fun1(507);
+    //fun1(a);
+    return ;
+}
+
 int main() {
     fun1 = norm1;
     fun1(3);
@@ -31,5 +38,7 @@ int main() {
 
     fun3 = lambda;
     cout << fun3(2, 3) << endl;
+
+    func2func2(fun1);
     return 0;
 }
