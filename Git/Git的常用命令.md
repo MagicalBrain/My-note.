@@ -33,3 +33,36 @@ git --config global user.email "[youremail]"
 ```
 git commit -m
 ```
+
+## 冲突的处理
+
+### 回退
+
+先用`git log`命令查看commit的历史记录。
+
+再用`git reset --hard id`将当前分支回退到id对应的commit
+
+但是回退后，正常`git push`是不行的，只能强制push：
+```bash
+git push -f origin main
+```
+
+### 强制拉取远程仓库覆盖本地仓库
+
+先将远程仓库的代码下载下来，但先不合并：
+
+```bash
+git fetch --all
+```
+
+然后修改当前分支`head`指向的版本：
+```bash
+git reset --hard origin/main
+```
+
+注意：这里main还是master要根据仓库分支的实际情况来设置
+
+再直接拉取即可：
+```bash
+git pull
+```
