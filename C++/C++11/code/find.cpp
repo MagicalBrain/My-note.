@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <alogrithm>
+#include <algorithm>
+
+using std::vector;
 
 int main() {
     int val = 42;
