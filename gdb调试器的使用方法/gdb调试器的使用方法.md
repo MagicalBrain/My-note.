@@ -1,6 +1,10 @@
 # gdb调试器的使用方法
 
-## cmake
+## gcc开启gdb调试
+
+添加`-g`命令参数
+
+## cmake开启gdb调试
 
 ```
 SET(CMAKE_BUILD_TYPE "Debug")
