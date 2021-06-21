@@ -190,15 +190,101 @@ for (auto i : v)
 
 练习3.16:编写一段程序，把练习3.13中vector对象的容量和具体内容输出出来。检验你之前的回答是否正确，如果不对，回过头重新学习3.3.1节（第87页）直到弄明白错在何处为止。
 
+**vector-check.cpp**
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+using std::vector;
+
+static int cnt = 1;
+
+bool vector_check(vector<int> v) {
+    cout << "cnt: " << cnt++ << endl;
+    if (v.size() < 1)
+        return false;
+    else {
+        for (auto i : v)
+            cout << i << " ";
+        cout << endl;
+    }
+    return true;
+}
+
+bool vector_check(vector<string> v) {
+    cout << "cnt: " << cnt++ << endl;
+    if (v.size() < 1)
+        return false;
+    else {
+        for (auto i : v)
+            cout << i << " ";
+        cout << endl;
+    }
+    return true;
+}
+
+int main() {
+    //练习 3.13
+    vector<int> v1;
+    vector<int> v2(10);
+    vector<int> v3(10,42);
+    vector<int> v4{10};
+    vector<int> v5{10, 42};
+    vector<string> v6{10};
+    vector<string> v7{10, "hi"};
+    //练习 3.16
+    vector_check(v1);
+    vector_check(v2);
+    vector_check(v3);
+    vector_check(v4);
+    vector_check(v5);
+    vector_check(v6);
+    vector_check(v7);
+    return 0;
+}
+```
+
+输出结果：
+```
+cnt: 1
+cnt: 2
+0 0 0 0 0 0 0 0 0 0 
+cnt: 3
+42 42 42 42 42 42 42 42 42 42 
+cnt: 4
+10 
+cnt: 5
+10 42 
+cnt: 6
+          
+cnt: 7
+hi hi hi hi hi hi hi hi hi hi
+```
+
 练习3.17:从cin读入一组词并把它们存入一个vector对象，然后设法把所有词都改写为大写形式。输出改变后的结果，每个词占一行。
+
+```cpp
+
+```
 
 练习3.18:下面的程序合法吗？如果不合法，你准备如何修改？
 
 ```cpp
-vector<int> ivec；
-ivec ［0］ =42；
+vector<int> ivec;
+ivec[0] = 42;
 ```
 
 练习3.19:如果想定义一个含有10个元素的vector对象，所有元素的值都是42，请列举出三种不同的实现方法。哪种方法更好呢？为什么？
 
+```cpp
+
+```
+
 练习3.20:读入一组整数并把它们存入一个vector对象，将每对相邻整数的和输出出来。改写你的程序，这次要求先输出第1个和最后1个元素的和，接着输出第2个和倒数第2个元素的和，以此类推。
+
+```cpp
+
+```
