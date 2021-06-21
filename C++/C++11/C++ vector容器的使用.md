@@ -32,7 +32,7 @@ vector支持的初始化方式有：
 
 ### 3.3.1节 练习
 
-练习3.12:下列vector对象的定义有不正确的吗？如果有，请指出来。对于正确的描述其执行结果；对于不正确的，说明其错误的原因。
+#### 练习3.12:下列vector对象的定义有不正确的吗？如果有，请指出来。对于正确的描述其执行结果；对于不正确的，说明其错误的原因。
 
 （a） ```vector<vector<int>> ivec;```
 （b） ```vector<string> svec = ivec;```
@@ -44,7 +44,7 @@ a. 是定义了一个包含vector<int>类型的vector
 b. 是定义了一个包含string的vecter类型的svec，并将同类型的ivec的值复制给svec
 c. 定义了包含string的vecter类型svec，同时初始化其包含有10个"null"字符串
 
-练习3.13:下列的vector对象各包含多少个元素？这些元素的值分别是多少？
+#### 练习3.13:下列的vector对象各包含多少个元素？这些元素的值分别是多少？
 
 （a） vector<int> v1；
 （b） vector<int> v2（10）；
@@ -62,6 +62,8 @@ e. 2个元素，值分别为10和42
 f. 10个空字符串
 g. 两个元素，一个是ASCII码为10的字符，另一个是"hi"字符串
 
+3.12和3.13的代码都在`vector-initialization.cpp`里
+
 ## 向vector中添加元素
 
 使用`vector`的`push_back`成员函数
@@ -77,7 +79,9 @@ for (int i = 0; i < 10; i++)
 
 ### 3.3.2节 练习
 
-练习3.14:编写一段程序，用cin读入一组整数并把它们存入一个vector对象。
+#### 练习3.14:编写一段程序，用cin读入一组整数并把它们存入一个vector对象。
+
+**vector-pushback.cpp**
 
 ```cpp
 #include <iostream>
@@ -113,7 +117,7 @@ macOS上文件终止符是：`control + D`
 
 有时候可能需要按两下
 
-练习3.15:改写上题的程序，不过这次读入的是字符串。
+#### 练习3.15:改写上题的程序，不过这次读入的是字符串。
 
 ```cpp
 #include <iostream>
@@ -188,7 +192,7 @@ for (auto i : v)
 
 ### 3.3.3节 练习
 
-练习3.16:编写一段程序，把练习3.13中vector对象的容量和具体内容输出出来。检验你之前的回答是否正确，如果不对，回过头重新学习3.3.1节（第87页）直到弄明白错在何处为止。
+#### 练习3.16:编写一段程序，把练习3.13中vector对象的容量和具体内容输出出来。检验你之前的回答是否正确，如果不对，回过头重新学习3.3.1节（第87页）直到弄明白错在何处为止。
 
 **vector-check.cpp**
 
@@ -264,10 +268,40 @@ cnt: 7
 hi hi hi hi hi hi hi hi hi hi
 ```
 
-练习3.17:从cin读入一组词并把它们存入一个vector对象，然后设法把所有词都改写为大写形式。输出改变后的结果，每个词占一行。
+#### 练习3.17:从cin读入一组词并把它们存入一个vector对象，然后设法把所有词都改写为大写形式。输出改变后的结果，每个词占一行。
+
+提示：
+可使用cctype头文件里的toupper()函数
+
+**vector-string2upper.cpp**
 
 ```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cctype>
 
+using namespace std;
+using std::vector;
+using std::string;
+
+int main() {
+    string in;
+    vector<string> v;
+    while (cin >> in)
+    {
+        v.push_back(in);
+    }
+
+    for (auto i : v) {
+        for (auto &c : i) {
+            c = toupper(c);
+        }
+        cout << i << endl;
+    }
+    
+    return 0;
+}
 ```
 
 练习3.18:下面的程序合法吗？如果不合法，你准备如何修改？
@@ -275,6 +309,13 @@ hi hi hi hi hi hi hi hi hi hi
 ```cpp
 vector<int> ivec;
 ivec[0] = 42;
+```
+
+明显不合法，应改成：
+
+```cpp
+vector<int> ivec;
+ivec.push_back(42);
 ```
 
 练习3.19:如果想定义一个含有10个元素的vector对象，所有元素的值都是42，请列举出三种不同的实现方法。哪种方法更好呢？为什么？
