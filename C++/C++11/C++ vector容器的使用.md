@@ -304,7 +304,7 @@ int main() {
 }
 ```
 
-练习3.18:下面的程序合法吗？如果不合法，你准备如何修改？
+#### 练习3.18:下面的程序合法吗？如果不合法，你准备如何修改？
 
 ```cpp
 vector<int> ivec;
@@ -318,14 +318,50 @@ vector<int> ivec;
 ivec.push_back(42);
 ```
 
-练习3.19:如果想定义一个含有10个元素的vector对象，所有元素的值都是42，请列举出三种不同的实现方法。哪种方法更好呢？为什么？
+因为ivec是一个初始化为空的vector对象，不能通过引用下标的方式来添加元素。
+
+#### 练习3.19:如果想定义一个含有10个元素的vector对象，所有元素的值都是42，请列举出三种不同的实现方法。哪种方法更好呢？为什么？
 
 ```cpp
-
+vector<int> v(10, 42);
+vector<int> v = {42, …… ,42};   //花括号里有10个42
+vector<int> v;
+for (int i = 0; i < 10; i++) {
+    v.push_back(42);
+}
 ```
 
-练习3.20:读入一组整数并把它们存入一个vector对象，将每对相邻整数的和输出出来。改写你的程序，这次要求先输出第1个和最后1个元素的和，接着输出第2个和倒数第2个元素的和，以此类推。
+个人认为采用值初始化的方法最方便。
+
+#### 练习3.20:读入一组整数并把它们存入一个vector对象，将每对相邻整数的和输出出来。改写你的程序，这次要求先输出第1个和最后1个元素的和，接着输出第2个和倒数第2个元素的和，以此类推。
 
 ```cpp
+#include <iostream>
+#include <vector>
 
+using namespace std;
+using std::vector;
+
+int main() {
+    vector<int> v;
+    int num;
+    while (cin >> num)
+    {
+        v.push_back(num);
+    }
+    cout << "输出相邻元素的和：" << endl;
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i] + v[i + 1] << " ";
+    }
+    cout << endl;
+
+    cout << "输出首尾元素的和：" << endl;
+    for (int i = 0, j = v.size() - 1; i < j; i++, j--)
+    {
+        cout << v[i] + v[j] << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
 ```
