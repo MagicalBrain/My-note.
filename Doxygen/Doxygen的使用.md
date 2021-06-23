@@ -46,6 +46,30 @@ doxygen -u <config_file>
 3. 输出的语言
 4. 源代码路径（可省，Doxygen会自动在当前目录下搜索）
 
+## Doxyfile的设置
+
+https://www.cnblogs.com/rongpmcu/p/7662765.html
+
+选项的分类
+
+Project related configuration options
+Build related configuration options
+Configuration options related to warning and progress messages
+Configuration options related to the input files
+Configuration options related to source browsing
+Configuration options related to the alphabetical class index
+Configuration options related to the HTML output
+Configuration options related to the LaTeX output
+Configuration options related to the RTF output
+Configuration options related to the man page output
+Configuration options related to the XML output
+Configuration options related to the DOCBOOK output
+Configuration options for the AutoGen Definitions output
+Configuration options related to the Perl module output
+Configuration options related to the preprocessor
+Configuration options related to external references
+Configuration options related to the dot tool
+
 ## 例子
 
 ```cpp

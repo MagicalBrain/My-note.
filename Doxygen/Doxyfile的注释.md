@@ -28,7 +28,7 @@
 # The default value is: UTF-8.
 
 #设置Doxygen的编码，默认是utf-8
-DOXYFILE_ENCODING      = UTF-8
+DOXYFILE_ENCODING      = utf-8
 
 # The PROJECT_NAME tag is a single word (or a sequence of words surrounded by
 # double-quotes, unless you are using Doxywizard) that should identify the
@@ -43,6 +43,7 @@ PROJECT_NAME           = "HYDeviceSDK"
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
+# 设置项目版本号
 PROJECT_NUMBER         =
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
@@ -263,6 +264,7 @@ TCL_SUBST              =
 # members will be omitted, etc.
 # The default value is: NO.
 
+# 这个选项如果设置为YES将生成C语言文档，否则默认是C++类型的
 OPTIMIZE_OUTPUT_FOR_C  = NO
 
 # Set the OPTIMIZE_OUTPUT_JAVA tag to YES if your project consists of Java or
@@ -452,6 +454,7 @@ EXTRACT_ALL            = NO
 # be included in the documentation.
 # The default value is: NO.
 
+# 设置为YES，文档就会包含私有类型
 EXTRACT_PRIVATE        = NO
 
 # If the EXTRACT_PACKAGE tag is set to YES, all members with package or internal
@@ -464,6 +467,7 @@ EXTRACT_PACKAGE        = NO
 # included in the documentation.
 # The default value is: NO.
 
+# 这个如果设置为YES，就会包含所有静态成员，包括函数和变量
 EXTRACT_STATIC         = NO
 
 # If the EXTRACT_LOCAL_CLASSES tag is set to YES, classes (and structs) defined
