@@ -1,5 +1,7 @@
 # C++ 标准库类型string的使用
 
+string是一种顺序容器，同vector很像，区别在于string专门用于保存字符。
+
 ## 包含的头文件
 
 ```cpp
@@ -83,7 +85,7 @@ s为空返回true，否则返回false
 
 ```cpp
 #include <cctype>
-isalnum(c) 
+isalnum(c) //当c是字母或数字时为真
 isalpha(c) 
 iscntrl(c) 
 isdigit(c) 
@@ -98,7 +100,7 @@ tolower(c)
 toupper(c)
 ```
 
-当c是字母或数字时为真
+
 当c是字母时为真
 当c是控制字符时为真
 当c是数字时为真
