@@ -10,6 +10,26 @@
 #include <functional>
 ```
 
+## function操作
+
+```cpp
+function<T> f;      //f是一个用来存储可调用对象的空function，这些可调用对象的调用形式应该与函数类型 相同（即T是retType（args）
+function<T> f(nullptr) ;    //显式地构造一个空function
+function<T> f (obj);        //在f中存储可调用对象obj的副本
+f;       //将f作为条件：当f含有一个可调用对象时为真；否则为假
+f(args);    //调用f中的对象，参数是args
+```
+
+**function<T>**的成员类型
+```cpp
+result_type     //该function类型的可调用对象返回的类型
+argument_type   //
+first_argument_type 
+second_argument_type
+```
+
+当T有一个或两个实参时定义的类型。如果 只有一个实参，则argument_type是该类型的同义词；如果有两个实参， 则first_argument_type和second_argument_type分别代表两个实参的类型
+
 ## 使用例子
 
 ```cpp

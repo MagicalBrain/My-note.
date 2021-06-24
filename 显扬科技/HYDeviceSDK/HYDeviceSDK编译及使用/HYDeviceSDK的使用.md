@@ -504,3 +504,12 @@ target_link_libraries(${PROJECT_NAME}
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 ```
+
+```bash
+mkdir build && cd build
+cmake ..
+make -j$(nproc)
+sudo make install
+```
+
+运行结果
