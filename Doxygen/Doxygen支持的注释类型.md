@@ -53,6 +53,7 @@ xml类型
 
 标签比较多，使用比较灵活
 
+还可以给Doxygen注释加注释，以下注释里的文本不会被Doxygen加到文档里：
 ```cpp
 /*! <!-- This is a comment with a comment block --> Visible text */
 ```
