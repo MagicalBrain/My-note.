@@ -1,6 +1,26 @@
 # Doxygen的安装
 
+[官网地址][官网地址]
+
+## win10
+
+安装前还需安装[graphviz][graphviz下载地址]。
+
+[win10版本下载地址][win10下载地址]
+
+跟着提示走next就行了。
+
+win10上面的用GUI界面设置就行
+https://blog.csdn.net/qq_28223455/article/details/88422335
+
 ## Linux
+
+### 直接下载安装
+
+```bash
+sudo apt-get install graphviz
+sudo apt-get install doxygen
+```
 
 ### 编译安装所需要的依赖
 
@@ -237,7 +257,11 @@ int main() {
 }
 ```
 
-[官网地址][官网地址]
+
 
 [官网地址]:https://www.doxygen.nl/download.html
 [ghost]:https://www.ghostscript.com/
+
+[win10下载地址]:https://sourceforge.net/projects/doxygen/files/snapshots/
+
+[graphviz下载地址]:http://www.graphviz.org/download/

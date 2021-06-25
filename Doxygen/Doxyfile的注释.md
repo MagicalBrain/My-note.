@@ -26,26 +26,40 @@
 # built into libc) for the transcoding. See http://www.gnu.org/software/libiconv
 # for the list of possible encodings.
 # The default value is: UTF-8.
+```
 
-#设置Doxygen的编码，默认是utf-8
+## 设置Doxygen的编码，默认是utf-8
+
+```bash
 DOXYFILE_ENCODING      = utf-8
+```
 
+```bash
 # The PROJECT_NAME tag is a single word (or a sequence of words surrounded by
 # double-quotes, unless you are using Doxywizard) that should identify the
 # project for which the documentation is generated. This name is used in the
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
+```
 
-# 设置项目的名称
+
+## 设置项目的名称
+```bash
 PROJECT_NAME           = "HYDeviceSDK"
+```
 
+```bash
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
+```
 
-# 设置项目版本号
+## 设置项目版本号
+```bash
 PROJECT_NUMBER         =
+```
 
+```bash
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
@@ -56,16 +70,22 @@ PROJECT_BRIEF          =
 # in the documentation. The maximum height of the logo should not exceed 55
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
+```
 
-# 设置项目logo路径的？
+## 设置项目logo路径的？
+```bash
 PROJECT_LOGO           =
+```
 
+```bash
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
+```
 
-# 设置输出路径的
+## 设置输出路径的
+```bash
 OUTPUT_DIRECTORY       =
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create 4096 sub-
@@ -100,10 +120,15 @@ ALLOW_UNICODE_NAMES    = NO
 # Serbian, Serbian-Cyrillic, Slovak, Slovene, Spanish, Swedish, Turkish,
 # Ukrainian and Vietnamese.
 # The default value is: English.
+```
 
-# 设置输出的文档的语言
+## 设置输出的文档的语言
+
+```bash
 OUTPUT_LANGUAGE        = Chinese
+```
 
+```bash
 # If the BRIEF_MEMBER_DESC tag is set to YES, doxygen will include brief member
 # descriptions after the members that are listed in the file and class
 # documentation (similar to Javadoc). Set to NO to disable this.
@@ -191,7 +216,11 @@ STRIP_FROM_INC_PATH    =
 # The default value is: NO.
 
 SHORT_NAMES            = NO
+```
 
+## 限定某一种注释风格能够被Doxygen识别
+
+```bash
 # If the JAVADOC_AUTOBRIEF tag is set to YES then doxygen will interpret the
 # first line (until the first dot) of a Javadoc-style comment as the brief
 # description. If set to NO, the Javadoc-style will behave just like regular Qt-
@@ -263,8 +292,13 @@ TCL_SUBST              =
 # instance, some of the names that are used will be different. The list of all
 # members will be omitted, etc.
 # The default value is: NO.
+```
 
-# 这个选项如果设置为YES将生成C语言文档，否则默认是C++类型的
+## 为特定的编程语言优化输出
+
+这个选项如果设置为YES将生成C语言文档，否则默认是C++类型的
+
+```bash
 OPTIMIZE_OUTPUT_FOR_C  = NO
 
 # Set the OPTIMIZE_OUTPUT_JAVA tag to YES if your project consists of Java or
@@ -305,7 +339,11 @@ OPTIMIZE_OUTPUT_VHDL   = NO
 # the files are not read by doxygen.
 
 EXTENSION_MAPPING      =
+```
 
+## 打开Markdown支持
+
+```bash
 # If the MARKDOWN_SUPPORT tag is enabled then doxygen pre-processes all comments
 # according to the Markdown format, which allows for more readable
 # documentation. See http://daringfireball.net/projects/markdown/ for details.
@@ -315,7 +353,9 @@ EXTENSION_MAPPING      =
 # The default value is: YES.
 
 MARKDOWN_SUPPORT       = YES
+```
 
+```bash
 # When the TOC_INCLUDE_HEADINGS tag is set to a non-zero value, all headings up
 # to that level are automatically included in the table of contents, even if
 # they do not have an id attribute.
@@ -804,9 +844,19 @@ WARN_LOGFILE           =
 # directories like /usr/src/myproject. Separate the files or directories with
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
+```
 
+## 设置项目路径
+
+```bash
 INPUT                  =
+```
 
+为空就是默认设置为当前目录
+
+## 设置文件编码
+
+```bash
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
 # libiconv (or the iconv built into libc) for the transcoding. See the libiconv
@@ -815,7 +865,13 @@ INPUT                  =
 # The default value is: UTF-8.
 
 INPUT_ENCODING         = UTF-8
+```
 
+默认是utf-8
+
+## 设置读取的文件后缀
+
+```bash
 # If the value of the INPUT tag contains directories, you can use the
 # FILE_PATTERNS tag to specify one or more wildcard patterns (like *.cpp and
 # *.h) to filter out the source-files in the directories.
@@ -874,7 +930,9 @@ FILE_PATTERNS          = *.c \
                          *.vhdl \
                          *.ucf \
                          *.qsf
+```
 
+```bash
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.
 # The default value is: NO.
