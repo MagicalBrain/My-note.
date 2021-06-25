@@ -81,6 +81,17 @@ list
    1. 首先，确定是否真的需要在容器中间位置添加元素。当处理输入数据时，通常可以很容易地向vector追加数据，然后再调用标准库的sort函数（我们将在10.2.3节介绍sort （第343页））来重排容器中的元素，从而避免在中间位置添加元素
    2. 如果必须在中间位置插入元素，考虑在输入阶段使用list，一旦输入完成，将list中的内容拷贝到一个vector中。
 
+## 顺序容器
+
+## 关联容器
+
+### 定义关联容器
+
+### 关联容器的操作
+
+不管是有序还是无序的关联容器，都支持普通的容器操作。
+不支持顺序容器中与位置相关的操作。
+
 ## 练习
 
 ### 11.1节 练习
@@ -108,5 +119,42 @@ set：适合查询同一种元素中的某一个是否存在的场景。
 ### 练习11.4:扩展你的程序，忽略大小写和标点。例如，＂example. ＂、＂example，＂和＂Example＂应该递增相同的计数器。
 
 ```cpp
+/*
+* 问题；如何忽略大小写？
+* 解决方法：全转为小写即可
+*/
+#include <iostream>
+#include <string>
+#include <map>
+#include <set>
+#include <cctype>
 
+using namespace std;
+using std::string;
+using std::map;
+using std::set;
+
+int main() {
+    //统计输入中每个单词出现的次数
+    map<string, int> word_count; // string到sizet的空map
+    set<string> exclude = {"The", "But", "And", "Or", "An", "A",
+        "the", "but", "and", "or", "an", "a"}; 
+    string word;
+    while (cin >> word)
+    {
+        for (auto &i : word)
+            i = tolower(i);
+        
+        //只统计不在exclude中的单词
+        if (exclude.find(word) == exclude.end())
+            ++word_count[word]; //获取并递增word的计数器
+    }
+    for (auto i : word_count)
+    {
+        cout << i.first << " occurs " << i.second 
+            << (i.second > 1 ? " times." : " time.") << endl;
+    }
+    
+    return 0;
+}
 ```

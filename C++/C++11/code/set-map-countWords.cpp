@@ -1,7 +1,12 @@
+/*
+* 问题；如何忽略大小写？
+* 解决方法：全转为小写即可
+*/
 #include <iostream>
 #include <string>
 #include <map>
 #include <set>
+#include <cctype>
 
 using namespace std;
 using std::string;
@@ -15,10 +20,14 @@ int main() {
         "the", "but", "and", "or", "an", "a"}; 
     string word;
     while (cin >> word)
+    {
+        for (auto &i : word)
+            i = tolower(i);
+        
         //只统计不在exclude中的单词
         if (exclude.find(word) == exclude.end())
             ++word_count[word]; //获取并递增word的计数器
-
+    }
     for (auto i : word_count)
     {
         cout << i.first << " occurs " << i.second 
