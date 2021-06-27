@@ -87,22 +87,88 @@ list
 
 ### 定义关联容器
 
-### 关联容器的操作
+### pair类型
 
 不管是有序还是无序的关联容器，都支持普通的容器操作。
 不支持顺序容器中与位置相关的操作。
+
+在介绍关联容器的操作之前，我们需要先了解pair的标准库类型，它定义在`utility`库文件中。
+
+一个pair保存两个数据成员，有点类似于容器。
+pair是一个用来生产特定类型的模板。
+当创建一个pair时，我们必须提供两个数据成员对应的类型名，可相同也可不相同。
+
+```cpp
+pair<string, string> anon;    //保存两个string
+pair<string, string> word_count;    //保存一个string和一个size_t
+pair<string, vector<int>> line;     //保存string和vector<int>
+```
+
+pair默认的构造函数支持值初始化。
+
+pair的数据成员是public的，分别为`first`和`second`，可直接访问：
+
+```cpp
+cout << w.first << " occurs" << w.second << endl;
+```
+
+**pair上的操作**
+```cpp
+pair<Tl, T2> p;   //p是一个pair，两个类型分别为T1和T2的成员都进行了值初始化（参见3.3.1节，第88页）
+pair<Tl, T2> p(vl, v2)  //p是一个成员类型为T1和T2的pair； first和second成员分别用v1和v2进行初始化
+pair<T1, T2>p = {v1, v2};  //等价于p （v1，v2）
+make_pair (v1, v2)   //返回一个用v1和v2初始化的pair， pair的类型从v1和v2的类型推断出来
+p.first     //返回p的名为first的（公有）数据成员
+p.second    //返回p的名为second的（公有）数据成员
+p1 relop p2    
+/*
+* 关系运算符（<、>、<=、>=）按字典序定义：
+* 例如，
+* 当pl.first < p2.first或!(p2.first < p1.first) && p1.second < p2.second成立时， p1 < p2为true。
+* 关系运算利用元素的<运算符来实现
+*/
+pl == p2
+p1 != p2
+/*
+* 当first和second成员分别相等时，两个pair相等。相等性判断利用元素的==运算符实现
+*/
+```
+
+**创建pair对象的函数**
+
+`pair-create.cpp`
+
+```cpp
+pair<string, int> process(vector<string> &v) {
+   //处理v
+   if (!v.empty())
+      return {v.back(), v.back().size()};    //列表初始化
+   else
+      return pair<string, int> ();     //隐式构造返回值
+}
+```
+
+若v不为空，我们返回一个由v中最后一个string及其大小组成的pair，否则隐式构造一个空pair，并返回它。
+
+我们还可以使用`make_pair`函数来生成pair对象，如将上面的if里的返回语句改为：
+```cpp
+if (!v.empty())
+   return make_pair(v.back(), v.back().size());
+```
+
+### 关联容器的操作
 
 ## 练习
 
 ### 11.1节 练习
 
-### 练习11.1:描述map和vector的不同。
+#### 练习11.1:描述map和vector的不同。
 
 map里的元素类型有两种，且有一种元素的值是通过关键字来获取的；
 
 vector里的元素只能有一种，且可通过下标来访问元素的值。
 
-### 练习11.2:分别给出最适合使用list， vector， deque， map以及set的例子。
+#### 练习11.2:分别给出最适合使用list， vector， deque， map以及set的例子。
 
 list：适合经常频繁删除元素的场合
 
@@ -114,9 +180,13 @@ map：不用说肯定是通过一种元素获取另外一种对应元素的值
 
 set：适合查询同一种元素中的某一个是否存在的场景。
 
-### 练习11.3:编写你自己的单词计数程序。
+#### 练习11.3:编写你自己的单词计数程序。
 
-### 练习11.4:扩展你的程序，忽略大小写和标点。例如，＂example. ＂、＂example，＂和＂Example＂应该递增相同的计数器。
+```cpp
+
+```
+
+#### 练习11.4:扩展你的程序，忽略大小写和标点。例如，＂example. ＂、＂example，＂和＂Example＂应该递增相同的计数器。
 
 ```cpp
 /*
@@ -158,3 +228,104 @@ int main() {
     return 0;
 }
 ```
+
+### 11.2.1节 练习
+
+#### 练习11.5:解释map和set的区别。你如何选择使用哪个？
+
+map的元素只是一对关键字和值，而set的元素是关键字且不重复。
+
+如果要查询关键字对应的值是哪个用map，查询关键字是否存在用set。
+
+#### 练习11.6:解释set和list的区别。你如何选择使用哪个？
+
+set是一个集合，存储的关键字是不重复的，而list是双向链表。
+
+如果查询关键字没有太多增加或删除操作应当使用set，否则使用list。
+
+#### 练习11.7:定义一个map，关键字是家庭的姓，值是一个vector，保存家中孩子（们）的名。编写代码，实现添加新的家庭以及向已有家庭中添加新的孩子。
+
+```cpp
+
+```
+
+#### 练习11.8:编写一个程序，在一个vector而不是一个set中保存不重复的单词。使用set优点是什么？
+
+```cpp
+/*
+* 问题：创建一个vector，用于存储不重复的单词
+*/
+#include <iostream>
+#include <string>
+#include <vector>
+#include <set>
+
+using namespace std;
+using std::vector;
+using std::string;
+using std::set;
+
+int main() {
+    vector<string> words;
+    set<string> words_set;
+
+    string word;
+    while (cin >> word)
+    {
+        words_set.insert(word);
+        if (words.size() > 1) {
+            bool flag_find = false;
+            for (auto i : words)
+                if (i == word)
+                    flag_find = true;
+            
+            if (!flag_find)
+                words.push_back(word);
+        }
+        else words.push_back(word);
+    }
+
+    for (auto i : words)
+        cout << i << " ";
+    cout << endl;
+    
+    //words_set.insert(words.cbegin(), words.cend());
+    for (auto i : words_set)
+        cout << i << " ";
+    cout << endl;
+    
+    return 0;
+}
+```
+
+我这里添加了一个set用作对照，发现set默认是把添加进去的word按字典序排序的。
+
+可见使用set的好处除了方便除重之外还可以将word按字典序进行排序，用起来十分方便。
+
+### 11.2.2节 练习
+
+#### 练习11.9:定义一个map，将单词与一个行号的list关联， list中保存的是单词所出现的行号。
+
+```cpp
+
+```
+
+#### 练习11.10:可以定义一个vectork<int>::iterator到int的map吗？list<int>::iterator到int的map呢？对于两种情况，如果不能，解释为什么。
+
+```cpp
+
+```
+
+#### 练习11.11:不使用decltype重新定义bookstore.
+
+```cpp
+
+```
+
+### 11.2.3节 练习
+
+#### 练习11.12:编写程序，读入string和int的序列，将每个string和int存入一pair中， pair保存在一个vector中。
+
+#### 练习11.13:在上一题的程序中，至少有三种创建pair的方法。编写此程序的三个版本，分别采用不同的方法创建pair，解释你认为哪种形式最易于编写和理解，为什么？
+
+#### 练习11.14:扩展你在11.2.1节练习（第378页）中编写的孩子姓到名的map，添加一个pair的vector，保存孩子的名和生日。
