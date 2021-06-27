@@ -11,3 +11,12 @@ CSHARR_VERSION=1.18.0-dev
 ```
 
 三个字段查看
+
+注意：
+HYDeviceSDK装的时gRPC 1.38，这三个字段为:
+
+```bash
+CORE_VERSION = 16.0.0
+CPP_VERSION = 1.38.0
+CSHARP_VERSION = 2.38.0
+```

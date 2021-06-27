@@ -62,6 +62,20 @@ sudo make install
 
 就安装完成了。
 
+### 如果这里的cmake出问题
+
+protobuf库找不到，那就去安装protobuf库
+
+```bash
+cd /grpc/third_party/protobuf
+mkdir-p cmake/build
+cd cmake/build
+cmake -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
+make -j
+sudo make install
+```
+
+
 ## 安装完gRPC，别忘了安装abseil
 
 ```
@@ -97,6 +111,13 @@ CMake Error at /usr/local/share/cmake-3.14/Modules/FindPackageHandleStandardArgs
   system variable OPENSSL_ROOT_DIR (missing: OPENSSL_CRYPTO_LIBRARY
   OPENSSL_INCLUDE_DIR)
 ```
+
+可能是没有安装openssl的开发库：
+```bash
+sudo apt install libssl-dev
+```
+
+如果还有其它问题，考虑重新装新版本的openssl吧。
 
 https://blog.csdn.net/wanxuexiang/article/details/89647737
 
@@ -139,7 +160,7 @@ cd examples/cpp/helloworld
 
 创建`build`文件夹
 ```
-mkdir cmake/build
+mkdir -p cmake/build
 ```
 
 在`build`文件夹里运行：
