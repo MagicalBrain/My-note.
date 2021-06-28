@@ -245,6 +245,8 @@ set是一个集合，存储的关键字是不重复的，而list是双向链表�
 
 #### 练习11.7:定义一个map，关键字是家庭的姓，值是一个vector，保存家中孩子（们）的名。编写代码，实现添加新的家庭以及向已有家庭中添加新的孩子。
 
+**map-KidsinFamilies.cpp**
+
 ```cpp
 
 ```
@@ -327,9 +329,55 @@ int main() {
 #### 练习11.12:编写程序，读入string和int的序列，将每个string和int存入一pair中， pair保存在一个vector中。
 
 ```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+#include <utility>
 
+using namespace std;
+using std::vector;
+using std::string;
+
+int main() {
+    string str;
+    int num;
+    vector<pair<string, int> > v;
+
+    while (cin >> str >> num)
+        v.push_back(make_pair(str, num));
+    
+    for (auto i : v)
+    {
+        cout << i.first << " " << i.second << endl;
+    }
+    //cout << endl;  
+    
+    return 0;
+}
 ```
 
 #### 练习11.13:在上一题的程序中，至少有三种创建pair的方法。编写此程序的三个版本，分别采用不同的方法创建pair，解释你认为哪种形式最易于编写和理解，为什么？
 
+11.12我用的方式：
+```cpp
+make_pair(str, num);
+```
+
+除了11.12的方式，还有两种：
+2、
+```cpp
+pair<string, int> v(str, num);
+```
+
+3、
+```cpp
+pair<string, int> v{str, num};
+```
+
 #### 练习11.14:扩展你在11.2.1节练习（第378页）中编写的孩子姓到名的map，添加一个pair的vector，保存孩子的名和生日。
+
+**map-KidsinFamilies.cpp**
+
+```cpp
+
+```

@@ -17,9 +17,9 @@ int main() {
     
     for (auto i : v)
     {
-        cout << i.first << " " << i.second ;
+        cout << i.first << " " << i.second << endl;
     }
-    cout << endl;  
+    //cout << endl;  
     
     return 0;
 }

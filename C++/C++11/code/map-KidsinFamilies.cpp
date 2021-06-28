@@ -4,7 +4,6 @@
 * 实现方法：
 *    添加新家庭的孩子的姓名；
 *    向已有家庭添加孩子的姓名；
-*    删除新家庭的孩子的姓名；
 */
 #include <iostream>
 #include <string>
@@ -16,13 +15,12 @@ using std::vector;
 using std::string;
 using std::map;
 
-bool AddNewFamiliesKids(map<string, vector<string> > families, string first_name, vector<string> names) {
-    for (auto i : names)
-    {
-        
+bool AddNewFamiliesKids(map<string, vector<string> > &families, string first_name, vector<string> names) {
+    if (!families.empty()) {
+
+    } else {
+        make_pair(first_name, names);
     }
-    
-    families.push_back()
     return false;
 }
 
