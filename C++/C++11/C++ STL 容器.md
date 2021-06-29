@@ -158,6 +158,10 @@ if (!v.empty())
 
 ### 关联容器的操作
 
+## 关于容器使用所需要的头文件
+
+一般来讲头文件名和容器名是一样的。
+
 ## 练习
 
 ### 11.1节 练习
@@ -394,15 +398,26 @@ int main() {
 
 #### 练习11.9:定义一个map，将单词与一个行号的list关联， list中保存的是单词所出现的行号。
 
+定义如下：
 ```cpp
-
+map<string, list<int> > m;
 ```
 
-#### 练习11.10:可以定义一个vectork<int>::iterator到int的map吗？list<int>::iterator到int的map呢？对于两种情况，如果不能，解释为什么。
+问题是我只是写了个定义，真要写个保存单词所在行号的程序怕是有点困难。
+
+#### 练习11.10:可以定义一个vector<int>::iterator到int的map吗？list<int>::iterator到int的map呢？对于两种情况，如果不能，解释为什么。
 
 ```cpp
-
+map<vector<int>::iterator, int > vi;
+map< list<int>::iterator, int > li;
 ```
+
+语法上没有问题，但是实际上运行会出错。
+
+有序容器要求关键字类型必须支持比较操作`<`，因此map<vector<int>::iterator, int> vec_int是可以的，因为vector的迭代器支持比较操作。而map<list<int>::iterator, int> lst_int；是不行的，因为list的元素不是连续存储的，其迭代器不支持比较操作。
+
+作者：吃口水
+链接：https://zhuanlan.zhihu.com/p/353169184
 
 #### 练习11.11:不使用decltype重新定义bookstore.
 
