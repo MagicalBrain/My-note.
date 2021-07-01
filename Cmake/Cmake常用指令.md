@@ -37,3 +37,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/src/main/jnilibs/${ANDR
 这个例子中的地方是${PROJECT_SOURCE_DIR}/src/main/jnilibs/${ANDROID_ABI}
 
 其中`PROJECT_SOURCE_DIR` 是cmake内置宏，指向构建工程的全路径。详细介绍可参考
+
+## add_custom_target
+
