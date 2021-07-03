@@ -479,7 +479,13 @@ LOOKUP_CACHE_SIZE      = 0
 #---------------------------------------------------------------------------
 # Build related configuration options
 #---------------------------------------------------------------------------
+```
 
+## 是否解析所有代码
+
+即使没有注释也会解析出来
+
+```bash
 # If the EXTRACT_ALL tag is set to YES, doxygen will assume all entities in
 # documentation are documented, even if no documentation was available. Private
 # class members and static file members will be hidden unless the
@@ -489,7 +495,11 @@ LOOKUP_CACHE_SIZE      = 0
 # The default value is: NO.
 
 EXTRACT_ALL            = NO
+```
 
+## 是否解析私有成员
+
+```bash
 # If the EXTRACT_PRIVATE tag is set to YES, all private members of a class will
 # be included in the documentation.
 # The default value is: NO.

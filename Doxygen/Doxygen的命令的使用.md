@@ -32,3 +32,7 @@ virtual int pose(std::vector<double>& loc, int type = hy::ROBOT_POSE_TCP) overri
 ## 控制文档生成
 
 ### mainpage
+
+## 参考链接
+
+https://blog.csdn.net/archielau/article/details/9203075
