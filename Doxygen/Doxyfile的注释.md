@@ -994,7 +994,10 @@ EXAMPLE_PATTERNS       = *
 # The default value is: NO.
 
 EXAMPLE_RECURSIVE      = NO
+```
 
+## 设置图片的存储路径
+```bash
 # The IMAGE_PATH tag can be used to specify one or more files or directories
 # that contain images that are to be included in the documentation (see the
 # \image command).
@@ -1069,7 +1072,11 @@ USE_MDFILE_AS_MAINPAGE =
 # The default value is: NO.
 
 SOURCE_BROWSER         = NO
+```
 
+## 设置文档包含函数体，类以及枚举值
+
+```bash
 # Setting the INLINE_SOURCES tag to YES will include the body of functions,
 # classes and enums directly into the documentation.
 # The default value is: NO.
@@ -1211,7 +1218,11 @@ HTML_OUTPUT            = html
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
 HTML_FILE_EXTENSION    = .html
+```
 
+## 设置html格式
+
+```bash
 # The HTML_HEADER tag can be used to specify a user-defined HTML header file for
 # each generated HTML page. If the tag is left blank doxygen will generate a
 # standard header.
