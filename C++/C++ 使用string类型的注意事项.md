@@ -4,5 +4,5 @@
 
 ```cpp
 using namespace std;
-string;
+string str;
 ```
