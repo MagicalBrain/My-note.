@@ -17,3 +17,6 @@
 ![](asset/generate-done.png)
 
 然后在输出目录下就能看到生成好的解决方案，且可使用visual studio来打开了。
+
+注意：
+其实vs可以直接打开cmake工程而无需生成vs解决方案
