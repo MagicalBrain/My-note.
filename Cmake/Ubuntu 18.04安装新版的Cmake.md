@@ -102,3 +102,27 @@ target_link_libraries(helloworld my)
 ```
 
 原文链接：https://blog.csdn.net/hanshuning/article/details/100540218
+
+## 设置软连接
+
+如果按照上面的安装cmake，root账户的还是旧版本
+
+例如我的新版本安装路径为：
+```bash
+/home/hrl/cmake-3.14.7-Linux-x86_64/bin/cmake
+```
+
+root账户安装路径为；
+```bash
+/usr/bin/cmake
+```
+
+设置软连接的命令：
+```bash
+ln -s [源地址]  [目的地址]
+```
+
+要将root下的cmake也是新版的，则：
+```bash
+ln -s /home/hrl/cmake-3.14.7-Linux-x86_64/bin/cmake  /usr/bin/cmake
+```
