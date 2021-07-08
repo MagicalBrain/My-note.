@@ -482,3 +482,7 @@ pair<string, int> v{str, num};
 ```cpp
 
 ```
+
+## 关于容器的使用容易出错的地方
+
+貌似容器不能够在switch的分值case里面定义
