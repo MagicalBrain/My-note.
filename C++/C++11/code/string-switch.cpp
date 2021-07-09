@@ -24,3 +24,7 @@ int main() {
     }
     return 0;
 }
+
+/*
+可见容器的定义不能放在switch里面
+*/

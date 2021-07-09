@@ -1,8 +1,3 @@
-# 什么是格雷码
-
-## 通过一段简单的代码来理解
-
-```cpp
 /*
 * 实现格雷码
 */
@@ -45,8 +40,3 @@ int main() {
     cout << "转换的格雷码为：" << out << endl;
     return 0;
 }
-```
-
-## 参考连接
-
-https://www.zhihu.com/search?type=content&q=什么是格雷码
