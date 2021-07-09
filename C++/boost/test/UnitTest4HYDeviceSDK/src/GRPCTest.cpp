@@ -14,28 +14,10 @@
 #include <boost/log/trivial.hpp>
 #include <boost/format.hpp>
 
-
-
 using namespace hy;
 
-void playback(const cv::Mat& image, int pos)
-{
-    const char* name = nullptr;
-    if (pos == 0)
-    {
-        name = "Live - Left";
-    }
-    else
-    {
-        name = "Live - Right";
-    }
-    cv::namedWindow(name, cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO | cv::WINDOW_GUI_EXPANDED);
-    cv::imshow(name, image);
-    cv::waitKey(1);
-}
-
 //变量初始化
-std::string uri = "ws://192.168.3.82:8080";
+std::string uri = "grpc://192.168.3.82:8080";
 
 //HYSensorClient::Ptr sensor = nullptr;
 HYSensorClient::Ptr sensor;
@@ -44,12 +26,12 @@ cv::Mat color, depth, live_image;
 pcl::PointCloud<pcl::PointXYZRGB> cloud;
 std::vector<cv::Mat> images;
 
-BOOST_AUTO_TEST_CASE(Test_Connect_websocket_str)
+BOOST_AUTO_TEST_CASE(Test_Connect_grpc_str)
 {
     BOOST_TEST(uri.empty() == false);
 }
 
-BOOST_AUTO_TEST_CASE(Test_Connect_websocket)
+BOOST_AUTO_TEST_CASE(Test_grpc_Connect)
 {
     //std::string uri = "ws://192.168.3.82:8080";
     BOOST_LOG_TRIVIAL(info) << "connecting sensor at " << uri;
@@ -59,10 +41,9 @@ BOOST_AUTO_TEST_CASE(Test_Connect_websocket)
     if (sensor == nullptr)
         BOOST_LOG_TRIVIAL(info) << "sensor is nullptr! " ;
     BOOST_TEST(sensor != nullptr);
-    //BOOST_TEST(sensor->connected() == false);
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetDistance)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetDistance)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setDistance.";
     //sensor = HYSensorClient::Connect(uri);
@@ -71,19 +52,19 @@ BOOST_AUTO_TEST_CASE(Test_websocket_SetDistance)
     int min, max;
     //std::cout << "请输入最小距离 最大距离" << std::endl;
     //std::cin >> min >> max;
-    min = 500, max = 2000;
+    min = 100, max = 2500;
     sensor->distance(min, max);
     BOOST_LOG_TRIVIAL(info) << boost::format("sensor distance set to %1% - %2%") % sensor->info().Min % sensor->info().Max;
     BOOST_TEST(sensor->info().Min);
     BOOST_TEST(sensor->info().Max);
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetFov)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetFov)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setFov.";
     BOOST_REQUIRE(sensor != nullptr);
     int x, y, w, h;
-    x = 100, y = 100;
+    x = 50, y = 50;
     w = 1440, h = 1080;
     sensor->fov(x, y, w, h);
     BOOST_LOG_TRIVIAL(info) << boost::format("sensor fov set to (%1% , %2%) , (%3% , %4%).") % sensor->info().X % sensor->info().Y
@@ -94,13 +75,13 @@ BOOST_AUTO_TEST_CASE(Test_websocket_SetFov)
     BOOST_TEST(sensor->info().Height);
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetCurrent)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetCurrent)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setCurrent.";
     BOOST_REQUIRE(sensor != nullptr);
 
     int r, g, b;
-    r = 110, g = 110, b = 110;
+    r = 100, g = 100, b = 100;
     sensor->current(r, g, b);
     BOOST_LOG_TRIVIAL(info) << boost::format("sensor current set to %1%, %2%, %3%") % (int)sensor->info().Red % (int)sensor->info().Green
                 % (int)sensor->info().Blue;
@@ -110,19 +91,19 @@ BOOST_AUTO_TEST_CASE(Test_websocket_SetCurrent)
     BOOST_TEST(sensor->info().Blue);
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetLive)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetLive)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setLive.";
     BOOST_REQUIRE(sensor != nullptr);
 
-    int live = 20000;
+    int live = 30000;
     sensor->live(live);
             
     BOOST_LOG_TRIVIAL(info) << boost::format("sensor LiveExposure set to %1%") % sensor->info().LiveExposure;
     BOOST_TEST(sensor->info().LiveExposure);
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetExposure)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetExposure)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setExposure.";
     BOOST_REQUIRE(sensor != nullptr);
@@ -139,7 +120,7 @@ BOOST_AUTO_TEST_CASE(Test_websocket_SetExposure)
     BOOST_TEST(sensor->info().Period);
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetStyle)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetStyle)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setStyle.";
     BOOST_REQUIRE(sensor != nullptr);
@@ -171,7 +152,7 @@ BOOST_AUTO_TEST_CASE(Test_websocket_SetStyle)
     BOOST_TEST(sensor->info().DisplayBit);
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetDecode)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetDecode)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setDecode.";
     //BOOST_REQUIRE(sensor != nullptr);
@@ -186,12 +167,12 @@ BOOST_AUTO_TEST_CASE(Test_websocket_SetDecode)
     type = 5;
     //21-07-08: decoder(type = 6)有问题
     //sensor->decoder(type);
-    BOOST_LOG_TRIVIAL(info) << boost::format("sensor style decoder is %1%;") % sensor->info().DecodeType;
+    //BOOST_LOG_TRIVIAL(info) << boost::format("sensor style decoder is %1%;") % sensor->info().DecodeType;
     
-    BOOST_TEST(sensor->info().DecodeType);
+    //BOOST_TEST(sensor->info().DecodeType);
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetCallback)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetCallback)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setCallback.";
     //BOOST_REQUIRE(sensor != nullptr);
@@ -201,7 +182,7 @@ BOOST_AUTO_TEST_CASE(Test_websocket_SetCallback)
     //sensor->onPlayback(callback);
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetCapture)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetCapture)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setCapture.";
     //BOOST_REQUIRE(sensor != nullptr);
@@ -218,7 +199,7 @@ BOOST_AUTO_TEST_CASE(Test_websocket_SetCapture)
     
 }
 
-BOOST_AUTO_TEST_CASE(Test_websocket_SetCompute)
+BOOST_AUTO_TEST_CASE(Test_grpc_SetCompute)
 {
     BOOST_LOG_TRIVIAL(info) << "Start to test setCompute.";
     BOOST_REQUIRE(sensor != nullptr);
@@ -272,8 +253,12 @@ BOOST_AUTO_TEST_CASE(Test_websocket_SetCompute)
         BOOST_LOG_TRIVIAL(error) << "point cloud is empty";
 }
 
-BOOST_AUTO_TEST_CASE(Test01) 
+BOOST_AUTO_TEST_CASE(Test_grpc_Disconnected) 
 {
-    std::string str = "My test!";
-    BOOST_TEST(str.empty() == false);
+    BOOST_LOG_TRIVIAL(info) << "Start to test setStyle.";
+    BOOST_REQUIRE(sensor != nullptr);
+
+    //sensor->disconnect();
+
+    //BOOST_TEST(sensor->disconnect());
 }
