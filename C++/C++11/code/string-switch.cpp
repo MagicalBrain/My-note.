@@ -13,12 +13,12 @@ int main() {
     cin >> c;
     switch (c)
     {
-    case 1:
+    case 1: {
         string str;
         cin >> str;
         cout << str << endl;
         break;
-    
+    }
     default:
         break;
     }
@@ -26,5 +26,6 @@ int main() {
 }
 
 /*
-可见容器的定义不能放在switch里面
+可见容器的定义不能直接放在switch的case子句里面
+在case后面加上{}即可。
 */
