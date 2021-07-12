@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/cpp_test.dir/test.cpp.o  -o cpp_test -Wl,-rpath,/usr/local/lib libsum_integers.a /usr/local/lib/libboost_unit_test_framework.so.1.74.0 

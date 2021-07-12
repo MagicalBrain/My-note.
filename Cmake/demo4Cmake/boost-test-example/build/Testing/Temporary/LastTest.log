@@ -1,0 +1,22 @@
+Start testing: Jul 12 19:56 CST
+----------------------------------------------------------
+1/1 Testing: boost_test
+1/1 Test: boost_test
+Command: "/home/hrl/demo4Cmake/boost-test-example/build/cpp_test"
+Directory: /home/hrl/demo4Cmake/boost-test-example/build
+"boost_test" start time: Jul 12 19:56 CST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"boost_test" end time: Jul 12 19:56 CST
+"boost_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jul 12 19:56 CST

@@ -2,7 +2,49 @@
 
 ## Boost.Test
 
-### 编写测试代码
+## CMake Cookbook上的例子
+
+### `sum_integers.hpp`
+```cpp
+#pragma once
+#include <vector>
+int sum_integers(const std::vector<int> integers);
+```
+
+
+### `sum_integers.cpp`
+```cpp
+#include "sum_integers.hpp"
+#include <vector>
+
+int sum_integers(const std::vector<int> integers) {
+    auto sum =0;
+    for (auto i : integers) {
+        sum += i;
+    }
+    return sum;
+}
+```
+
+### `main.cpp`
+```cpp
+#include "sum_integers.hpp"
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+// we assume all arguments are integers and we sum them up 
+// for simplicity we do not verify the type of arguments 
+int main(int argc, char *argv[]) {
+    std::vector<int> integers;
+    for (auto i = 1; i < argc; i++) 
+        integers.push_back(std: :stoi(argv[i]));
+    auto sum = sum_integers(integers);
+    
+    std::cout << sum << std: endl;
+}
+```
 
 假设有一个`test.cpp`：
 
@@ -24,26 +66,29 @@ BOOST_AUTO_TEST_CASE(add_example)
 ### 编写CMakeLists.txt
 
 ```bash
- #set minimum cmake version
-cmake minimum_required (VERSION 3.5 FATAL ERROR) #project name and language
-project (recipe-04 LANGUAGES CXX)
+#set minimum cmake version
+cmake_minimum_required (VERSION 3.5) 
+#project name and language
+project(recipe-04 LANGUAGES CXX)
 
- # require C++11
-set (CMAKE_CXX_STANDARD 11)
-set (CMAKE_CXX EXTENSIONS OFF)
-set (CMAKE_CXX_STANDARD_REQUIRED ON)
+# require C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # example library
-add_library(sum_integers sum_integers.cpp) #main code
-add executable (sum_up main.cpp)
-target_link_libraries (sum_up sum_integers)
+add_library(sum_integers sum_integers.cpp) 
+#main code
+add_executable(sum_up main.cpp)
+target_link_libraries(sum_up sum_integers)
 
-find_package (Boost 1.54 REQUIRED COMPONENTS unit_test_framework add executable(cpp_test test.cpp)
+find_package(Boost REQUIRED COMPONENTS unit_test_framework) 
+add_executable(cpp_test test.cpp)
 target_link_libraries(cpp_test
-PRIVATE
-sum_integers
-Boost::unit_test_framework
-
+    PRIVATE
+    sum_integers
+    Boost::unit_test_framework
+)
 # avoid undefined reference to "main" in test.cpp
 target_compile_definitions(cpp_test
     PRIVATE
@@ -53,8 +98,9 @@ target_compile_definitions(cpp_test
 enable_testing()
 add_test(
     NAME boost_test
-    COMMAND $<TARGET FILE: cpp_test>
+    COMMAND $<TARGET_FILE:cpp_test>
 )
+
 ```
 
 ### 运行命令
@@ -64,6 +110,30 @@ mkdir build && cd build
 cmake .. && make -j$(nproc)
 ctest
 ```
+
+----
+
+测试代码目录下CMakeLists.txt：
+```bash
+find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+ 
+include_directories(${Boost_INCLUDE_DIRS})
+ 
+add_executable(Test first_test.cpp)
+ 
+target_link_libraries(Test ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+
+```
+
+项目主目录下CMakeLists.txt：
+```bash
+include(CTest)
+enable_testing()
+add_subdirectory(test)
+add_test(NAME unit_test COMMAND Test)
+```
+
+
 
 ## 参考资料
 

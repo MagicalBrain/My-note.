@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hrl/demo4Cmake/boost-test-example/sum_integers.hpp
+vector
+-
+
+/home/hrl/demo4Cmake/boost-test-example/test.cpp
+sum_integers.hpp
+/home/hrl/demo4Cmake/boost-test-example/sum_integers.hpp
+vector
+-
+boost/test/unit_test.hpp
+-
+
