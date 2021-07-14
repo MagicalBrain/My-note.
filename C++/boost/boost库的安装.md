@@ -2,7 +2,9 @@
 
 ## windows10
 
-## Ubuntu
+直接下载`.exe`可执行文件后，点击安装即可。
+
+## Linux
 
 以Ubuntu 18.04 为例
 
@@ -43,3 +45,7 @@ g++ src.cpp -o src
 ```
 123456
 ```
+
+## macOS
+
+与Linux类似。
