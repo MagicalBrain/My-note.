@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/sum_up.dir/main.cpp.o  -o sum_up libsum_integers.a 

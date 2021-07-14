@@ -1,6 +1,0 @@
-/home/hrl/demo4Cmake/boost-test-example/build/CMakeFiles/test.dir
-/home/hrl/demo4Cmake/boost-test-example/build/CMakeFiles/cpp_test.dir
-/home/hrl/demo4Cmake/boost-test-example/build/CMakeFiles/rebuild_cache.dir
-/home/hrl/demo4Cmake/boost-test-example/build/CMakeFiles/sum_integers.dir
-/home/hrl/demo4Cmake/boost-test-example/build/CMakeFiles/edit_cache.dir
-/home/hrl/demo4Cmake/boost-test-example/build/CMakeFiles/sum_up.dir
