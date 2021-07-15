@@ -19,7 +19,7 @@ cd到目录里，```./bootstrap.sh```编译生成
 
 然后```./b2 header```编译生成头文件
 
-最后`./b2 install`安装
+最后`./b2 install`安装（注意，得用sudo权限！）
 
 ### 验证安装
 
