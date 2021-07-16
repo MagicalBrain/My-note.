@@ -1,5 +1,7 @@
 # README
 
+https://github.com/MagicalBrain/MyTestManagerSystem.git
+
 恐怕是要先生成.so动态库才能够编译吧。
 
 先不用cmake，使用g++编译试试
