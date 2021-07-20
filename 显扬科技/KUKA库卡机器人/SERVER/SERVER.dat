@@ -1,0 +1,16 @@
+&ACCESS RVP
+&REL 1
+&PARAM DISKPATH = KRC:\R1\Program
+DEFDAT  SERVER PUBLIC
+DECL EKI_STATUS RET
+DECL BOOL READROBOTSTATUS=FALSE
+DECL BOOL ONLYSETIO=FALSE
+;DECL REAL POS_X=100
+;DECL REAL POS_Y=100
+;DECL REAL POS_Z=100
+;DECL REAL POS_A=100
+;DECL REAL POS_B=100
+;DECL REAL POS_C=100
+DECL FRAME POS_FR={X 100.000,Y 100.000,Z 50.0000,A 0.0,B 50.0000,C 30.0000}
+DECL BASIS_SUGG_T LAST_BASIS={POINT1[] "P0                      ",POINT2[] "P0                      ",CP_PARAMS[] "CPDAT0                  ",PTP_PARAMS[] "PDAT0                   ",CONT[] "                        ",CP_VEL[] "2.0                     ",PTP_VEL[] " 100                    ",SYNC_PARAMS[] "SYNCDAT                 ",SPL_NAME[] "S0                      ",A_PARAMS[] "ADAT0                   "}
+ENDDAT
