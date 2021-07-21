@@ -143,6 +143,161 @@ END
 ```
 
 运行到第一个折叠夹就报红，这正常吗？
-这居然是正常的，难道说要让这玩意自动运行还需要另外一个控制柜吗？
+这是正常的，但是wait for报红不正常啊
 
-不可能吧
+因为这里报红是因为机器人当前坐标和$HOME里定义的不一样，所以要先运行到那个位置才行。
+
+----
+
+2021-07-21
+
+还没找到解决的办法，可能需要上外网再问问。
+
+When the program reaches "WAIT FOR", the robot stops. And the "START" button must be pressed to continue running.
+What do I need to do to prevent the robot from stopping when the program reaches "WAIT FOR"?
+
+A strange error about the WAIT FOR statement in KUKA Robot Language(KRL)
+
+When the program reaches "WAIT FOR", the robot stops. And the "START" button must be pressed to continue running.
+What do I need to do to prevent the robot from stopping when the program reaches "WAIT FOR"?
+And I use EthernetKRL package, the source files as follow:
+
+connect.xml:
+```xml
+<ETHERNETKRL>
+  <CONFIGURATION>
+    <EXTERNAL>
+      <IP>172.31.55.5</IP>
+      <PORT>60000</PORT>
+      <TYPE>Client</TYPE>
+    </EXTERNAL>
+    <INTERNAL>
+      <ENVIRONMENT>Program</ENVIRONMENT>
+      <BUFFERING Mode="FIFO" Limit="10"/>
+      <BUFFSIZE Limit="16384"/>
+      <IP>172.31.55.6</IP>
+      <PORT>54601</PORT>
+      <PROTOCOL>TCP</PROTOCOL>
+      <MESSAGES Logging="error" Display="disabled"/>
+    </INTERNAL>
+  </CONFIGURATION>
+  <RECEIVE>
+    <XML>
+      <ELEMENT Tag="Robot/Pos/X" Type="REAL" />
+      <ELEMENT Tag="Robot/Pos/Y" Type="REAL" />
+      <ELEMENT Tag="Robot/Pos/Z" Type="REAL" />
+      <ELEMENT Tag="Robot/Pos/A" Type="REAL" />
+      <ELEMENT Tag="Robot/Pos/B" Type="REAL" />
+      <ELEMENT Tag="Robot/Pos/C" Type="REAL" />
+      <ELEMENT Tag="Robot/ready" Type="BOOL" />
+      <ELEMENT Tag="Robot/chuck" Type="BOOL" />
+      <ELEMENT Tag="Robot/readRobotStatus" Type="BOOL" Set_Out="14"/>
+      <ELEMENT Tag="Robot/onlySetIO" Type="BOOL" Set_Out="15"/>
+      <ELEMENT Tag="Robot" Set_Flag="14" />
+    </XML>
+  </RECEIVE>
+  <SEND>
+    <XML>
+      <ELEMENT Tag="Robot/Pos/X" />
+      <ELEMENT Tag="Robot/Pos/Y" />
+      <ELEMENT Tag="Robot/Pos/Z" />
+      <ELEMENT Tag="Robot/Pos/A" />
+      <ELEMENT Tag="Robot/Pos/B" />
+      <ELEMENT Tag="Robot/Pos/C" />
+      <ELEMENT Tag="Robot/ready" />
+      <ELEMENT Tag="Robot/chuck" />
+      <ELEMENT Tag="Robot/readRobotStatus" />
+      <ELEMENT Tag="Robot/onlySetIO" />
+    </XML>
+  </SEND>
+</ETHERNETKRL>
+```
+
+server.src:
+```
+&ACCESS RVP
+&REL 3
+&PARAM DISKPATH = KRC:\R1\Program
+DEF SERVER()
+
+RET=EKI_Init("CONNECT")
+RET=EKI_Open("CONNECT")
+
+LOOP
+
+WAIT FOR $OUT[14]==TRUE 
+    
+$OUT[14]=FALSE
+
+$TOOL = tool_data[4]
+$LOAD = load_data[4]
+$BASE = base_data[4]
+
+RET=EKI_GetBool("CONNECT","Robot/readRobotStatus",READROBOTSTATUS)
+
+IF READROBOTSTATUS==TRUE THEN
+RET=EKI_SetReal("CONNECT","Robot/Pos/X",$POS_ACT.X)
+RET=EKI_SetReal("CONNECT","Robot/Pos/Y",$POS_ACT.Y)
+RET=EKI_SetReal("CONNECT","Robot/Pos/Z",$POS_ACT.Z)
+RET=EKI_SetReal("CONNECT","Robot/Pos/A",$POS_ACT.A)
+RET=EKI_SetReal("CONNECT","Robot/Pos/B",$POS_ACT.B)
+RET=EKI_SetReal("CONNECT","Robot/Pos/C",$POS_ACT.C)
+RET=EKI_SetBool("CONNECT","Robot/chuck",$OUT[2])
+RET=EKI_SetBool("CONNECT","Robot/ready",$OUT[1])
+RET=EKI_Send("CONNECT","Robot")
+
+ELSE
+RET=EKI_GetBool("CONNECT","Robot/onlySetIO",ONLYSETIO)
+
+IF ONLYSETIO==TRUE THEN
+RET=EKI_GetBool("CONNECT","Robot/chuck",$OUT[2])
+RET=EKI_Send("CONNECT","Robot")
+
+ELSE
+RET=EKI_GetReal("CONNECT","Robot/Pos/X",POS_FR.X)
+RET=EKI_GetReal("CONNECT","Robot/Pos/Y",POS_FR.Y)
+RET=EKI_GetReal("CONNECT","Robot/Pos/Z",POS_FR.Z)
+RET=EKI_GetReal("CONNECT","Robot/Pos/A",POS_FR.A)
+RET=EKI_GetReal("CONNECT","Robot/Pos/B",POS_FR.B)
+RET=EKI_GetReal("CONNECT","Robot/Pos/C",POS_FR.C)
+
+LIN POS_FR
+
+
+RET=EKI_Send("CONNECT","Robot")
+ENDIF
+
+ENDIF
+
+ENDLOOP
+
+RET=EKI_Close("CONNECT")
+RET=EKI_Clear("CONNECT")
+END
+```
+
+server.dat:
+```
+&ACCESS RVP
+&REL 3
+&PARAM DISKPATH = KRC:\R1\Program
+DEFDAT  server PUBLIC
+DECL EKI_STATUS RET
+DECL BOOL READROBOTSTATUS=TRUE
+DECL BOOL ONLYSETIO=FALSE
+;DECL REAL POS_X=100
+;DECL REAL POS_Y=100
+;DECL REAL POS_Z=100
+;DECL REAL POS_A=100
+;DECL REAL POS_B=100
+;DECL REAL POS_C=100
+DECL FRAME POS_FR={X 100.000,Y 100.000,Z 50.0000,A 0.0,B 50.0000,C 30.0000}
+DECL BASIS_SUGG_T LAST_BASIS={POINT1[] "P0",POINT2[] "P0",CP_PARAMS[] "CPDAT0",PTP_PARAMS[] "PDAT0",CONT[] " ",CP_VEL[] "2.0",PTP_VEL[] " 100",SYNC_PARAMS[] "SYNCDAT",SPL_NAME[] "S0",A_PARAMS[] "ADAT0"}
+
+DECL INT cnt
+
+ENDDAT
+```
+
+My purpose is to use a computer as the client and I want the robot as the server. When the computer sends data to the robot, $FLAG[15]=TRUE, and then the robot will return data to the computer.
+If anyone can help me, I would be very grateful.
