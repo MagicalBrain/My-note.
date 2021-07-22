@@ -20,20 +20,22 @@
 
 ## WAIT FOR停下问题
 
-用户权限问题：
+### 用户权限问题？
+
 可能需要`专家权限`
 
-考虑使用替代代码：
+### 考虑使用替代代码
 
+1、
 ```bash
 ;考虑使用如下代码替换
 WHILE $OUT[14]==FALSE
    WAIT SEC 0.1
 ENDWHILE
 ```
+不行，不是WHILE就是WAIT那里停住。
 
-再不行考虑安装低版本的EthernetKRL 2.2.3
-
+2、
 ```bash
 ;WAIT FOR $OUT[14]==TRUE 
 WHILE $OUT[14]==FALSE
@@ -42,7 +44,45 @@ WHILE $OUT[14]==FALSE
    ENDIF 
 ENDWHILE
 ```
+不行，不是WHILE就是IF那里停住。
 
+3、
+```bash
+CONTINUE
+WAIT FOR $OUT[14]==TRUE 
+    
+$OUT[14]=FALSE
+```
+
+4、
+```bash
+CONTINUE
+WAIT FOR $OUT[14]==TRUE 
+    
+$OUT[14]=FALSE
+```
+
+5、
+```bash
+……
+CONTINUE
+$OUT[14]==TRUE 
+
+RET=EKI_Init("CONNECT")
+RET=EKI_Open("CONNECT")
+
+$OUT[14]=FALSE
+
+LOOP
+
+CONTINUE
+WAIT FOR $OUT[14]==TRUE 
+    
+$OUT[14]=FALSE
+……
+```
+
+6、
 ```bash
 &ACCESS RVP
 &REL 3
@@ -97,8 +137,23 @@ RET=EKI_Close("CONNECT")
 RET=EKI_Clear("CONNECT")
 END
 ```
+也是不行
 
-----
+7、
+```bash
+REPEAT
+  R=1
+  FOR R = 1 TO 100
+
+  ENDFOR
+UNTIL R>100
+```
+
+### 考虑安装低版本的EthernetKRL 2.2.3
+
+不行，低版本高版本运行起来还是一样
+
+### 代码有问题？
 
 运行报红是有错误？
 
@@ -143,13 +198,12 @@ END
 ```
 
 运行到第一个折叠夹就报红，这正常吗？
+
 这是正常的，但是wait for报红不正常啊
 
 因为这里报红是因为机器人当前坐标和$HOME里定义的不一样，所以要先运行到那个位置才行。
 
-----
-
-2021-07-21
+### 寻找解决方案
 
 还没找到解决的办法，可能需要上外网再问问。
 
@@ -301,3 +355,13 @@ ENDDAT
 
 My purpose is to use a computer as the client and I want the robot as the server. When the computer sends data to the robot, $FLAG[15]=TRUE, and then the robot will return data to the computer.
 If anyone can help me, I would be very grateful.
+
+@Micahstuh：
+Does it wait at that line for a long time during this process, or does it immediately put the robot out of run mode when it hits the WAIT FOR statement? I am thinking what's stopping your robot might actually be in the submit interpreter or an interrupt somewhere. Also, Welcome to StackOverflow John! 
+
+Thank you.
+First, the variable $OUT[14] is FALSE before I put the program in the run mode. Then I choose the program and start to run it.
+When it hits the WAIT FOR statement, it will not put robot out of run  mode and will wait for $OUT[14]==TRUE until I set $OUT[14]=TRUE, but it tells me I need to press the start button after I set $OUT[14]=TRUE.
+I don't know whether this situation is normal?
+
+Can you tell me how to make the robot wait for a signal(such as $OUT[14]) and then start again without pressing the start button.
