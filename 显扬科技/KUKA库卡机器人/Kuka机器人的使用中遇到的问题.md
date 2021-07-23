@@ -405,5 +405,155 @@ Thank you very much. It does work! This problem has been bothering me for two we
 
 其实只要修改server.src就可以了：
 ```bash
+&ACCESS RVP
+&REL 3
+&PARAM DISKPATH = KRC:\R1\Program
+DEF SERVER()
 
+BAS(#INITMOV, 0) 
+PTP $AXIS_ACT 
+
+RET=EKI_Init("CONNECT")
+RET=EKI_Open("CONNECT")
+
+LOOP
+
+WHILE $FLAG[1]
+
+CONTINUE
+WAIT FOR ($OUT[14]) 
+$OUT[14]=FALSE
+
+$TOOL = tool_data[1]
+$LOAD = load_data[1]
+$BASE = base_data[1]
+
+RET=EKI_GetBool("CONNECT","Robot/readRobotStatus",READROBOTSTATUS)
+
+IF READROBOTSTATUS==TRUE THEN
+RET=EKI_SetReal("CONNECT","Robot/Pos/X",$POS_ACT.X)
+RET=EKI_SetReal("CONNECT","Robot/Pos/Y",$POS_ACT.Y)
+RET=EKI_SetReal("CONNECT","Robot/Pos/Z",$POS_ACT.Z)
+RET=EKI_SetReal("CONNECT","Robot/Pos/A",$POS_ACT.A)
+RET=EKI_SetReal("CONNECT","Robot/Pos/B",$POS_ACT.B)
+RET=EKI_SetReal("CONNECT","Robot/Pos/C",$POS_ACT.C)
+RET=EKI_SetBool("CONNECT","Robot/chuck",$OUT[2])
+RET=EKI_SetBool("CONNECT","Robot/ready",$OUT[1])
+RET=EKI_Send("CONNECT","Robot")
+
+ELSE
+RET=EKI_GetBool("CONNECT","Robot/onlySetIO",ONLYSETIO)
+
+IF ONLYSETIO==TRUE THEN
+RET=EKI_GetBool("CONNECT","Robot/chuck",$OUT[2])
+RET=EKI_Send("CONNECT","Robot")
+
+ELSE
+RET=EKI_GetReal("CONNECT","Robot/Pos/X",POS_FR.X)
+RET=EKI_GetReal("CONNECT","Robot/Pos/Y",POS_FR.Y)
+RET=EKI_GetReal("CONNECT","Robot/Pos/Z",POS_FR.Z)
+RET=EKI_GetReal("CONNECT","Robot/Pos/A",POS_FR.A)
+RET=EKI_GetReal("CONNECT","Robot/Pos/B",POS_FR.B)
+RET=EKI_GetReal("CONNECT","Robot/Pos/C",POS_FR.C)
+
+LIN POS_FR
+
+
+RET=EKI_Send("CONNECT","Robot")
+ENDIF
+
+ENDIF
+
+ENDWHILE
+
+ENDLOOP
+
+RET=EKI_Close("CONNECT")
+RET=EKI_Clear("CONNECT")
+END
 ```
+
+#### 提问链接
+
+https://stackoverflow.com/questions/68469391/a-strange-error-about-the-wait-for-statement-in-kuka-robot-languagekrl
+
+## 上位机断开连接问题
+
+描述：
+如果上位机断开连接，则再次连接需要重新启动示教器程序
+
+尝试使用以下代码解决问题：
+
+```bash
+&ACCESS RVP
+&REL 4
+&PARAM DISKPATH = KRC:\R1\Program
+DEF SERVER()
+
+BAS(#INITMOV, 0) 
+PTP $AXIS_ACT 
+
+LOOP
+
+IF $FLAG[1] == FALSE THEN
+RET=EKI_Init("CONNECT")
+RET=EKI_Open("CONNECT")
+ENDIF
+   
+CONTINUE
+WAIT FOR ($FLAG[1] AND $OUT[14]) 
+$OUT[14]=FALSE
+
+$TOOL = tool_data[1]
+$LOAD = load_data[1]
+$BASE = base_data[1]
+
+RET=EKI_GetBool("CONNECT","Robot/readRobotStatus",READROBOTSTATUS)
+
+IF READROBOTSTATUS==TRUE THEN
+RET=EKI_SetReal("CONNECT","Robot/Pos/X",$POS_ACT.X)
+RET=EKI_SetReal("CONNECT","Robot/Pos/Y",$POS_ACT.Y)
+RET=EKI_SetReal("CONNECT","Robot/Pos/Z",$POS_ACT.Z)
+RET=EKI_SetReal("CONNECT","Robot/Pos/A",$POS_ACT.A)
+RET=EKI_SetReal("CONNECT","Robot/Pos/B",$POS_ACT.B)
+RET=EKI_SetReal("CONNECT","Robot/Pos/C",$POS_ACT.C)
+RET=EKI_SetBool("CONNECT","Robot/chuck",$OUT[2])
+RET=EKI_SetBool("CONNECT","Robot/ready",$OUT[1])
+RET=EKI_Send("CONNECT","Robot")
+
+ELSE
+RET=EKI_GetBool("CONNECT","Robot/onlySetIO",ONLYSETIO)
+
+IF ONLYSETIO==TRUE THEN
+RET=EKI_GetBool("CONNECT","Robot/chuck",$OUT[2])
+RET=EKI_Send("CONNECT","Robot")
+
+ELSE
+RET=EKI_GetReal("CONNECT","Robot/Pos/X",POS_FR.X)
+RET=EKI_GetReal("CONNECT","Robot/Pos/Y",POS_FR.Y)
+RET=EKI_GetReal("CONNECT","Robot/Pos/Z",POS_FR.Z)
+RET=EKI_GetReal("CONNECT","Robot/Pos/A",POS_FR.A)
+RET=EKI_GetReal("CONNECT","Robot/Pos/B",POS_FR.B)
+RET=EKI_GetReal("CONNECT","Robot/Pos/C",POS_FR.C)
+
+LIN POS_FR
+
+
+RET=EKI_Send("CONNECT","Robot")
+ENDIF
+
+ENDIF
+
+ENDLOOP
+
+RET=EKI_Close("CONNECT")
+RET=EKI_Clear("CONNECT")
+
+END
+```
+目前无法解决。
+
+现在想想，似乎没有必要解决这个问题，因为每一次pick连接机器人开始引导都要重新启动示教器，所以这个问题没有必要去弄它。
+
+保持原来的样子就好。
+
