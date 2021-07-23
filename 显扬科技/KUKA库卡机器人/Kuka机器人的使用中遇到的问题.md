@@ -24,6 +24,8 @@
 
 可能需要`专家权限`
 
+登录了专家权限也是一样，没理由因为用户权限问题就会出问题。
+
 ### 考虑使用替代代码
 
 1、
@@ -53,11 +55,13 @@ WAIT FOR $OUT[14]==TRUE
     
 $OUT[14]=FALSE
 ```
+不行
 
 4、
 ```bash
-CONTINUE
-WAIT FOR $OUT[14]==TRUE 
+WHILE $OUT[14]==FALSE
+  HALT
+ENDWHILE
     
 $OUT[14]=FALSE
 ```
@@ -160,7 +164,7 @@ $OUT[14]=FALSE
 
 ### 考虑安装低版本的EthernetKRL 2.2.3
 
-不行，低版本高版本运行起来还是一样
+不行，低版本高版本运行起来都一样
 
 ### 代码有问题？
 
@@ -374,3 +378,32 @@ When it hits the WAIT FOR statement, it will not put robot out of run  mode and 
 I don't know whether this situation is normal?
 
 Can you tell me how to make the robot wait for a signal(such as $OUT[14]) and then start again without pressing the start button.
+
+#### Answer
+
+I believe this issue has to do with the 'On Path' requirement for run mode.
+
+In order for the robot to actually go into automatic mode, the robot must be 'On Path'. 
+You might have seen this before when running a program that a notification pops up in the message banner mentioning 'On Path'. 
+'On Path' means that the robot is on a programmed path, and not "floating in space". 
+For instance, a program can be started while the robot is in some random jogged pose and the robot program wants the robot to move to a programmed pose before letting automatic mode take over.
+
+I'd recommend the first thing your programs do is move the robot home. If you do not want the robot to move to a defined position at the beginning of a program, you can trick the system with the code below:
+
+```bash
+BAS(#INITMOV, 0) ;Initialize default motion parameters like acceleration and speed.
+PTP $AXIS_ACT ;Move the robot to its current position.
+```
+`$AXIS_ACT` is a global E6AXIS variable that holds the robots current position, so by telling the robot at the beginning of your program to PTP there, its literally commanding the robot to move to where it already is, thus putting the robot 'On Path'. Once it runs that line, you hit Go once more, then it should be in full auto and not stop any further.
+
+I'd try that out and see if it works.
+
+感谢热心的外国网友：
+This problem has been bothering me for two weeks
+
+Thank you very much. It does work! This problem has been bothering me for two weeks.
+
+其实只要修改server.src就可以了：
+```bash
+
+```
