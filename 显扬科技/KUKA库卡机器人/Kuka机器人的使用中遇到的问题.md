@@ -149,6 +149,15 @@ REPEAT
 UNTIL R>100
 ```
 
+```bash
+;wait for receiving data
+CONTINUE
+WAIT FOR $OUT[14] 
+CONTINUE
+$OUT[14]=FALSE
+```
+不行
+
 ### 考虑安装低版本的EthernetKRL 2.2.3
 
 不行，低版本高版本运行起来还是一样
