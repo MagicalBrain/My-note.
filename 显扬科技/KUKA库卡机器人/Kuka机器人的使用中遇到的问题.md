@@ -458,7 +458,6 @@ RET=EKI_GetReal("CONNECT","Robot/Pos/C",POS_FR.C)
 
 LIN POS_FR
 
-
 RET=EKI_Send("CONNECT","Robot")
 ENDIF
 
@@ -557,3 +556,17 @@ END
 
 保持原来的样子就好。
 
+## 插件引导机器人无法运动问题
+
+在使用命令行工具连接机器人测试插件的时候，发现：在修改坐标之后，使用move api无法让机器人运动。
+示教器报错：
+
+尝试在代码中的LIN语句前加了如下代码：
+```bash
+$VEL.CP=0.9
+$APO.CVEL=30
+$APO.CDIS=20
+LIN POS_FR
+```
+
+仍然不行。
