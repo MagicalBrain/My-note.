@@ -104,6 +104,10 @@
 
 **是否能够开始对机器人进行引导**
 
+放料点：
+x=600 y=-700 z=1000 a=178 b=0.5 c=177
+<Robot><Pos><X>600.0</X><Y>-700.0</Y><Z>1000.0</Z><A>178.0</A><B>0.5</B><C>177.0</C></Pos><ready>TRUE</ready><chuck>FALSE</chuck><readRobotStatus>FALSE</readRobotStatus><onlySetIO>FALSE</onlySetIO></Robot>
+
 ## 在HYpick里使用KUKA插件测试
 
 ### 测试目的
