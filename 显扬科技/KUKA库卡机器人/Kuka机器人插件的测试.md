@@ -59,7 +59,20 @@
 <Robot><Pos><X>598.171814</X><Y>33.578373</Y><Z>1200.414307</Z><A>94.299927</A><B>-5.953187</B><C>151.019241</C></Pos><ready>TRUE</ready><chuck>FALSE</chuck><readRobotStatus>FALSE</readRobotStatus><onlySetIO>FALSE</onlySetIO></Robot>
 ```
 
-不知道哪里出问题了，坐标没有发出去。
+~~不知道哪里~~出问题了，坐标没有发出去。
+可能是EtherNet编程这块出了问题，导致坐标发出去后，机器人收到了但没有存进存储器。
+
+----
+
+21-07-27
+
+```xml
+<Robot><Pos><X>562.156006</X><Y>38.401821</Y><Z>1080.961060</Z><A>87.447136</A><B>-5.970125</B><C>140.362366</C></Pos><ready>0</ready><chuck>0</chuck><readRobotStatus></readRobotStatus><onlySetIO></onlySetIO></Robot>
+```
+
+```xml
+<Robot><Pos><X>562.156006</X><Y>38.401821</Y><Z>1200.961060</Z><A>87.447136</A><B>-5.970125</B><C>140.362366</C></Pos><ready>TRUE</ready><chuck>FALSE</chuck><readRobotStatus>FALSE</readRobotStatus><onlySetIO>FALSE</onlySetIO></Robot>
+```
 
 ## 使用PluginTest.exe测试
 
