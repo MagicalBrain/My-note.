@@ -9,7 +9,8 @@
 
 测试报文：
 
-读取机器人当前坐标
+#### 读取机器人当前坐标
+
 ```xml
 <Robot><Pos><X>100</X><Y>100</Y><Z>100</Z><A>0</A><B>0</B><C>0</C></Pos><ready>TRUE</ready><chuck>FALSE</chuck><readRobotStatus>TRUE</readRobotStatus><onlySetIO>FALSE</onlySetIO></Robot>
 ```
@@ -67,12 +68,18 @@
 21-07-27
 
 ```xml
-<Robot><Pos><X>562.156006</X><Y>38.401821</Y><Z>1080.961060</Z><A>87.447136</A><B>-5.970125</B><C>140.362366</C></Pos><ready>0</ready><chuck>0</chuck><readRobotStatus></readRobotStatus><onlySetIO></onlySetIO></Robot>
+<Robot><Pos><X>656.668030</X><Y>139.138992</Y><Z>1200.319458</Z><A>176.403442</A><B>-5.966580</B><C>138.742020</C></Pos><ready>0</ready><chuck>0</chuck><readRobotStatus></readRobotStatus><onlySetIO></onlySetIO></Robot>
 ```
 
 ```xml
-<Robot><Pos><X>562.156006</X><Y>38.401821</Y><Z>1200.961060</Z><A>87.447136</A><B>-5.970125</B><C>140.362366</C></Pos><ready>TRUE</ready><chuck>FALSE</chuck><readRobotStatus>FALSE</readRobotStatus><onlySetIO>FALSE</onlySetIO></Robot>
+<Robot><Pos><X>656.668030</X><Y>139.138992</Y><Z>1400.319458</Z><A>176.403442</A><B>-5.966580</B><C>138.742020</C></Pos><ready>TRUE</ready><chuck>FALSE</chuck><readRobotStatus>FALSE</readRobotStatus><onlySetIO>FALSE</onlySetIO></Robot>
 ```
+
+```xml
+<Robot><Pos><X>556.668396</X><Y>39.138466</Y><Z>1200.317993</Z><A>86.403130</A><B>-5.966878</B><C>138.742111</C></Pos><ready>0</ready><chuck>0</chuck><readRobotStatus></readRobotStatus><onlySetIO></onlySetIO></Robot>
+```
+
+现在问题解决了，原因是机器人接收数据的GetReal……部分的代码应该按照xml里定义的元素顺序放在一起，否则就会读不到数据。
 
 ## 使用PluginTest.exe测试
 
@@ -83,6 +90,19 @@
 3. 是否能够修改点位坐标
 4. 是否能够让机器人运动
 5. 是否能够开始对机器人进行引导
+
+**插件是否能够连接上机器人**：可以，没有问题
+连上后会返回当前机器人的点位坐标
+
+**是否能够设置速度**：暂时未发现可行的修改速度的方法
+目前修改速度只能够在示教器的程序里面修改
+
+**是否能够修改点位坐标**：可以，没有问题
+
+**是否能够让机器人运动**：可以，没有问题
+插件通过发送信号使得示教器程序执行机器人运动部分的代码
+
+**是否能够开始对机器人进行引导**
 
 ## 在HYpick里使用KUKA插件测试
 
