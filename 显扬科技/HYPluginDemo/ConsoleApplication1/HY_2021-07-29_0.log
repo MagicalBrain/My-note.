@@ -1,0 +1,13 @@
+2021-07-29 10:59:29.246336 - debug - 0x00006df0 - ConsoleApplication1.cpp:18 - AlgorithmDemo
+2021-07-29 10:59:29.249328 - info - 0x00006df0 - AlgorithmDemo.cpp:30 - xxxx 0 ms
+2021-07-29 10:59:29.249328 - debug - 0x00006df0 - HYPluginFactoryImp.cpp:130 - plugin removed, type 4, id AlgorithmDemo
+2021-07-29 10:59:29.253317 - debug - 0x00006df0 - HYPluginFactoryImp.cpp:130 - plugin removed, type 4, id HYRecognition
+2021-07-29 11:10:32.256564 - debug - 0x00005f18 - ConsoleApplication1.cpp:19 - AlgorithmDemo
+2021-07-29 11:10:55.595217 - info - 0x00005f18 - AlgorithmDemo.cpp:30 - xxxx 0 ms
+2021-07-29 11:10:55.596215 - debug - 0x00005f18 - HYPluginFactoryImp.cpp:130 - plugin removed, type 4, id AlgorithmDemo
+2021-07-29 11:10:55.612755 - debug - 0x00005f18 - HYPluginFactoryImp.cpp:130 - plugin removed, type 4, id HYRecognition
+2021-07-29 18:03:08.823565 - debug - 0x00000f0c - ConsoleApplication1.cpp:19 - AlgorithmDemo
+2021-07-29 18:03:48.521640 - debug - 0x00000f0c - VoxelGridFilter.hpp:44 - voxel grid filter with leaf size 5 elapsed 14ms
+2021-07-29 18:03:48.521640 - info - 0x00000f0c - AlgorithmDemo.cpp:30 - xxxx 15 ms
+2021-07-29 18:03:48.522641 - debug - 0x00000f0c - HYPluginFactoryImp.cpp:130 - plugin removed, type 4, id AlgorithmDemo
+2021-07-29 18:03:48.528642 - debug - 0x00000f0c - HYPluginFactoryImp.cpp:130 - plugin removed, type 4, id HYRecognition
