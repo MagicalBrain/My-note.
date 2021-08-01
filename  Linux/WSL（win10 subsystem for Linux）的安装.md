@@ -15,6 +15,9 @@ Thinkpad
 
 3、下载WSL相关的组件
 用管理员权限打开powershell，运行以下代码：
+```bash
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
 
 4、下载Linux内核组件
 到官网下载 wsl_update_x64.msi
