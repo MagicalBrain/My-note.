@@ -19,6 +19,9 @@ Thinkpad
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 
+**注意**
+如果只是想装WSL1，到这一步就可以了，重启电脑下载商店的Ubuntu安装即可使用WSL。
+
 4、下载Linux内核组件
 到官网下载 wsl_update_x64.msi
 
