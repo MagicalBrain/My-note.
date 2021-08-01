@@ -7,3 +7,5 @@ This is a repository for my notes with GitNote.
 ----
 
 https://github.com/MagicalBrain/My-note..git
+
+git@github.com:MagicalBrain/My-note..git
