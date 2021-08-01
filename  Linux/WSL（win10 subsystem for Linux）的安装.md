@@ -12,6 +12,7 @@
 进BIOS按键 F2，在高级选项那里将virtual调成enable，最后按F10保存退出，会自动重启电脑
 
 Thinkpad
+
 3、下载WSL相关的组件
 用管理员权限打开powershell，运行以下代码：
 
