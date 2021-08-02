@@ -1,2 +1,2 @@
-git push gitee main
+git push gitee 
 git push github main
