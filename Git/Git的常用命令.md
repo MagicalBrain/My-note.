@@ -3,12 +3,12 @@
 ## 设置Git账户
 
 设置账户名：
-```
+```bash
 git --config global user.name "[yourname]"
 ```
 
 设置账户的电子邮箱
-```
+```bash
 git --config global user.email "[youremail]"
 ```
 
@@ -25,14 +25,22 @@ git --config global user.email "[youremail]"
 
 ```git add *```：添加所有更改文件，这其实是一个**危险指令**，如果远程仓库是由多人一起维护、贡献的话，一些不必要的更改可能会覆盖掉别人的有用更改从而导致所谓的“bug”
 
+假设你只修改了名为`Myfile`的文件，那么添加更改命令应为：
+```bash
+git add Myfile
+```
+
 ## 提交更改
 
 ```git commit```
 
 通常的用法是：
+
+```bash
+git commit -m "注释"
 ```
-git commit -m
-```
+
+注释一定要用简短的语言清晰地描述修改的内容
 
 ## 冲突的处理
 
