@@ -143,3 +143,8 @@ sudo chmod a+w filename
 
 ## 七、查看网络地址（IP）
 
+```bash
+ifconfig
+```
+
+输入该命令找就行了。
