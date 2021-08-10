@@ -1,11 +1,11 @@
 #include "friend.h"
 
-//1.½«·Ç³ÉÔ±º¯ÊıÉùÃ÷ÎªÓÑÔªº¯Êı
+//1.å°†éæˆå‘˜å‡½æ•°å£°æ˜ä¸ºå‹å…ƒå‡½æ•°
 class Person
 {
 public:
-	Person(int = 0, string = "ÕÅÈı");
-	friend void show(Person *pper);//½«showÉùÃ÷ÎªÓÑÔªº¯Êı
+	Person(int = 0, string = "å¼ ä¸‰");
+	friend void show(Person *pper);//å°†showå£°æ˜ä¸ºå‹å…ƒå‡½æ•°
 
 private:
 	int age;
@@ -32,20 +32,20 @@ int main()
 	return 0;
 }
 
-////2.½«ÆäËûÀàµÄ³ÉÔ±º¯ÊıÉùÃ÷ÎªÓÑÔªº¯Êı
-////personÖĞµÄ³ÉÔ±º¯Êı¿ÉÒÔ·ÃÎÊMobilePhoneÖĞµÄË½ÓĞ³ÉÔ±±äÁ¿
-//class MobilePhone;//ÌáÇ°ÉùÃ÷
-////ÉùÃ÷PersonÀà
+////2.å°†å…¶ä»–ç±»çš„æˆå‘˜å‡½æ•°å£°æ˜ä¸ºå‹å…ƒå‡½æ•°
+////personä¸­çš„æˆå‘˜å‡½æ•°å¯ä»¥è®¿é—®MobilePhoneä¸­çš„ç§æœ‰æˆå‘˜å˜é‡
+//class MobilePhone;//æå‰å£°æ˜
+////å£°æ˜Personç±»
 //class Person
 //{
 //public:
-//	Person(int = 0, string = "ÕÅÈı");
+//	Person(int = 0, string = "å¼ ä¸‰");
 //	void show(MobilePhone *mp);
 //private:
 //	int age;
 //	string name;
 //};
-////ÉùÃ÷MobilePhoneÀà
+////å£°æ˜MobilePhoneç±»
 //class MobilePhone
 //{
 //public:
@@ -68,7 +68,7 @@ int main()
 //}
 //void Person::show(MobilePhone *mp)
 //{
-//	cout << mp->year << "Äê  " << mp->memory << "G " << mp->name << endl;
+//	cout << mp->year << "å¹´  " << mp->memory << "G " << mp->name << endl;
 //}
 //int main()
 //{
