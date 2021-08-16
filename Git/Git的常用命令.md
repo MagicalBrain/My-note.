@@ -42,6 +42,43 @@ git commit -m "注释"
 
 注释一定要用简短的语言清晰地描述修改的内容
 
+## 提交更改上库
+
+```bash
+git push origin master
+```
+
+这个是默认的命令，大多情况下可用，但有时候不行。
+这时可以给用以下命令检查远程库的连接情况：
+
+```bash
+git remote -v
+```
+
+例如我的一个代码库，同时连接了`gitee`和`github`（具体怎么添加的，自行bing一下）
+
+```bash
+gitee   git@gitee.com:CPLASF000000/my-note.git (fetch)
+gitee   git@gitee.com:CPLASF000000/my-note.git (push)
+github  git@github.com:MagicalBrain/My-note..git (fetch)
+github  git@github.com:MagicalBrain/My-note..git (push)
+```
+
+为了区分提交更改是到gitee还是github所以，修改了对应的分支名，默认是`origin/master`，我这里修改成了`gitee/master`和`github/master`。
+这样我如果想提交更改到gitee，则运行命令：
+
+```bash
+git push gitee master
+```
+
+这样我如果想同时提交更改到gitee和github，则运行命令
+```bash
+git push gitee master
+git push github master
+```
+
+当然，写成脚本更方便（Win用cmd脚本，Linux用shell脚本）
+
 ## 冲突的处理
 
 ### 回退
@@ -74,3 +111,23 @@ git reset --hard origin/main
 ```bash
 git pull
 ```
+
+## 分支的管理
+
+### 新建分支
+
+有时候，没有权限上传到主分支，由懒得PR，那只能本地新建一个分支将更改提交上库：
+
+```bash
+git checkout -b [NewBranch]
+```
+
+此命令会新建分支并转到新建的分支上来。
+
+## 切换分支
+
+```bash
+git checkout [Branch]
+```
+
+
