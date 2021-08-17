@@ -58,6 +58,27 @@ findContours(output, countersTemp, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_NONE);
 
 ```cpp
 void cv::drawContours(
-    
+    cv::InputArray image,
+    cv::InputArray contours,
+    int contourIdx, 
+    const cv::Scalar & color,
+    int thickness = 1,
+    int lineType = 8,
+    cv::OutputArray hierarchy = noArray(),
+    int maxLevel = INT_MAX,
+    cv::Point offset = cv::Point()
 )
 ```
+
+**image**：
+待绘制轮廓的图像
+
+**contours**：
+要绘制的轮廓，其元素类型应为轮廓，即`std::vector<cv::Point>`。
+
+**contourIdx**
+用于设置是否绘制所有轮廓。
+`contourIdx > 0`则对应的轮廓会被绘制，`contourIdx < 0`，则所有轮廓都会被绘制出来。
+
+**hierarchy**（可选 optional）：
+如果给定该参数，将输出所有轮廓的树结构。
