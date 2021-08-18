@@ -110,4 +110,94 @@ string s(s2, pos2)          //s是string s2从下标pos2开始的字符的拷贝
 string s(s2, pos2, len2)    //s是string s2从下标pos2开始len2个字符的拷贝。若pos2>s2.size （） ，构造函数的行为未定义。不管len2的值是多少，构造函数至多拷贝s2.size （）-pos2个字符
 ```
 
+## string格式化
 
+格式化目前有3种方式：
+1. C语言的标准输入输出库里的`snprintf()`
+2. C++里的sstream库里的`stringstream`
+3. boost库的`format`
+
+### snprintf()
+
+`snprintf()`是包含在`stdio.h`里的
+
+代码如下：
+
+```cpp
+#include <stdio.h>
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+using std::string;
+
+void test4snprintf(string input) {
+    // 准备数据
+    //string haha("haha");
+    int num = 3;
+    // 准备格式
+    string fmt("test string: %s. test number: %d");
+    char targetString[1024];
+    // 格式化，并获取最终需要的字符串
+    int realLen = snprintf( targetString, 
+						sizeof(targetString), 
+						fmt.c_str(), 
+						input.c_str(), 
+						num );
+    cout << targetString << endl;
+}
+```
+
+输入为：
+```bash
+hello,world
+```
+
+输出为：
+```bash
+test string: hello,world. test number: 3
+```
+
+### sstream
+
+这种用法类似与cout那种输入输出流，只不过这里是格式化流
+除了sstream，还可以用osstream，作用是一样的。
+
+```cpp
+#include <stdio.h>
+
+#include <iostream>
+#include <string>
+
+#include <sstream>
+
+using namespace std;
+
+using std::stringstream;
+using std::string;
+
+void test4sstream(string input) {
+    // 准备数据
+    //string haha("haha");
+    int num = 3;
+    // 准备根据格式造字符串流
+    stringstream fmt;                       /* 或者使用 ostringstream */
+    // 造字符串流
+    fmt << input << num;
+    // 获取最终需要的字符串
+    string targetString = fmt.str();
+    cout << targetString << endl;
+}
+
+void test4osstream(string input) {
+    int num = 3;
+    // 准备根据格式造字符串流
+    ostringstream fmt;
+    // 造字符串流
+    fmt << input << num;
+    // 获取最终需要的字符串
+    string targetString = fmt.str();
+    cout << targetString << endl;
+}
+```
