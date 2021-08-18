@@ -50,6 +50,10 @@ void test4osstream(string input) {
     cout << targetString << endl;
 }
 
+void test4boost-format() {
+    
+}
+
 int main() {
     //输入字符串
     string input;

@@ -80,3 +80,11 @@ I am right now trying to find out why the TLS projects(echo_server_both and echo
 Update: Found the problem in the last paragraph: the library will not accept a self-signed certificate (the ones you can create directly in your own PC using OpenSSL or the Windows utilities). There is no way around it. You must have a valid, authority-validated and endorsed certificate. You can get such certificate from https://zerossl.com/. The site has detailed instructions on how to request, obtain and install a certificate.
 
 更新:在最后一段中发现了问题:库不接受自签名证书(可以使用OpenSSL或Windows实用程序在自己的PC中直接创建的证书)。没有别的办法。您必须有一个有效的、经过授权验证和认可的证书。你可以从https://zerossl.com/上获得这样的证书。该网站有关于如何请求、获取和安装证书的详细说明。
+
+## 对于官方的tuition里遇到的问题
+
+server：
+将以下代码注释即可：
+```cpp
+//#define ASIO_STANDALONE
+```
