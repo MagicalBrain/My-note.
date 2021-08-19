@@ -485,4 +485,74 @@ pair<string, int> v{str, num};
 
 ## 关于容器的使用容易出错的地方
 
-貌似容器不能够在switch的分值case里面定义
+貌似容器不能够在switch的分值case里面定义，这个不光是容器的问题，所有变量都会有这个问题。
+给需要定义变量的分支加上括号就行了，例如：
+```cpp
+case 9:
+        {
+            // 控制相机取图，如果需要做手眼标定，可以使用int capture(std::vector<cv::Mat>& images)接口获取相机图片
+            int checkcapture = sensor->capture(images);
+            if(0 != checkcapture)
+            {
+                BOOST_LOG_TRIVIAL(error) << "sensor capture fail";
+                return -1;
+            }
+            BOOST_LOG_TRIVIAL(info) << "sensor capture sucess";
+
+            // 生成并获取彩色图和深度图
+    
+            if (0 != sensor->compute(color, depth))
+            {
+                BOOST_LOG_TRIVIAL(error) << "sensor compute fail";
+                return -1;
+            }
+            BOOST_LOG_TRIVIAL(info) << boost::format("color image type: %1%, size %2%") % color.type() % color.size();
+            BOOST_LOG_TRIVIAL(info) << boost::format("depth image type: %1%, size %2%") % depth.type() % depth.size();
+            
+            cv::imwrite("color.bmp", color);
+            cv::imwrite("depth.tiff", depth);
+            cv::imwrite("depth.png", depth);
+	        cv::imwrite("depth.pfm", depth);
+
+            std::cout << depth.rows << " " << depth.cols << std::endl;
+
+            // 深度图可直接生成点云，以pcl为例：
+
+            for (int i = 0; i < depth.rows; ++i)
+            {
+                for (int j = 0; j < depth.cols; ++j)
+                {
+                    pcl::PointXYZRGB point;
+                    point.x = depth.at<cv::Vec3f>(i, j)[0];
+                    point.y = depth.at<cv::Vec3f>(i, j)[1];
+                    point.z = depth.at<cv::Vec3f>(i, j)[2];
+                    if (point.z <= 0)
+                        continue;
+
+                    if (color.type() == CV_8UC3)
+                    {
+                        point.b = color.at<cv::Vec3b>(i, j)[0];
+                        point.g = color.at<cv::Vec3b>(i, j)[1];
+                        point.r = color.at<cv::Vec3b>(i, j)[2];
+                    }
+                    else
+                    {
+                        point.b = point.g = point.r = color.at<uint8_t>(i, j);
+                    }
+
+                    cloud.emplace_back(point);
+                }
+            }
+
+            if (cloud.size() > 0)
+            {
+                BOOST_LOG_TRIVIAL(info) << boost::format("get point cloud sucess, total %1% points") % cloud.size();
+                pcl::PCDWriter writer;
+                writer.writeBinaryCompressed("cloud.pcd", cloud);
+            }
+            else
+                BOOST_LOG_TRIVIAL(error) << "point cloud is empty";
+
+            break;
+        }
+```
