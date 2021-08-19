@@ -9,7 +9,7 @@ Setting up the basic types, opening and closing connections, sending and receivi
 
 设置基本类型、打开和关闭连接、发送和接收消息。
 
-### Step 1 第一步
+### Step 1 一个基本的循环程序
 
 A basic program loop that prompts the user for a command and then processes it. In this tutorial we will modify this program to perform tasks and retrieve data from a remote server over a WebSocket connection.
 
@@ -61,7 +61,7 @@ int main() {
 
 可见这仅仅是一个简单的循环程序。
 
-### Step 2
+### Step 2 添加WebSocket++包含文件（头文件）并设置终端类型
 
 _Add WebSocket++ includes and set up an endpoint type._
 
@@ -153,7 +153,7 @@ int main() {
     return 0;
 }
 ```
-### Step 3
+### Step 3 创建处理初始化和设置后台线程的终端包装器对象
 
 _Create endpoint wrapper object that handles initialization and setting up the background thread._
 
@@ -300,7 +300,7 @@ int main() {
 }
 ```
 
-### Step 4
+### Step 4 打开websocket连接
 
 _Opening WebSocket connections_
 
@@ -443,11 +443,11 @@ Two new commands have been set up. "connect [uri]" will pass the URI to the `web
 }
 ```
 
-#### Build
+#### Build 编译
 
 There are no changes to the build instructions from step 3
 
-#### Run
+#### Run 运行程序
 
 ```
 Enter Command: connect not a websocket uri
@@ -472,10 +472,13 @@ Enter Command: show 1
 
 #### Code so far
 
+目前为止的代码
+
 ```cpp
 #include <websocketpp/config/asio_no_tls_client.hpp>
 #include <websocketpp/client.hpp>
 
+//
 #include <websocketpp/common/thread.hpp>
 #include <websocketpp/common/memory.hpp>
 
@@ -487,6 +490,7 @@ Enter Command: show 1
 
 typedef websocketpp::client<websocketpp::config::asio_client> client;
 
+//
 class connection_metadata {
 public:
     typedef websocketpp::lib::shared_ptr<connection_metadata> ptr;
@@ -636,7 +640,7 @@ int main() {
     return 0;
 }
 ```
-### Step 5
+### Step 5 关闭连接
 
 _Closing connections_
 
@@ -773,7 +777,7 @@ Enter Command: quit
 > Closing connection 1
 ```
 
-### Step 6
+### Step 6 收发数据
 
 _Sending and receiving messages_
 
@@ -918,7 +922,7 @@ Enter Command: show 0
 <<  example message
 ```
 
-### Step 7
+### Step 7 使用TLS/安全的websocket
 
 _Using TLS / Secure WebSockets_
 
@@ -929,10 +933,10 @@ _Using TLS / Secure WebSockets_
 - configure the SSL context for desired security level
 - mixing secure and non-secure connections in one application.
 
-Chapter 2: Intermediate Features
+Chapter 2: Intermediate Features 中间特性
 --------------------------------
 
-### Step 8
+### Step 8 中级水平的功能
 
 _Intermediate level features_
 
@@ -948,6 +952,8 @@ _Intermediate level features_
 
 
 ### Misc stuff not sure if it should be included here or elsewhere?
+
+杂项不确定是否应该包括在这里或其他地方?
 
 core websocket++ control flow.
 A handshake, followed by a split into 2 independent control strands
