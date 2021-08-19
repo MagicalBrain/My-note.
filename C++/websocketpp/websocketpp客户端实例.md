@@ -7,16 +7,28 @@
 
 Setting up the basic types, opening and closing connections, sending and receiving messages.
 
+设置基本类型、打开和关闭连接、发送和接收消息。
+
 ### Step 1 第一步
 
 A basic program loop that prompts the user for a command and then processes it. In this tutorial we will modify this program to perform tasks and retrieve data from a remote server over a WebSocket connection.
 
-#### Build
-`clang++ step1.cpp`
+一个基本的循环程序，提示用户输入命令，然后对其进行处理。在本教程中，我们将修改这个程序，以便通过WebSocket连接从远程服务器执行任务和检索数据。
+
+#### Build 
+
+使用clang++来编译`step1.cpp`：
+
+```bash
+clang++ step1.cpp
+```
 
 #### Code so far
 
 *note* A code snapshot for each step is present next to this tutorial file in the git repository.
+**注意**：在git存储库中，本教程文件旁边有每个步骤的代码快照。
+
+假设我们目前只写了这么几行代码：
 
 ```cpp
 #include <iostream>
@@ -47,23 +59,38 @@ int main() {
 }
 ```
 
+可见这仅仅是一个简单的循环程序。
+
 ### Step 2
 
 _Add WebSocket++ includes and set up an endpoint type._
 
-WebSocket++ includes two major object types. The endpoint and the connection. The
-endpoint creates and launches new connections and maintains default settings for
-those connections. Endpoints also manage any shared network resources.
+添加WebSocket++包含文件（头文件）并设置终端类型。
+
+WebSocket++ includes two major object types. The endpoint and the connection. The endpoint creates and launches new connections and maintains default settings for those connections. Endpoints also manage any shared network resources.
+
+WebSocket++包括两种主要的对象类型。终端和连接。终端创建并启动新的连接，并维护这些连接的默认设置。终端还管理任何共享的网络资源。
 
 The connection stores information specific to each WebSocket session.
+
+连接存储每个WebSocket会话特定的信息。
 
 > **Note:** Once a connection is launched, there is no link between the endpoint and the connection. All default settings are copied into the new connection by the endpoint. Changing default settings on an endpoint will only affect future connections.
 Connections do not maintain a link back to their associated endpoint. Endpoints do not maintain a list of outstanding connections. If your application needs to iterate over all connections it will need to maintain a list of them itself.
 
+**注意**：
+一旦连接启动，终端和连接之间就没有链接了。终端将所有默认设置复制到新连接中。更改终端上的默认设置只会影响将来的连接（只会影响后面新建的连接）。
+连接不会维护与其相关联终端的链接。终端不维护未完成连接的列表。如果您的应用程序需要遍历所有连接，那么它本身就需要维护它们的列表。
+
 WebSocket++ endpoints are built by combining an endpoint role with an endpoint config. There are two different types of endpoint roles, one each for the client and server roles in a WebSocket session. This is a client tutorial so we will use the client role `websocketpp::client` which is provided by the `<websocketpp/client.hpp>` header.
+
+WebSocket++终端是通过结合终端所承担的角色（所起的作用）和终端配置来构建的。有两种不同类型的终端角色，分别用于WebSocket会话中的客户端和服务器角色。这是一个客户端教程，所以我们将使用客户端角色`websocketpp::client`，它由`<websocketpp/client.hpp>`头文件提供。
 
 > ##### Terminology: Endpoint Config
 > WebSocket++ endpoints have a group of settings that may be configured at compile time via the `config` template parameter. A config is a struct that contains types and static constants that are used to produce an endpoint with specific properties. Depending on which config is being used the endpoint will have different methods available and may have additional third party dependencies.
+
+> ##### 术语:终端配置
+> WebSocket++终端有一组可以在编译时通过`config`模板参数配置的设置。配置是一个包含类型和静态常量的结构体，用于生成具有特定属性的终端。根据使用的配置，终端将有不同的可用方法，并可能有额外的第三方依赖。
 
 The endpoint role takes a template parameter called `config` that is used to configure the behavior of endpoint at compile time. For this example we are going to use a default config provided by the library called `asio_client`, provided by `<websocketpp/config/asio_no_tls_client.hpp>`. This is a client config that uses boost::asio to provide network transport and does not support TLS based security. Later on we will discuss how to introduce TLS based security into a WebSocket++ application, more about the other stock configs, and how to build your own custom configs.
 
@@ -72,21 +99,34 @@ Combine a config with an endpoint role to produce a fully configured endpoint. T
 `typedef websocketpp::client<websocketpp::config::asio_client> client`
 
 #### Build
+
 Adding WebSocket++ has added a few dependencies to our program that must be addressed in the build system. Firstly, the WebSocket++ and Boost library headers must be in the include search path of your build system. How exactly this is done depends on where you have the WebSocket++ headers installed and what build system you are using.
+
+添加WebSocket++给我们的程序添加了一些必须在构建系统中解决的依赖项。首先，WebSocket++和Boost库头文件必须在构建系统的include搜索路径中。这取决于你在哪里安装了WebSocket++头文件，以及你使用的是什么构建系统。
 
 In addition to the new headers, boost::asio depends on the `boost_system` shared library. This will need to be added (either as a static or dynamic) to the linker. Refer to your build environment documentation for instructions on linking to shared libraries.
 
-`clang++ step2.cpp -lboost_system`
+除了新的头文件，boost::asio还依赖于`boost_system`共享库。这需要添加(静态或动态)到链接器。有关链接到共享库的说明，请参阅构建环境文档。
+
+使用clang++来编译`step2.cpp`：
+
+```bash
+clang++_step2.cpp -lboost_system
+```
 
 #### Code so far
 
+现在的代码为：
+
 ```cpp
+//添加了websocketpp的依赖 头文件
 #include <websocketpp/config/asio_no_tls_client.hpp>
 #include <websocketpp/client.hpp>
 
 #include <iostream>
 #include <string>
 
+//定义了终端类型 client
 typedef websocketpp::client<websocketpp::config::asio_client> client;
 
 int main() {
@@ -117,7 +157,11 @@ int main() {
 
 _Create endpoint wrapper object that handles initialization and setting up the background thread._
 
+创建处理初始化和设置后台线程的终端包装器对象。
+
 In order to process user input while network processing occurs in the background we are going to use a separate thread for the WebSocket++ processing loop. This leaves the main thread free to process foreground user input. In order to enable simple RAII style resource management for our thread and endpoint we will use a wrapper object that configures them both in its constructor.
+
+为了在后台进行网络处理时处理用户输入，我们将为WebSocket++处理循环使用一个单独的线程。这使得主线程可以自由处理前台用户输入。为了为我们的线程和终端启用简单的RAII风格的资源管理，我们将使用包装器对象，在其构造函数中配置它们。
 
 > ##### Terminology: websocketpp::lib namespace
 > WebSocket++ is designed to be used with a C++11 standard library. As this is not universally available in popular build systems the Boost libraries may be used as polyfills for the C++11 standard library in C++98 build environments. The `websocketpp::lib` namespace is used by the library and its associated examples to abstract away the distinctions between the two. `websocketpp::lib::shared_ptr` will evaluate to `std::shared_ptr` in a C++11 environment and `boost::shared_ptr` otherwise.
@@ -126,25 +170,44 @@ In order to process user input while network processing occurs in the background
 >
 >[TODO: link to more information about websocketpp::lib namespace and C++11 setup]
 
+> ##### 术语：websocketpp::lib namespace websocketpp::lib 命名空间
+> WebSocket++被设计成与c++ 11标准库一起使用。由于这在流行的构建系统中并不是普遍可用的，Boost库可以作为c++ 98构建环境中c++ 11标准库的补充。`websocketpp::lib`命名空间由库及其相关示例使用，以抽象两者之间的区别。`websocketpp::lib::shared_ptr`在c++ 11环境中将被计算为`std::shared_ptr`，否则将被计算为`boost::shared_ptr`。
+>
+> 本教程使用`websocketpp::lib`包装器，因为它不知道读者的构建环境是什么。对于您的应用程序，除非您对类似的可移植性感兴趣，否则可以直接使用这些类型的boost或std版本。
+
 Within the `websocket_endpoint` constructor several things happen:
 
-First, we set the endpoint logging behavior to silent by clearing all of the access and error logging channels. [TODO: link to more information about logging]
+在`websocket_endpoint`构造函数中会发生以下几件事:
+
+First, we set the endpoint logging behavior to silent by clearing all of the access and error logging channels. 
+首先，我们通过清除所有访问和错误日志通道将终端日志记录行为设置为silent（即：什么信息都没有）。
+
+[TODO: link to more information about logging]
 
 ```cpp
+//清除访问日志
 m_endpoint.clear_access_channels(websocketpp::log::alevel::all);
+//清除错误日志
 m_endpoint.clear_error_channels(websocketpp::log::elevel::all);
 ```
 
 Next, we initialize the transport system underlying the endpoint and set it to perpetual mode. In perpetual mode the endpoint's processing loop will not exit automatically when it has no connections. This is important because we want this endpoint to remain active while our application is running and process requests for new WebSocket connections on demand as we need them. Both of these methods are specific to the asio transport. They will not be  necessary or present in endpoints that use a non-asio config.
 
+接下来，我们初始化终端基础的传输系统，并将其设置为永久模式。在永久模式下，终端的处理循环在没有连接时不会自动退出。这很重要，因为我们希望这个终端在我们的应用程序运行时保持活动状态，并在我们需要时按需处理新WebSocket连接的请求。这两种方法都是asio传输所特有的。它们在使用非asio配置的终端中是不必要的，也不存在的。
+
 ```cpp
+//初始化 基于asio的传输系统
 m_endpoint.init_asio();
+//以 永久模式 启动
 m_endpoint.start_perpetual();
 ```
 
 Finally, we launch a thread to run the `run` method of our client endpoint. While the endpoint is running it will process connection tasks (read and deliver incoming messages, frame and send outgoing messages, etc). Because it is running in perpetual mode, when there are no connections active it will wait for a new connection.
 
+最后，我们启动一个线程来运行客户端终端的`run`方法。当终端运行时，它将处理连接任务(读取和传递传入消息、帧和发送传出消息等)。因为它是在永久模式下运行的，当没有活动的连接时，它将一直等待下一个新的连接。
+
 ```cpp
+//启动一个线程来运行run方法
 m_thread.reset(new websocketpp::lib::thread(&client::run, &m_endpoint));
 ```
 
@@ -152,20 +215,37 @@ m_thread.reset(new websocketpp::lib::thread(&client::run, &m_endpoint));
 
 Now that our client endpoint template is actually instantiated a few more linker dependencies will show up. In particular, WebSocket clients require a cryptographically secure random number generator. WebSocket++ is able to use either `boost_random` or the C++11 standard library <random> for this purpose. Because this example also uses threads, if we do not have C++11 std::thread available we will need to include `boost_thread`.
 
+现在我们的客户端终端模板已经实际实例化了，将会出现更多的连接器依赖项。特别是，WebSocket客户端需要一个加密安全的随机数生成器。WebSocket++可以使用`boost_random`或c++ 11标准库`<random>`来实现这个目的。`<random>`因为这个例子也使用了线程，如果我们没有c++ 11 `std::thread`可用，我们将需要包含`boost_thread`。
+
 ##### Clang (C++98 & boost)
-`clang++ step3.cpp -lboost_system -lboost_random -lboost_thread`
+
+使用clang++来编译`step2.cpp`
+
+```bash
+clang++ step3.cpp -lboost_system -lboost_random -lboost_thread
+```
 
 ##### Clang (C++11)
-`clang++ -std=c++0x -stdlib=libc++ step3.cpp -lboost_system -D_WEBSOCKETPP_CPP11_STL_`
+
+```bash
+clang++ -std=c++0x -stdlib=libc++ step3.cpp -lboost_system -D_WEBSOCKETPP_CPP11_STL_
+```
 
 ##### G++ (C++98 & Boost)
-`g++ step3.cpp -lboost_system -lboost_random -lboost_thread`
+
+```bash
+g++ step3.cpp -lboost_system -lboost_random -lboost_thread
+```
 
 ##### G++ v4.6+ (C++11)
-`g++ -std=c++0x step3.cpp -lboost_system -D_WEBSOCKETPP_CPP11_STL_`
+
+```bash
+g++ -std=c++0x step3.cpp -lboost_system -D_WEBSOCKETPP_CPP11_STL_
+```
 
 #### Code so far
 
+目前的代码
 ```cpp
 #include <websocketpp/config/asio_no_tls_client.hpp>
 #include <websocketpp/client.hpp>
@@ -224,18 +304,33 @@ int main() {
 
 _Opening WebSocket connections_
 
+打开websocket连接
+
 This step adds two new commands to utility_client. The ability to open a new connection and the ability to view information about a previously opened connection. Every connection that gets opened will be assigned an integer connection id that the user of the program can use to interact with that connection.
 
-#### New Connection Metadata Object
+这个步骤向utility_client添加了两个新命令。令其有了打开新连接的能力和查看关于以前打开的连接的信息的能力。每个打开的连接都将被分配一个整数连接id，程序的用户可以使用该id与该连接进行交互。
+
+#### New Connection Metadata Object 新建连接元数据对象
 
 In order to track information about each connection a `connection_metadata` object is defined. This object stores the numeric connection id and a number of fields that will be filled in as the connection is processed. Initially this includes the state of the connection (opening, open, failed, closed, etc), the original URI connected to, an identifying value from the server, and a description of the reason for connection failure/closure. Future steps will add more information to this metadata object.
 
-#### Update `websocket_endpoint`
+为了跟踪关于每个连接的信息，定义了一个`connection_metadata`对象。该对象存储数字连接id和一些将在处理连接时填充的字段。最初，这包括连接的状态(打开、打开、失败、关闭等)、连接到的原始URI、来自服务器的标识值，以及连接失败/关闭原因的描述。后续步骤将向此元数据对象添加更多信息。
+
+#### Update `websocket_endpoint` 
+
+更新了`websocket_endpoint`
 
 The `websocket_endpoint` object has gained some new data members and methods. It now tracks a mapping between connection IDs and their associated metadata as well as the next sequential ID number to hand out. The `connect()` method initiates a new connection. The `get_metadata` method retrieves metadata given an ID.
 
+`websocket_endpoint`对象获得了一些新的数据成员和方法。它现在跟踪连接ID和关联元数据之间的映射，以及要分发的下一个顺序ID号。`connect()`方法启动一个新的连接。`get_metadata`方法获取给定ID的元数据。
+
 #### The connect method
+
+`connect()`方法
+
 A new WebSocket connection is initiated via a three step process. First, a connection request is created by `endpoint::get_connection(uri)`. Next, the connection request is configured. Lastly, the connection request is submitted back to the endpoint via `endpoint::connect()` which adds it to the queue of new connections to make.
+
+一个新的WebSocket连接是通过三个步骤启动的。首先，连接请求由`endpoint::get_connection(uri)`创建。接下来，配置连接请求。最后，通过`endpoint::connect()`将连接请求提交回终端，将其添加到要建立的新连接队列中。
 
 > ##### Terminology `connection_ptr`
 > WebSocket++ keeps track of connection related resources using a reference counted shared pointer. The type of this pointer is `endpoint::connection_ptr`. A `connection_ptr` allows direct access to information about the connection and allows changing connection settings. Because of this direct access and their internal resource management role within the library it is not safe for end applications to use `connection_ptr` except in the specific circumstances detailed below.
@@ -243,6 +338,15 @@ A new WebSocket connection is initiated via a three step process. First, a conne
 > **When is it safe to use `connection_ptr`?**
 > - After `endpoint::get_connection(...)` and before `endpoint::connect()`: `get_connection` returns a `connection_ptr`. It is safe to use this pointer to configure your new connection. Once you submit the connection to `connect` you may no longer use the `connection_ptr` and should discard it immediately for optimal memory management.
 > - During a handler: WebSocket++ allows you to register hooks / callbacks / event handlers for specific events that happen during a connection's lifetime. During the invocation of one of these handlers the library guarantees that it is safe to use a `connection_ptr` for the connection associated with the currently running handler.
+
+> ##### Terminology `connection_ptr`
+> WebSocket++使用一个引用计数的共享指针来跟踪与连接相关的资源。这个指针的类型是`endpoint::connection_ptr`。`connection_ptr`允许直接访问有关连接的信息，并允许更改连接设置。由于这种直接访问和它们在库中的内部资源管理角色，终端应用程序使用`connection_ptr`是不安全的，除非在下面详细说明的特定情况下。
+> 
+> **何时使用`connection_ptr`是安全的？**
+> - 在`endpoint::get_connection(…)`之后和`endpoint::connect()`之前:
+> `get_connection`返回一个`connection_ptr`。使用此指针配置新连接是安全的。一旦你提交连接到`connect`，你可能不再使用`connection_ptr`，应该立即丢弃它，以优化内存管理。
+> - 在处理程序期间:
+> WebSocket++允许你为在连接的生命周期内发生的特定事件注册钩子/回调/事件处理程序。在调用这些处理程序中的一个时，库保证对与当前运行的处理程序相关联的连接使用`connection_ptr`是安全的。
 
 > ##### Terminology `connection_hdl`
 > Because of the limited thread safety of the `connection_ptr` the library also provides a more flexible connection identifier, the `connection_hdl`. The `connection_hdl` has type `websocketpp::connection_hdl` and it is defined in `<websocketpp/common/connection_hdl.hpp>`. Note that unlike `connection_ptr` this is not dependent on the type or config of the endpoint. Code that simply stores or transmits `connection_hdl` but does not use them can include only the header above and can treat its hdls like values.
@@ -257,6 +361,9 @@ A new WebSocket connection is initiated via a three step process. First, a conne
 > - Using a `connection_hdl` with a different endpoint than the one that created its associated connection will result in undefined behavior.
 > - Using a `connection_hdl` whose associated connection has been closed or deleted is safe. The endpoint will return a specific error saying the operation couldn't be completed because the associated connection doesn't exist.
 > [TODO: more here? link to a connection_hdl FAQ elsewhere?]
+
+> ##### 术语 `connection_hdl`
+> 由于`connection_ptr`的线程安全性有限，库还提供了一个更灵活的连接标识符`connection_hdl`。`connection_hdl`有类型`websocketpp::connection_hdl`，它在`<websocketpp/common/connection_hdl.hpp>`中定义。注意，与`connection_ptr`不同，它不依赖于终端的类型或配置。简单地存储或传输`connection_hdl`但不使用它们的代码可以只包含上面的头文件，并可以把它的hdl当作值。
 
 `websocket_endpoint::connect()` begins by calling `endpoint::get_connection()` using a uri passed as a parameter. Additionally, an error output value is passed to capture any errors that might occur during. If an error does occur an error notice is printed along with a descriptive message and the -1 / 'invalid' value is returned as the new ID.
 
