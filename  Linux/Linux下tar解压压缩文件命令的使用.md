@@ -1,5 +1,7 @@
 # Linux-tar
 
+[toc]
+
 tar是Unix和类Unix系统上的压缩打包工具，可以将多个文件合并为一个文件，打包后的文件后缀亦为“tar”。
 tar文件格式已经成为POSIX标准，最初是POSIX.1-1988，当前是POSIX.1-2001。
 本程序最初的设计目的是将文件备份到磁带上（tape archive），因而得名tar。
