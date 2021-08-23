@@ -8,27 +8,7 @@
 使用正则表达式查找违反此拼写规则的单词：“i除非在c后面，否则必须在e之前。”
 即查找“i在e前面，同时i的前面没有c”的单词。
 
-```cpp
-#include <iostream>
-#include <string>
-#include <regex>
-
-int main()
-{
-    std::string pattern("[^c]ei");
-    pattern = "[[:alpha:]]*" + pattern + "[[:alpha:]]*";
-
-    std::regex r(pattern);
-    std::smatch results;
-
-    std::string test_str = "receipt freind itself receive";
-
-    if (std::regex_search(test_str, results, r))
-        std::cout << results.str() << std::endl;
-
-    std::cout << "Hello World!\n";
-}
-```
+@import "./code/regex01.cpp"
 
 我们首先定义了一个string来保存希望查找的正则表达式。
 正则表达式`[^c]`表明我们希望匹配任意不是`'c'`的字符，
