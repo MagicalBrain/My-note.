@@ -73,4 +73,6 @@ b.store(true);    //显式调用store存值
 assert(b);        //隐式类型转换，等价于load
 ```
 
+#### exchange()
 
+#### storage()
