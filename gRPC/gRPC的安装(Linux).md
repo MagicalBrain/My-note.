@@ -8,7 +8,7 @@
 
 ## 安装依赖
 
-```
+```bash
 sudo apt install -y build-essential autoconf libtool pkg-config
 ```
 
@@ -18,13 +18,13 @@ sudo apt install -y build-essential autoconf libtool pkg-config
 Ubuntu18.04默认的cmake是3.10，需要卸载并安装更高版本的Cmake。
 
 1、下载grpc
-```
+```bash
 git clone --recurse-submodules -b v1.37.1 https://github.com/grpc/grpc
 ```
 
 如果遇到网络问题，则试试
 
-```
+```bash
 git clone -branch v1.37.1 https://github.com/grpc/grpc
 cd grpc
 git submodule update --init
@@ -32,7 +32,7 @@ git submodule update --init
 
 这里要注意版本问题。
 如果是要下载1.38.0，则是：
-```
+```bash
 git clone -b v1.38.0 https://github.com/grpc/grpc
 ```
 
@@ -41,22 +41,22 @@ git clone -b v1.38.0 https://github.com/grpc/grpc
 2、编译安装grpc
 
 a.
-```
+```bash
 mkdir -p cmake/build && cd cmake/build
 ```
 
 b.
-```
+```bash
 cmake -DCMAKE_BUILD_TYPE=Release -DgRPC_INSTALL=ON -DBUILD_SHARED_LIBS=ON -DgRPC_BUILD_TESTS=OFF -DgRPC_ZLIB_PROVIDER=package -DgRPC_PROTOBUF_PROVIDER=package -DgRPC_SSL_PROVIDER=package ../..
 ```
 
 c.
-```
+```bash
 make -j$(nproc)
 ```
 
 d.
-```
+```bash
 sudo make install
 ```
 
@@ -78,7 +78,7 @@ sudo make install
 
 ## 安装完gRPC，别忘了安装abseil
 
-```
+```bash
 mkdir -p third_party/abseil-cpp/cmake/build
 pushd third_party/abseil-cpp/cmake/build
 cmake -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \  -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \  ../..
@@ -105,7 +105,7 @@ popd
 
 ## openssl找不到
 
-```
+```bash
 CMake Error at /usr/local/share/cmake-3.14/Modules/FindPackageHandleStandardArgs.cmake:137 (message):
   Could NOT find OpenSSL, try to set the path to OpenSSL root folder in the
   system variable OPENSSL_ROOT_DIR (missing: OPENSSL_CRYPTO_LIBRARY
@@ -154,33 +154,33 @@ cmake -DOPENSSL_ROOT_DIR=/usr/local/ssl -DOPENSSL_LIBRARIES=/usr/local/ssl/lib .
 ## 跑一下官方的demo验证安装
 
 首先cd到demo所在的目录：
-```
+```bash
 cd examples/cpp/helloworld
 ```
 
 创建`build`文件夹
-```
+```bash
 mkdir -p cmake/build
 ```
 
 在`build`文件夹里运行：
-```
+```bash
 cmake -DCMAKE_PREFIX_PATH=$MY_INSTALL_DIR ../..
 make -j$(nproc)
 ```
 
 运行服务端程序：
-```
+```bash
 ./greeter_server
 ```
 
 在另外一个终端里cd到当前目录运行客户端程序
-```
+```bash
 ./greeter_client
 ```
 
 输出结果：
-```
+```bash
 Greeter received: Hello world
 ```
 
@@ -193,7 +193,7 @@ Greeter received: Hello world
 #### protobuf库找不到
 
 cmake报错信息：
-```
+```bash
 CMake Error at CMakeLists.txt:5 (find_package):
   Could not find a package configuration file provided by "Protobuf" with any
   of the following names:
