@@ -1,43 +1,44 @@
 #  HYDeviceSDK的编译运行
   
-- [HYDeviceSDK的编译运行](#hydevicesdk的编译运行 )
-- [依赖库的安装](#依赖库的安装 )
-- [OpenCV的安装和配置(Linux)](#opencv的安装和配置linux )
-    - [首先要安装opencv的相关依赖](#首先要安装opencv的相关依赖 )
-    - [编译opencv](#编译opencv )
-    - [安装opencv](#安装opencv )
-    - [配置opencv环境变量](#配置opencv环境变量 )
-    - [验证安装是否成功](#验证安装是否成功 )
-    - [参考链接](#参考链接 )
-- [gRPC的安装(Linux)](#grpc的安装linux )
-  - [安装依赖](#安装依赖 )
-  - [下载并安装grpc](#下载并安装grpc )
-    - [如果这里的cmake出问题](#如果这里的cmake出问题 )
-  - [安装完gRPC，别忘了安装abseil](#安装完grpc别忘了安装abseil )
-  - [如果protoc的安装有问题](#如果protoc的安装有问题 )
-  - [libprotoc.so.26找不到](#libprotocso26找不到 )
-  - [openssl找不到](#openssl找不到 )
-  - [跑一下官方的demo验证安装](#跑一下官方的demo验证安装 )
-    - [在cmake编译example时遇到的问题](#在cmake编译example时遇到的问题 )
-      - [openssl库找不到](#openssl库找不到 )
-      - [protobuf库找不到](#protobuf库找不到 )
-      - [abseil.....某个头文件找不到](#abseil某个头文件找不到 )
-- [Websocketpp的安装（Linux）](#websocketpp的安装linux )
-- [vtk](#vtk )
-- [flann](#flann )
-- [pcl库的安装(Linux)](#pcl库的安装linux )
-    - [直接安装预编译版本](#直接安装预编译版本 )
-      - [预编译版本的pcl的卸载](#预编译版本的pcl的卸载 )
-    - [使用cmake从源码编译安装](#使用cmake从源码编译安装 )
-    - [cmake可能遇到的错误](#cmake可能遇到的错误 )
-      - [flann包没有找到](#flann包没有找到 )
-  - [测试安装是否成功](#测试安装是否成功 )
-    - [测试代码](#测试代码 )
-    - [运行错误](#运行错误 )
-- [boost库的安装(Linux)](#boost库的安装linux )
-    - [验证安装](#验证安装 )
-- [HYDeviceSDK的安装](#hydevicesdk的安装 )
-  - [运行示例程序](#运行示例程序 )
+- [HYDeviceSDK的编译运行](#hydevicesdk的编译运行)
+- [依赖库的安装](#依赖库的安装)
+- [OpenCV的安装和配置(Linux)](#opencv的安装和配置linux)
+    - [首先要安装opencv的相关依赖](#首先要安装opencv的相关依赖)
+    - [编译opencv](#编译opencv)
+    - [安装opencv](#安装opencv)
+    - [配置opencv环境变量](#配置opencv环境变量)
+    - [验证安装是否成功](#验证安装是否成功)
+    - [参考链接](#参考链接)
+- [gRPC的安装(Linux)](#grpc的安装linux)
+  - [安装依赖](#安装依赖)
+  - [下载并安装grpc](#下载并安装grpc)
+    - [如果这里的cmake出问题](#如果这里的cmake出问题)
+  - [安装完gRPC，别忘了安装abseil](#安装完grpc别忘了安装abseil)
+  - [如果protoc的安装有问题](#如果protoc的安装有问题)
+  - [libprotoc.so.26找不到](#libprotocso26找不到)
+  - [openssl找不到](#openssl找不到)
+  - [跑一下官方的demo验证安装](#跑一下官方的demo验证安装)
+    - [在cmake编译example时遇到的问题](#在cmake编译example时遇到的问题)
+      - [openssl库找不到](#openssl库找不到)
+      - [protobuf库找不到](#protobuf库找不到)
+      - [abseil.....某个头文件找不到](#abseil某个头文件找不到)
+- [Websocketpp的安装（Linux）](#websocketpp的安装linux)
+- [vtk](#vtk)
+- [flann](#flann)
+- [pcl库的安装(Linux)](#pcl库的安装linux)
+    - [直接安装预编译版本](#直接安装预编译版本)
+      - [预编译版本的pcl的卸载](#预编译版本的pcl的卸载)
+    - [使用cmake从源码编译安装](#使用cmake从源码编译安装)
+    - [cmake可能遇到的错误](#cmake可能遇到的错误)
+      - [flann包没有找到](#flann包没有找到)
+  - [测试安装是否成功](#测试安装是否成功)
+    - [测试代码](#测试代码)
+    - [运行错误](#运行错误)
+- [boost库的安装(Linux)](#boost库的安装linux)
+    - [验证安装](#验证安装)
+- [HYDeviceSDK的安装](#hydevicesdk的安装)
+  - [运行示例程序](#运行示例程序)
+  - [运行单元测试](#运行单元测试)
   
 #  依赖库的安装
   
@@ -80,13 +81,13 @@ HYDeviceSDK的依赖库有：
 8. libswscale-dev 
 9. libjasper-dev
   
-```
+```bash
 sudo apt-get install cmake
 sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg.dev libtiff4.dev libswscale-dev libjasper-dev
 ```
   
 **注意**：
-```
+```bash
 libjasper-dev
 ```
 这个库的安装可能会有问题，貌似不装也可以成功编译安装opencv？
@@ -97,7 +98,7 @@ libjasper-dev
   
 先去官网的github上下载source.zip和contribute.zip
   
-```
+```bash
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_GTK=ON -D OPENCV_GENERATE_PKGCONFIG=YES -D OPENCV_EXTRA_MODULES_PATH=/home/hrl/opencv-4.4.0/opencv_contrib-4.4.0/modules ..
 ```
 注意最后的```..```前面有空格的，不要漏了
@@ -142,7 +143,7 @@ https://blog.csdn.net/qq_37975595/article/details/109179388
 ##  安装依赖
   
   
-```
+```bash
 sudo apt install -y build-essential autoconf libtool pkg-config
 ```
   
@@ -153,13 +154,13 @@ sudo apt install -y build-essential autoconf libtool pkg-config
 Ubuntu18.04默认的cmake是3.10，需要卸载并安装更高版本的Cmake。
   
 1、下载grpc
-```
+```bash
 git clone --recurse-submodules -b v1.37.1 https://github.com/grpc/grpc
 ```
   
 如果遇到网络问题，则试试
   
-```
+```bash
 git clone -branch v1.37.1 https://github.com/grpc/grpc
 cd grpc
 git submodule update --init
@@ -167,7 +168,7 @@ git submodule update --init
   
 这里要注意版本问题。
 如果是要下载1.38.0，则是：
-```
+```bash
 git clone -b v1.38.0 https://github.com/grpc/grpc
 ```
   
@@ -176,18 +177,47 @@ git clone -b v1.38.0 https://github.com/grpc/grpc
 2、编译安装grpc
   
 a.
-```
+```bash
 mkdir -p cmake/build && cd cmake/build
 ```
   
 b.
-```
+```bash
 cmake -DCMAKE_BUILD_TYPE=Release -DgRPC_INSTALL=ON -DBUILD_SHARED_LIBS=ON -DgRPC_BUILD_TESTS=OFF -DgRPC_ZLIB_PROVIDER=package -DgRPC_PROTOBUF_PROVIDER=package -DgRPC_SSL_PROVIDER=package ../..
 ```
   
 c.
+```bash
+make -j$(nproc)
 ```
-make -j<img src="https://latex.codecogs.com/gif.latex?(nproc)```d.```sudo%20make%20install```就安装完成了。###%20%20如果这里的cmake出问题protobuf库找不到，那就去安装protobuf库```bashcd%20&#x2F;grpc&#x2F;third_party&#x2F;protobufmkdir-p%20cmake&#x2F;buildcd%20cmake&#x2F;buildcmake%20-Dprotobuf_BUILD_TESTS=OFF%20-DCMAKE_BUILD_TYPE=Release%20-DBUILD_SHARED_LIBS=ON%20..make%20-jsudo%20make%20install```##%20%20安装完gRPC，别忘了安装abseil```mkdir%20-p%20third_party&#x2F;abseil-cpp&#x2F;cmake&#x2F;buildpushd%20third_party&#x2F;abseil-cpp&#x2F;cmake&#x2F;buildcmake%20-DCMAKE_INSTALL_PREFIX="/>MY_INSTALL_DIR \  -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \  ../..
+
+d.
+```bash
+sudo make install
+```
+
+就安装完成了。
+
+### 如果这里的cmake出问题
+
+protobuf库找不到，那就去安装protobuf库
+
+```bash
+cd /grpc/third_party/protobuf
+mkdir-p cmake/build
+cd cmake/build
+cmake -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
+make -j
+sudo make install
+```
+
+
+## 安装完gRPC，别忘了安装abseil
+
+```bash
+mkdir -p third_party/abseil-cpp/cmake/build
+pushd third_party/abseil-cpp/cmake/build
+cmake -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \  -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \  ../..
 make -j
 make install
 popd
@@ -208,13 +238,14 @@ popd
   
 ##  libprotoc.so.26找不到
   
-  
+```bash
 /usr/local/bin/protoc: error while loading shared libraries: libprotoc.so.26: cannot open shared object file: No such file or directory
+```
   
 ##  openssl找不到
   
   
-```
+```bash
 CMake Error at /usr/local/share/cmake-3.14/Modules/FindPackageHandleStandardArgs.cmake:137 (message):
   Could NOT find OpenSSL, try to set the path to OpenSSL root folder in the
   system variable OPENSSL_ROOT_DIR (missing: OPENSSL_CRYPTO_LIBRARY
@@ -235,8 +266,10 @@ https://blog.csdn.net/wanxuexiang/article/details/89647737
 https://blog.csdn.net/u012670181/article/details/104102110
   
 可能会出现的错误：
+```bash
 ubuntu 18.04 openssl: relocation error: openssl: symbol EVP_mdc2 version OPENSSL_1_1_0 not defined i
-  
+```
+
 解决方案：
   
 https://blog.csdn.net/lc11535/article/details/111769295
@@ -245,7 +278,7 @@ https://www.5axxw.com/questions/content/b78m2c
   
 使用export命令修改`LD_LIBRARY_PATH`
   
-```
+```bash
 export LD_LIBRARY_PATH=/usr/local/ssl/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 ```
   
@@ -256,7 +289,7 @@ export LD_LIBRARY_PATH=/usr/local/ssl/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 https://blog.csdn.net/wanxuexiang/article/details/89647737
   
 直接手动指明openssl的安装路径：
-```
+```bash
 cmake -DOPENSSL_ROOT_DIR=/usr/local/ssl -DOPENSSL_LIBRARIES=/usr/local/ssl/lib ../..
 ```
   
@@ -264,33 +297,33 @@ cmake -DOPENSSL_ROOT_DIR=/usr/local/ssl -DOPENSSL_LIBRARIES=/usr/local/ssl/lib .
   
   
 首先cd到demo所在的目录：
-```
+```bash
 cd examples/cpp/helloworld
 ```
   
 创建`build`文件夹
-```
+```bash
 mkdir -p cmake/build
 ```
   
 在`build`文件夹里运行：
-```
+```bash
 cmake -DCMAKE_PREFIX_PATH=$MY_INSTALL_DIR ../..
 make -j$(nproc)
 ```
   
 运行服务端程序：
-```
+```bash
 ./greeter_server
 ```
   
 在另外一个终端里cd到当前目录运行客户端程序
-```
+```bash
 ./greeter_client
 ```
   
 输出结果：
-```
+```bash
 Greeter received: Hello world
 ```
   
@@ -306,7 +339,7 @@ Greeter received: Hello world
   
   
 cmake报错信息：
-```
+```bash
 CMake Error at CMakeLists.txt:5 (find_package):
   Could not find a package configuration file provided by "Protobuf" with any
   of the following names:
@@ -337,7 +370,7 @@ CMake Error at CMakeLists.txt:5 (find_package):
   
 由于这个库只有头文件，所以编译安装比较简单
   
-```
+```bash
 mkdir -p cmake/build && cd build
 cmake ../..
 make -j$(nproc)
@@ -371,45 +404,6 @@ sudo apt-get install libflann1.9 libflann-dev
   
 #  pcl库的安装(Linux)
   
-- [HYDeviceSDK的编译运行](#hydevicesdk的编译运行 )
-- [依赖库的安装](#依赖库的安装 )
-- [OpenCV的安装和配置(Linux)](#opencv的安装和配置linux )
-    - [首先要安装opencv的相关依赖](#首先要安装opencv的相关依赖 )
-    - [编译opencv](#编译opencv )
-    - [安装opencv](#安装opencv )
-    - [配置opencv环境变量](#配置opencv环境变量 )
-    - [验证安装是否成功](#验证安装是否成功 )
-    - [参考链接](#参考链接 )
-- [gRPC的安装(Linux)](#grpc的安装linux )
-  - [安装依赖](#安装依赖 )
-  - [下载并安装grpc](#下载并安装grpc )
-    - [如果这里的cmake出问题](#如果这里的cmake出问题 )
-  - [安装完gRPC，别忘了安装abseil](#安装完grpc别忘了安装abseil )
-  - [如果protoc的安装有问题](#如果protoc的安装有问题 )
-  - [libprotoc.so.26找不到](#libprotocso26找不到 )
-  - [openssl找不到](#openssl找不到 )
-  - [跑一下官方的demo验证安装](#跑一下官方的demo验证安装 )
-    - [在cmake编译example时遇到的问题](#在cmake编译example时遇到的问题 )
-      - [openssl库找不到](#openssl库找不到 )
-      - [protobuf库找不到](#protobuf库找不到 )
-      - [abseil.....某个头文件找不到](#abseil某个头文件找不到 )
-- [Websocketpp的安装（Linux）](#websocketpp的安装linux )
-- [vtk](#vtk )
-- [flann](#flann )
-- [pcl库的安装(Linux)](#pcl库的安装linux )
-    - [直接安装预编译版本](#直接安装预编译版本 )
-      - [预编译版本的pcl的卸载](#预编译版本的pcl的卸载 )
-    - [使用cmake从源码编译安装](#使用cmake从源码编译安装 )
-    - [cmake可能遇到的错误](#cmake可能遇到的错误 )
-      - [flann包没有找到](#flann包没有找到 )
-  - [测试安装是否成功](#测试安装是否成功 )
-    - [测试代码](#测试代码 )
-    - [运行错误](#运行错误 )
-- [boost库的安装(Linux)](#boost库的安装linux )
-    - [验证安装](#验证安装 )
-- [HYDeviceSDK的安装](#hydevicesdk的安装 )
-  - [运行示例程序](#运行示例程序 )
-  
 https://blog.csdn.net/mystyle_/article/details/109827365
   
 以Ubuntu 18.04为例
@@ -417,7 +411,7 @@ https://blog.csdn.net/mystyle_/article/details/109827365
 ###  直接安装预编译版本
   
   
-```
+```bash
 sudo apt install libpcl-dev
 ```
   
@@ -426,14 +420,14 @@ sudo apt install libpcl-dev
   
 可能还需要安装`pcl-tools`
   
-```
+```bash
 sudo apt install pcl-tools
 ```
   
 ####  预编译版本的pcl的卸载
   
   
-```
+```bash
 sudo apt remove libpcl-dev
 ```
   
@@ -442,7 +436,7 @@ sudo apt remove libpcl-dev
   
 https://blog.csdn.net/mystyle_/article/details/109827365
   
-```
+```bash
 cd pcl 
 mkdir release 
 cd release
@@ -457,7 +451,7 @@ cmake -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr \ -DBUILD_GPU=ON -DBUI
 ####  flann包没有找到
   
   
-```
+```bash
 No package 'flann' found
 CMake Error at /home/hrl/cmake-3.14.7-Linux-x86_64/share/cmake-3.14/Modules/FindPackageHandleStandardArgs.cmake:137 (message):
   Could NOT find FLANN (missing: FLANN_LIBRARY FLANN_INCLUDE_DIR) (Required
@@ -549,16 +543,15 @@ target_link_libraries (pcl_test ${PCL_LIBRARIES})
 install(TARGETS pcl_test RUNTIME DESTINATION bin)
 ```
   
-```
+```bash
 cmake 
 make -j
-  
 ```
   
 ###  运行错误
   
   
-```c
+```bash
 ERROR: In /build/vtk6-VHOYAG/vtk6-6.3.0+dfsg1/Rendering/OpenGL/vtkXOpenGLRenderWindow.cxx, line 1475
 vtkXOpenGLRenderWindow (0x7f29f000ff70): bad X server connection. DISPLAY=Aborted (core dumped)
 ```
@@ -607,7 +600,7 @@ int main()
 }
 ```
 运行命令
-```
+```bash
 g++ src.cpp -o src
 ./src
 ```
@@ -641,4 +634,8 @@ cmake .. && make -j
 运行输出：
   
 ![](asset/Screenshot%20from%202021-07-09%2015-24-27.png )
+
+## 运行单元测试
+
+请参考`HYDeviceTest`目录下的`README.md`。
   
