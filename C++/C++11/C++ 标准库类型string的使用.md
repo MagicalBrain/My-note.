@@ -201,3 +201,16 @@ void test4osstream(string input) {
     cout << targetString << endl;
 }
 ```
+
+那么如何清空stringstream里面的内容的数据呢？
+
+**注意**：
+
+```cpp
+stringstream targetPath;
+targetPath << str1 << str2;
+cout << targetPath.str() << endl;
+targetPath.clear();     //注意 clear()方法只是重置了状态，并没有将其内容清除
+cout << targetPath.str() << endl;
+targetPath.str("");     // 这样才可以将其内容清除
+```
