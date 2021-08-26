@@ -53,4 +53,22 @@ RAII机制（资源获取即初始化， ResourceAcquisition Is Initialization�
 所谓RAII的目的很简单，其实就是通过定义类、使用类来实现：
 资源在拿到的时候就已经初始化，一旦不需要资源了就自动释放。
 
+定义一个ServerSocket类：
 
+@import "./code/ServerSocket.h"
+
+@import "./code/ServerSocket.cpp"
+
+@import "./code/main.cpp"
+
+由此可见：
+1. 没有在构造函数中分配资源
+2. 单独使用一个DoInit函数分配资源
+3. 在析构函数中回收资源
+
+这样就不用担心中间步骤出错而忘记释放资源了。
+
+另外：
+严格说来，`m_bInit`应该被定义为类静态成员
+调用`WSACleanup`和`WSAStartup`的函数应该被定义为类静态方法。
+因为它们只需在程序初始化和退出时各调用一次。
