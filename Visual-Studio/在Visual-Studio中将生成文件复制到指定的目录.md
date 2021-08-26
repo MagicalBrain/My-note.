@@ -18,3 +18,8 @@ copy $(TargetPath) C:\hy\HinYeun-HRL\algorithmDemoPlugin-HRL\test4recognition\al
 ```bash
 copy C:\hy\HinYeun-HRL\algorithmDemoPlugin-HRL\x64\Release\recognizeCloseObjectPlugin.dll C:\hy\HinYeun-HRL\algorithmDemoPlugin-HRL\test4recognition\algorithm-plugin\recognizeCloseObjectPlugin.dll
 ```
+
+## 参考目录
+
+https://blog.csdn.net/a_dev/article/details/103683047
+https://docs.microsoft.com/zh-cn/visualstudio/ide/reference/pre-build-event-post-build-event-command-line-dialog-box?view=vs-2019
