@@ -39,4 +39,18 @@ sudo apt install build-essential
 sudo apt install make （可选）
 
 3、安装 oh-my-zsh
-查看我知乎 计算机收藏
+
+先安装zsh：
+
+```bash
+sudo apt update
+sudo apt install git zsh -y
+```
+
+再安装oh-my-zsh:
+
+```bash
+sh -c "$(curl -fsSL https://gitee.com/shmhlsy/oh-my-zsh-install.sh/raw/master/install.sh)"
+```
+
+接下来按提示走即可。
