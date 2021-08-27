@@ -77,6 +77,15 @@ for (int i = 0; i < 10; i++)
 }
 ```
 
+### `std::Vector::push_back()`的更好替代：`std::Vector::emplace_back()`
+
+还可以使用`std::Vector::emplace_back()`函数
+
+`std::Vector::emplace_back()`和`std::Vector::push_back()`的作用都是在`vector`的尾部添加新元素。
+`std::Vector::emplace_back()`与`std::Vector::push_back()`的区别在于性能：
+1. `std::Vector::push_back()`添加元素的时候会先创建这个元素然后将要添加的元素拷贝或者移动到容器里
+2. 而`std::Vector::emplace_back()`则是直接在`vector`的尾部创建这个元素，省去了拷贝或移动的过程，所以性能会高一些。
+
 ### 3.3.2节 练习
 
 #### 练习3.14:编写一段程序，用cin读入一组整数并把它们存入一个vector对象。
@@ -189,6 +198,10 @@ for (auto i : v)
     cout << i << " ";
 }
 ```
+
+### `v[n]`的更好替代`v.at(n)`
+
+使用`v[n]`的时候不会检查n的合理性、是否会越界，而`v.at(n)`会检查n的合理性，如果越界将抛出`out_of_range`异常
 
 ### 3.3.3节 练习
 
