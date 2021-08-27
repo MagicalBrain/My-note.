@@ -8,7 +8,7 @@ void* threadfunc(void* args) {
     while (1) {
         sleep(1);
 
-        printg("I am a New Thread!\n");
+        printf("I am a New Thread!\n");
     }
     return NULL;
 }
