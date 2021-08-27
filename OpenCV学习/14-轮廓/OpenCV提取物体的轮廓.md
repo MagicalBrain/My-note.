@@ -32,6 +32,7 @@ void cv::findContours(
 
 **hierarchy**（可选 optional）：
 如果给定该参数，将输出所有轮廓的树结构。
+这是一个`std::vector<cv::Vec4i>`类型，即一个vector里装的元素是`cv::Vec4i`类型
 
 **mode**：
 设定提取轮廓的方式，有4种可选
