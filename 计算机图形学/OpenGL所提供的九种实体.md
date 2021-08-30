@@ -225,6 +225,7 @@ void SetupLights()
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specularLight); //指定材料对镜面光的反应
 	glMateriali(GL_FRONT, GL_SHININESS, 100);           //指定反射系数
 }
+
 void main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);										//初始化OpenGL
