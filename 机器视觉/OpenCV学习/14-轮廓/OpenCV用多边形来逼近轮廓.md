@@ -64,13 +64,16 @@ int main( int /*argc*/, char** /*argv*/ )
             points.push_back(pt);
         }
         // Find the minimum area enclosing bounding box
+        // 最小外包围矩形拟合
         Point2f vtx[4];
         RotatedRect box = minAreaRect(points);
         box.points(vtx);
         // Find the minimum area enclosing triangle
+        // 最小外包围三角形拟合
         vector<Point2f> triangle;
         minEnclosingTriangle(points, triangle);
         // Find the minimum area enclosing circle
+        // 最小外包围圆形拟合
         Point2f center;
         float radius = 0;
         minEnclosingCircle(points, center, radius);
@@ -79,12 +82,15 @@ int main( int /*argc*/, char** /*argv*/ )
         for( i = 0; i < count; i++ )
             circle( img, points[i], 3, Scalar(0, 0, 255), FILLED, LINE_AA );
         // Draw the bounding box
+        // 画出包围的矩形
         for( i = 0; i < 4; i++ )
             line(img, vtx[i], vtx[(i+1)%4], Scalar(0, 255, 0), 1, LINE_AA);
         // Draw the triangle
+        // 画出包围的三角形
         for( i = 0; i < 3; i++ )
             line(img, triangle[i], triangle[(i+1)%3], Scalar(255, 255, 0), 1, LINE_AA);
         // Draw the circle
+        // 画出包围的圆形
         circle(img, center, cvRound(radius), Scalar(0, 255, 255), 1, LINE_AA);
         imshow( "Rectangle, triangle & circle", img );
         char key = (char)waitKey();
@@ -98,3 +104,11 @@ int main( int /*argc*/, char** /*argv*/ )
 ## 多边形拟合
 
 ## 圆形拟合
+
+```cpp
+void cv::minEnclosingCircle	(	
+    cv::InputArray 	points,
+    cv::Point2f & 	center,
+    float & 	radius 
+)	
+```

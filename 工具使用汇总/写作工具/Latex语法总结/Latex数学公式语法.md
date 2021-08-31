@@ -6,29 +6,58 @@
 ### 约等号
 $\approx$
 
+```latex
+\approx
+```
+
 ### 正负号
 
 $\pm$
 
+```latex
+\pm
+```
+
 ### 花括号
+
 $$\left\{a_i | a_i \in ElemSet, i=1,2,3,\dot,n, n \geqslant 0 \right\}$$
+
+```latex
+\left\{a_i | a_i \in ElemSet, i=1,2,3,\dot,n, n \geqslant 0 \right\}
+```
+
 ### 乘号
 $$\times$$
+
+```latex
+\times
+```
+
 点乘
+
 $$\cdot$$
 
-### 上下标
+```latex
+\cdot
 ```
+
+### 上下标
+
+```latex
 a^x //上标
 a_x //下标
 ```
+
 显示效果
+
 $$a^x=a_x$$
 
 ### 分数
-```
+
+```latex
 \frac{f(x)}{f(x_0)}
 ```
+
 显示效果：
 $$\frac{f(x)}{f(x_0)}$$
 
