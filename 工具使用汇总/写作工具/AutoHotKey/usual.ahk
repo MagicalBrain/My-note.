@@ -100,3 +100,12 @@ return
 Send #{d}
 return
 
+;打开Git
+!g::
+Run, "C:\Program Files\Git\git-bash.exe" --cd-to-home
+return
+
+;打开Terminal
+#T::
+Run, "wt.exe" 
+return

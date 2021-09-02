@@ -11,7 +11,7 @@
 命令行 编辑：
 
 ```bash
-copy $(TargetPath) C:\hy\HinYeun-HRL\algorithmDemoPlugin-HRL\test4recognition\algorithm-plugin\$(TargetFileName)
+copy $(TargetPath) $(SolutionDir)test4recognition\algorithm-plugin\$(TargetFileName)
 ```
 
 还可以通过下面的计算结果来检查命令写的对不对，例如上面的计算结果：
