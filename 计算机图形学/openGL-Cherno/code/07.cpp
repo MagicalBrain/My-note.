@@ -164,7 +164,7 @@ int main(void)
         glEnd();
         */
 
-        // 画三角形
+        // 画三角形 其实调用的是GLSL的代码来实现渲染的
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
 
