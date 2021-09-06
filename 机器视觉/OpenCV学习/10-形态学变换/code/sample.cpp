@@ -1,3 +1,6 @@
+/*
+* 这是一个opencv官方提供的测试自定义核在腐蚀和膨胀操作中的可视化效果
+*/
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
 
