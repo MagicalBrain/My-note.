@@ -92,7 +92,7 @@ GLuint createShaderProgram() {
 
 	glAttachShader(vfprogram, vShader);
 	glAttachShader(vfprogram, fShader);
-	glLinkProgram(vfprogram);
+	//glLinkProgram(vfprogram);
 
 	glLinkProgram(vfprogram);
 	checkOpenGLError();
