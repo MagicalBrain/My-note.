@@ -51,15 +51,28 @@ void setupVertices(void) {
 }
 
 void init(GLFWwindow* window) {
+	// 读取着色器代码，并构建渲染程序
 	renderingProgram = Utils::createShaderProgram("vertShader.glsl", "fragShader.glsl");
+
+	// 给定了相机在世界中的位置
 	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 8.0f;
+
+	// 给定了立方体在世界中的位置
 	cubeLocX = 0.0f; cubeLocY = -2.0f; cubeLocZ = 0.0f;
+
+	// 通过调用setupsetupVertices()实现将立方体顶点加入到VBO中。
 	setupVertices();
 }
 
+/*
+* display()函数可以被反复调用，而且调用的速率被称为帧率
+*/
 void display(GLFWwindow* window, double currentTime) {
+	// 清除深度缓冲区，使用默认值1.0
+	// OpenGL中的深度值范围为0.0～1.0
 	glClear(GL_DEPTH_BUFFER_BIT);
 
+	// 启动着色器
 	glUseProgram(renderingProgram);
 
 	mvLoc = glGetUniformLocation(renderingProgram, "mv_matrix");
