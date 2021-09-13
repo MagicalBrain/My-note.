@@ -257,5 +257,9 @@ int main (int argc,  char *argv[])
 https://blog.csdn.net/wphkadn/article/details/105027482
 
 
+## 如何使用modern OpenGL来实现这个魔方程序
 
+使用modern OpenGL来实现这个魔方程序。
+
+不仅如此，我还要让这个程序能够在iOS、iPadOS、macOS上都能运行起来。
 
