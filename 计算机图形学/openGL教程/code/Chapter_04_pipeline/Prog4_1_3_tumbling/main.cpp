@@ -70,13 +70,33 @@ void display(GLFWwindow* window, double currentTime) {
 	mvLoc = glGetUniformLocation(renderingProgram, "mv_matrix");
 	projLoc = glGetUniformLocation(renderingProgram, "proj_matrix");
 
-	vMat = glm::translate(glm::mat4(1.0f), glm::vec3(-cameraX, -cameraY, -cameraZ));
+	vMat = glm::translate(
+		glm::mat4(1.0f), 
+		glm::vec3(-cameraX, -cameraY, -cameraZ)
+	);
 
-	tMat = glm::translate(glm::mat4(1.0f), glm::vec3(sin(0.35f*currentTime)*2.0f, cos(0.52f*currentTime)*2.0f, sin(0.7f*currentTime)*2.0f));
+	tMat = glm::translate(
+		glm::mat4(1.0f), 
+		glm::vec3(sin(0.35f*currentTime)*2.0f, 
+		cos(0.52f*currentTime)*2.0f, 
+		sin(0.7f*currentTime)*2.0f)
+	);
 	
-	rMat = glm::rotate(glm::mat4(1.0f), 1.75f*(float)currentTime, glm::vec3(0.0f, 1.0f, 0.0f));
-	rMat = glm::rotate(rMat, 1.75f*(float)currentTime, glm::vec3(1.0f, 0.0f, 0.0f));
-	rMat = glm::rotate(rMat, 1.75f*(float)currentTime, glm::vec3(0.0f, 0.0f, 1.0f));
+	rMat = glm::rotate(
+		glm::mat4(1.0f), 
+		1.75f*(float)currentTime, 
+		glm::vec3(0.0f, 1.0f, 0.0f)
+	);
+	rMat = glm::rotate(
+		rMat, 
+		1.75f*(float)currentTime, 
+		glm::vec3(1.0f, 0.0f, 0.0f)
+	);
+	rMat = glm::rotate(
+		rMat, 
+		1.75f*(float)currentTime, 
+		glm::vec3(0.0f, 0.0f, 1.0f)
+	);
 
 	mMat = tMat * rMat;
 
