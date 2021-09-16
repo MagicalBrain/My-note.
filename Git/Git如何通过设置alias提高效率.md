@@ -8,4 +8,12 @@
 git config --global alias.st status
 
 git config --global alias.cm commit
+
+git config --global alias.cmm 'commit -m'
+```
+
+```bash
+git status => git st
+git commit => git commit
+git commit -m => git cmm
 ```
