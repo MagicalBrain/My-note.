@@ -373,3 +373,89 @@ Task.Delay是Thread.Sleep的异步版本。
 1. Thread.Start
 2. Task.Run
 3. 给任务附加延续的方法
+
+继续前面计算质数的例子：
+
+```csharp
+ static int GetPrimesCount(int start, int count)
+        {
+            return
+                ParallelEnumerable.Range(start, count).Count(
+                    n => Enumerable.Range(2, (int)Math.Sqrt(n) - 1).All(i => n % i > 0));
+        }
+
+static public void DisplayPrimeCounts()
+        {
+            for (int i = 0; i < 10; i++)
+                Console.WriteLine(GetPrimesCount(i * 1000000 + 2, 1000000) +
+                    " primes between " + (i * 1000000) + " and " + ((i + 1) * 1000000 - 1));
+            Console.WriteLine("Done!");
+        }
+```
+
+```csharp
+//var awaiter = GetAwaiter();
+            // 为计算创建粗粒度的并发性
+            Task.Run(
+                () => DisplayPrimeCounts()
+            );
+```
+
+相反，如果采用细粒度的并发性，我们就需要编写异步的GetPrimesCount方法：
+
+```csharp
+static Task<int> GetPrimesCountAsync(int start, int count)
+{
+    return
+        Task.Run(
+            () =>
+            ParallelEnumerable.Range(start, count).Count(
+            n => Enumerable.Range(2, (int)Math.Sqrt(n) - 1).All(i => n % i > 0))
+        );
+}
+```
+
+```csharp
+ // Task 计算前三百万个数中质数的个数 使用了asybc 异步编程技术
+async static public Task PrimerNumberTaskasync()
+{
+    for (int i = 0; i < 10; i++)
+        Console.WriteLine(await GetPrimesCountAsync(i * 1000000 + 2, 1000000) +
+            " primes between " + (i * 1000000) + " and " + ((i + 1) * 1000000 - 1));
+        Console.WriteLine("Done!");
+}
+```
+
+```csharp
+ static void Main(string[] args)
+{
+    /* ------ 测试线程的基本操作 ----- */
+    TaskUsages.PrimerNumberTaskasync();
+    for (int i = 0; i < 1000; i++)
+        Console.WriteLine(Thread.CurrentThread.Name);
+    Console.ReadKey();
+}
+```
+
+## C#的异步函数
+
+### 等待
+
+```csharp
+var result = await expression;
+statement(S);
+```
+
+编译器会将上述代码转换为下面具有相同功能的代码：
+
+```csharp
+var awaiter = expression.GetAwaiter();
+awaiter.OnCompleted(
+    () => {
+        var result = awaiter.GetResult();
+        statement(s);
+    }
+);
+```
+
+### 
