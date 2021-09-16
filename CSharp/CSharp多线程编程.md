@@ -1,5 +1,7 @@
 # CSharp多线程编程
 
+内容主要来自《C# 核心技术指南》 第十四章
+
 ## 线程的基本操作
 
 ### 创建线程
@@ -123,7 +125,7 @@ while (DateTime.Now < nextStartTime)
 
 ## 富客户端应用程序的线程
 
-## 任务
+## 任务Task
 
 线程是创建并发的底层工具，因此它有一定的局限性。
 特别是：
@@ -138,9 +140,9 @@ Task类型是Framework 4.0时，作为并行编程库的组成部分引入的。
 
 Task类型也是C#异步功能的基础类型。
 
-## 任务的基本操作
+## Task的基本操作
 
-### 创建任务
+### 创建Task
 
 **无返回值的方法**：
 
@@ -164,6 +166,210 @@ static public void CreateTask1()
 
 2、
 
-## 并发与异步
+### 启动Task
 
+```csharp
+Task.Run(
+    () => Console.WriteLine("Run the Task.");
+);
+```
 
+Task默认使用线程池中的线程，它们都是后台线程。这意味着当主线程结束时，所有的Task也会随之停止。
+因此，要在控制台应用程序中运行这些例子，必须在启动Task之后阻塞主线程（例如在Task对象上调用Wait，或者调用Console.ReadLine()方法）
+
+```csharp
+static void Main() {
+    Task.Run(
+        () => Console.WriteLine("Run the Task.");
+    );
+    Console.Read();
+}
+```
+
+### Task的阻塞
+
+**Wait方法**
+
+```csharp
+static void Main() {
+    Task task = Task.Run(
+        () => {
+            Thread.Sleep(2000);
+            Console.WriteLine("Run the Task.");
+        }
+    );
+    Console.WriteLine(task.IsCompleted);    // is false
+
+    task.Wait();
+    Console.WriteLine(task.IsCompleted);    // is true
+}
+```
+
+### 长任务 LongTask
+
+默认情况下，CLR会将Task运行在线程池线程上，这种线程非常适合执行短小的计算密集的Task。
+如果要执行长时间阻塞的操作（如上面的例子）则可以按照以下方式避免使用线程池线程
+
+```csharp
+static void Main() {
+    Task task = Task.Run(
+        () => {
+            Thread.Sleep(2000);
+            Console.WriteLine("Run the Task.");
+        },
+        TaskCreationOptions.LongRunning
+    );
+   
+}
+```
+
+在线程池上运行一个长时间执行的Task并不会造成问题.
+但是如果要并行运行多个长时间运行的Task（特别是会造成阻塞的Task），则会对性能造成影响。
+在这种情况下，相比于使用TaskCreationOptions.LongRunning而言，更好的方案是：
+
+1. 如果运行的是I/O密集型Task，则使用TaskCompletionSource和异步函数（asynchronous functions）通过回调函数而非使用线程实现并发性。
+2. 如果Task是计算密集型，则使用生产者/消费者队列可以控制这些Task造成的并发数量，避免出现线程和进程饥饿的问题（参见23.7节）。
+
+### Task的返回值
+
+Task有一个泛型子类`Task<TResult>`，它允许Task返回一个值。如果在调用Task. Run时传入一个`Func<TResult>`委托（或者兼容的Lambda表达式）替代Action就可以获得一个`Task<TResult>`对象：
+
+```csharp
+static void Main() {
+    Task<int> task = Task.Run(
+        () => {
+            Thread.Sleep(2000);
+            Console.WriteLine("Run the Task.");
+            return 3;
+        },
+    );
+}
+```
+
+此后，通过查询Result属性就可以获得Task的返回值。如果当前Task还没有执行完毕，则调用该属性会阻塞当前线程，直至Task结束。
+
+```csharp
+static void Main() {
+    Task<int> task = Task.Run(
+        () => {
+            Thread.Sleep(2000);
+            Console.WriteLine("Run the Task.");
+            return 3;
+        },
+    );
+
+    int re = task.Result;   // Blocks if not already finished
+    Console.WriteLine(re);
+}
+```
+
+#### 实例
+
+创建了一个Task，它使用LINQ计算前三百万个整数（从2开始）中素数的个数：
+
+```csharp
+static void Main() {
+    Task<int> task = Task.Run(
+        () => Enumerable.Range(2, 3000000).Count(
+            n => Enumerable.Range(2, (int)Math.Sqrt(n) - 1).All (
+                i => n % i > 0
+            )
+        )
+    );
+
+    Console.WriteLine("Task running...");
+    Console.WriteLine("The answer is: " + task.Result);
+}
+```
+
+### Task的异常处理
+
+任务可以方便地传播异常，这和线程是截然不同的。因此，如果任务中的代码抛出一个未处理异常（换言之，如果你的任务出错（fault）），那么调用Wait()或者访问`Task<TResult>`的Result属性时，该异常就会被重新抛出
+
+```csharp
+// Task 的异常处理
+static void Main() {
+    Task task = Task.Run(
+        () => throw null
+    );
+    
+    try
+    {
+        task.Wait();
+    }
+    catch (AggregateException error)
+    {
+        if (error.InnerException is NullReferenceException)
+            Console.WriteLine("Catch the exception of null.");
+        else
+            throw;
+    }
+}
+```
+
+### Task awaiter 延续
+
+调用任务的GetAwaiter方法将返回一个awaiter对象。这个对象的OnCompleted方法告知先导（antecedent）任务（primeNumberTask）当它执行完毕（或者出现错误）时调用一个委托。将延续附加到一个业已执行完毕的任务上是完全没有问题的，此时，延续的逻辑将会立即执行。
+
+```csharp
+static void Main() {
+    Task<int> task = Task.Run(
+                () => Enumerable.Range(2, 3000000).Count(
+                    n => Enumerable.Range(2, (int)Math.Sqrt(n) - 1).All(
+                        i => n % i > 0
+                    )
+                )
+            );
+
+            var awaiter = task.GetAwaiter();
+            awaiter.OnCompleted(
+                () =>
+                {
+                    int re = awaiter.GetResult();
+                    Console.WriteLine(re);
+                }
+            );
+
+            Console.WriteLine("Task running...");
+            Console.WriteLine("The answer is: " + task.Result);
+}
+```
+
+### TaskCompletionSource类
+
+前面介绍了如何使用Task.Run创建一个任务，并在线程池线程（或者非线程池线程）上运行特定委托。而另一种创建任务的方法是使用TaskCompletionSource。
+
+### Task.Delay方法
+
+我们刚刚实现的Delay方法非常实用，实际上它也是Task类的一个静态方法：
+
+```csharp
+Task.Delay(5000).GetAwaiter().OnCompleted(
+    () => Console.WriteLine(42)
+);
+
+Task.Delay(5000).ContinueWith(
+    ant => Console.WriteLine(42)
+);
+```
+
+Task.Delay是Thread.Sleep的异步版本。
+
+## 同步与异步
+
+**同步操作**
+（synchronous operation）先完成其工作再返回调用者。
+
+**异步操作**
+（asynchronous operation）的大部分工作则是在返回给调用者之后才完成的。
+
+我们平常编写和调用的大多数方法都是同步方法。例如，`Thread.Sleep`。
+而异步方法则不常见。并且异步调用需要==并发创建==。
+因为工作对于调用者来说是并行的。
+异步方法通常都会非常迅速（甚至会立即）返回给调用者。
+因此它们也称为非阻塞方法。
+
+到目前为止，我们学习的异步方法都是通用方法：
+1. Thread.Start
+2. Task.Run
+3. 给任务附加延续的方法
