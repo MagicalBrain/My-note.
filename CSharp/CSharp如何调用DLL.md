@@ -1,5 +1,7 @@
 # CSharp如何调用DLL
 
+这里介绍的DLL是C#生成的，貌似对应的代码平台只可以用对应的代码平台的DLL。
+
 ## 调用DLL遇到的错误
 
 System.TypeInitializationException
