@@ -1,3 +1,7 @@
+/*
+* 这是一个关于WebSocket服务端的实现
+*/
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
