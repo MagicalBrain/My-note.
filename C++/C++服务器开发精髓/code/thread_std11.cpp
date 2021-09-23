@@ -2,10 +2,19 @@
 #include <iostream>
 #include <thread>
 
+#ifdef __linux__
+#include <unistd.h>
+	#define sleep0(time) (sleep(time / 1000))
+#elif _WIN32
+#include <windows.h>
+	#define sleep0(time) (Sleep(time))
+#endif
+
 void threadproc01() {
 	while (true)
 	{
-		Sleep(1000);
+		//this_thread::sleep_for(chrono::seconds(0.5));
+		sleep0(500);
 		std::cout << "I am a New Thred01!" << std::endl;
 	}
 }
@@ -13,7 +22,8 @@ void threadproc01() {
 void threadproc02(int a, int b) {
 	while (true)
 	{
-		Sleep(1000);
+		//this_thread::sleep_for(chrono::seconds(0.5));
+		sleep0(500);
 		std::cout << "I am a New Thred02!" << std::endl;
 	}
 }
