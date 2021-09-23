@@ -12,6 +12,9 @@
 #elif _WIN32
 #include <windows.h>
 	#define sleep0(time) (Sleep(time))
+#elif __APPLE__
+#include <unistd.h>
+	#define sleep0(time) (sleep(time / 1000))
 #endif
 
 const int thread_num = 2;
