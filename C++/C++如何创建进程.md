@@ -2,7 +2,13 @@
 
 ## Linux
 
+使用`fork()`即可。
+
 ## Windows
+
+其实就是利用`CreateProcess`函数来创建。
+
+一般创建一个进程及其所包含的一个线程。
 
 https://docs.microsoft.com/zh-cn/windows/win32/procthread/creating-processes
 

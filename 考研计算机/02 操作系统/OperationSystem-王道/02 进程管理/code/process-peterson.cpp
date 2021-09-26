@@ -1,6 +1,6 @@
 /*
 * 利用线程来模拟进程的调度
-* 模拟peterson进程调度算法
+* 模拟peterson进程调度算法来实现互斥
 */
 #include <iostream>
 #include <thread>
