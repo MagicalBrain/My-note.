@@ -23,4 +23,8 @@
 https://blog.csdn.net/dolphin98629/article/details/89082416
 https://blog.csdn.net/hnlgzb/article/details/81911824
 
+## 目前的解决方案——高级保存功能
 
+使用vs的高级保存功能，将源代码文件保存为 **UTF-8 有签名**
+
+经测试，如果是无签名的话，大概率会导致没有语法错误，却编译出错的情况。
