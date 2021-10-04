@@ -1,5 +1,7 @@
 # 4-管理3D图形数据
 
+## 在Release版本下的问题
+
 ```bash
 Previous IPDB not found, fall back to full compilation.
 1>All 388 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
@@ -24,3 +26,14 @@ $(IntDir)vc$(PlatformToolsetVersion).pdb
 ```
 $(OutDir)$(TargetName).pdb
 ```
+
+## 尝试在Debug版本下进行调试
+
+Debug环境配置失败，原因应该是boost的问题。
+因为我在这个项目中寻找.glsl文件使用boost::filesystem来实现的。
+
+## 最后运行成功的配置
+
+在官方的代码里，用了一部分自己的代码，然后新建项目就成功了，难道继承类还有什么个数限制吗？
+
+

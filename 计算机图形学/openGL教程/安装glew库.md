@@ -1,5 +1,11 @@
 ## 安装glew库
 
+### 下载glew
+
+[下载地址](http://glew.sourceforge.net/)
+
+点击下载binary就好
+
 ### 设置静态调用glew
 
 在 项目属性 -> C++ -> 预处理器 -> 附加宏

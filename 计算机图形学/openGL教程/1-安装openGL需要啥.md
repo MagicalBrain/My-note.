@@ -17,6 +17,8 @@ OpenGL/GLSL是已经装好在显卡驱动里的，查一下支持哪个版本就
 # 窗口管理库：
 以前用glut，现在最流行的则是GLFW，内置了常见系统跨平台的支持。
 
+@import "./安装glfw库.md"
+
 # 扩展库：
 
 **GLEW**
@@ -43,6 +45,8 @@ glGenBuffers(1, &buffer);
 
 常见的有：Eigen和vmath
 但是和OpenGL配合的最好的还是OpenGL Mathematics
+
+@import "./安装glm库.md"
 
 # 纹理库
 
