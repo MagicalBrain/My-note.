@@ -61,3 +61,36 @@ https://cxybb.com/article/youandme520/107844296
 任意几何形状感兴趣区域的提取主要使用方法二和方法三。提取的关键是画出几何形状的边界或获得轮廓。
 
 ### 椭圆
+
+## 设置多个ROI
+
+可直接使用官方的API`selectROIS`
+
+```cpp
+void cv::selectROIs	(	
+    const String            &windowName,
+    InputArray 	            img,
+    std::vector< Rect >     &boundingBoxes,
+    bool 	                showCrosshair = true,
+    bool 	                fromCenter = false 
+)	
+```
+
+`#include <opencv2/highgui.hpp>`
+
+Selects ROIs on the given image. Function creates a window and allows user to select a ROIs using mouse. Controls: use space or enter to finish current selection and start a new one, use esc to terminate multiple ROI selection process.
+
+按下空格键或者回车键完成一次ROI的选取，由于这是选取多个ROI的，所以，选取次数够了以后，按下esc键退出。
+
+Parameters
+windowName	name of the window where selection process will be shown.
+img	image to select a ROI.
+
+boundingBoxes	selected ROIs.
+
+showCrosshair	if true crosshair of selection rectangle will be shown.
+
+fromCenter	if true center of selection will match initial mouse position. In opposite case a corner of selection rectangle will correspont to the initial mouse position.
+
+Note
+The function sets it's own mouse callback for specified window using cv::setMouseCallback(windowName, ...). After finish of work an empty callback will be set for the used window.
