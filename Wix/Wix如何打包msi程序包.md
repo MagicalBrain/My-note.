@@ -83,3 +83,7 @@ C:\Program Files (x86)\WiX Toolset v3.11
 candle.exe ./Product.wxs
 light.exe  ./Product.wixobj
 ```
+
+## 关于wxs的编写
+
+参考：https://www.cnblogs.com/chenyingzuo/p/12164131.html
