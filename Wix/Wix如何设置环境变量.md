@@ -60,7 +60,7 @@
 </Wix>
 ```
 
-## 添加环境变量的过程
+## 添加环境变量
 
 1、设置`Property`元素
 
@@ -68,7 +68,7 @@
 
 3、设置`InstallExecuteSequence`元素
 
-## 我自己的示例程序
+### 添加系统环境变量的示例程序
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -152,3 +152,22 @@
 卸载后可删除环境变量：
 
 ![](asset/env-uninstalled.png)
+
+### 添加Path环境变量的示例程序
+
+```xml
+
+```
+
+**注意**：
+```xml
+<Environment Id="TestPathVar"
+                         Action="set"
+                         Part="last"
+                         Name="Path"
+                         Permanent="no"
+                         System="yes"
+                         Value="8" />
+```
+
+其中的`Environment`元素的`Part`字段一定要是`"last"`否则会将原来Path里的所有内容覆盖掉，导致原来安装的环境变量全部失效。
