@@ -7,8 +7,9 @@
 由上可知，这个插件的安装之前得先安装Chrome浏览器。
 
 64位机Chrome浏览器安装位置：
-```bash
 
+```bash
+C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe
 ```
 
 然后直接到vscode插件那里下载并安装`markdown pdf`插件。
