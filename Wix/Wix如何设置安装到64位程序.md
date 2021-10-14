@@ -1,5 +1,7 @@
 # Wix如何设置安装到64位程序
 
+## 设置安装路径
+
 一般Windows 64位的程序会安装在：
 ```bash
 C:\Program Files
@@ -96,4 +98,12 @@ Wix打包出来的按照程序，一般默认是安装在`C:\Program Files (x86)
     </ComponentGroup>
 	</Fragment>
 </Wix>
+```
+
+## 设置安装条件限定为64位系统
+
+```xml
+<Condition Message="Only x64 architecture supported.">
+      Msix64
+</Condition>
 ```
