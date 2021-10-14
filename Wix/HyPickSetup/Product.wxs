@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension" > 
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="Hinyeung" UpgradeCode="98a26a8c-5cb7-4f34-9e9a-c17decbf5729">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
+
+    
+    
+    <Upgrade Id="98a26a8c-5cb7-4f34-9e9a-c17decbf5729">
+      <UpgradeVersion OnlyDetect="no" Property="PREVIOUSFOUND"
+         Minimum="2.6.0.0" IncludeMinimum="yes"
+         Maximum="$(var.ProductVersion)" IncludeMaximum="no"/>
+      <!--<UpgradeVersion OnlyDetect="yes" Property="NEWERFOUND"
+        Minimum="2.8.0.0" IncludeMaximum="no" />-->
+    </Upgrade>
+
+    <!--<InstallExecuteSequence>
+      <RemoveExistingProducts After="InstallInitialize" />
+    </InstallExecuteSequence>-->
+    
+		<MajorUpgrade AllowDowngrades="no" DowngradeErrorMessage="A newer version of [ProductName] is already installed." 
+                  AllowSameVersionUpgrades="no"/>
+    
+		<MediaTemplate EmbedCab="yes" />
+
+    <Condition Message="Only x64 architecture supported.">
+      Msix64
+    </Condition>
+
+    <!--<Condition Message="You need to be an administrator to install this product.">
+      Privileged
+    </Condition>-->
+    
+    <UIRef Id="WixUI_Mondo"/>
+    <UIRef Id="WixUI_ErrorProgressText"/>
+    
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)HYUIStyle/resources/license/License-en.rtf"/>
+    <!--<WixVariable Id="WixUIBannerBmp" Value="resource/logo.bmp"/>
+    <WixVariable Id="WixUIDialogBmp" Value="resource/Dialog.bmp"/>-->
+   
+    <!--定义目录结构-->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder" >
+        <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)">
+          <Directory Id="DOCFOLDER" Name="documentation" FileSource="$(env.HYSDK_ROOT)/doc">
+            <Component Id="HYPickDoc" Guid="{595D7FA0-181C-4685-987C-E82D15F867FE}" Win64="yes">
+              <File Name="HYPick_UserGuide_zhCN.pdf"/>
+            </Component>
+          </Directory>
+          <Directory Id="DATAFOLDER" Name="data" FileSource="$(var.SolutionDir)HyPick/data">
+            <Directory Id="PARAMFOLDER" Name="param">
+                <!--<Component Id="HYPickDefault" Guid="{E6F61CE3-941D-4DA1-B3D0-B2CD0D986B88}" Win64="yes">
+                  <File Name="config.json"/>
+                  <File Name="pattern.json"/>
+                  <File Name="vtk.cam"/>
+                </Component>-->
+            </Directory>
+            <Directory Id="TEMPLATEFOLDER" Name="template" FileSource="$(env.HYSDK_ROOT)/template">
+              <Component Id="HYPickTemplate" Guid="{E2ED69DE-25F1-424A-8977-B15307DC9715}" Win64="yes">
+                <File Name="ball.pcd"/>
+                <File Name="box.pcd"/>
+                <File Name="T_tube.pcd"/>
+                <File Name="nut.pcd"/>
+                <File Name="demo.json"/>
+                <File Name="demo-ppf.json"/>
+                <File Name="loop.json"/>
+                <File Name="loop-ppf.json"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="BEARERFOLDER" Name="bearer" FileSource="$(env.QT_ROOT)/plugins/bearer">
+            <Component Id="QTBEARER" Guid="{3D0EAB51-0AE9-4DE5-8E4F-FB0E0FD0372B}" Win64="yes">
+              <File Name="qgenericbearer.dll"/>
+            </Component>
+          </Directory>
+          <Directory Id="ICONENGINEFOLDER" Name="iconengines" FileSource="$(env.QT_ROOT)/plugins/iconengines">
+            <Component Id="QTICONENGINE" Guid="{2F143F6C-F055-4524-9491-95646816B40B}" Win64="yes">
+              <File Name="qsvgicon.dll"/>
+            </Component>
+          </Directory>
+          <Directory Id="IMAGEFORMATFOLDER" Name="imageformats" FileSource="$(env.QT_ROOT)/plugins/imageformats">
+            <Component Id="QTIMAGEFORMAT" Guid="{92F0066C-20FF-47C1-BC13-4749D255AC45}" Win64="yes">
+              <File Name="qgif.dll"/>
+              <File Name="qicns.dll"/>
+              <File Name="qico.dll"/>
+              <File Name="qjpeg.dll"/>
+              <File Name="qsvg.dll"/>
+              <File Name="qtga.dll"/>
+              <File Name="qtiff.dll"/>
+              <File Name="qwbmp.dll"/>
+              <File Name="qwebp.dll"/>
+            </Component>
+          </Directory>
+          <Directory Id="PLATFORMFOLDER" Name="platforms" FileSource="$(env.QT_ROOT)/plugins/platforms">
+            <Component Id="QTPLATFORM" Guid="{3492315B-4D4C-4EFE-9A1C-A0E84CE5DB35}" Win64="yes">
+              <File Name="qwindows.dll"/>
+            </Component>
+          </Directory>
+          <Directory Id="RESFOLDER" Name="resources" FileSource="$(var.SolutionDir)HYUIStyle/resources/image">
+            <Component Id="QTRES" Guid="{381B8484-3066-4A6F-A9C7-4F9907CB2481}" Win64="yes">
+              <File Name="HyPick.ico" />
+              <File Name="Uninstall.ico" />
+            </Component>
+          </Directory>
+          <Directory Id="STYLESFOLDER" Name="styles" FileSource="$(env.QT_ROOT)/plugins/styles">
+            <Component Id="QTSTYLES" Guid="{DA927933-3B04-4A0D-B218-5AF54FCF2F9F}" Win64="yes">
+              <File Name="qwindowsvistastyle.dll"/>
+            </Component>
+          </Directory>
+          <Directory Id="PLUGINFOLDER" Name="plugin">
+            <Directory Id="ROBOTPLUGINFOLDER" Name="robot">
+              <Directory Id="VirtualFOLDER" Name="VirtualRobotPlugin"/>
+              <Directory Id="ABBFOLDER" Name="ABBRobotPlugin"/>
+              <Directory Id="AUBOFOLDER" Name="AuboRobotPlugin"/>
+              <Directory Id="BORUNTEFOLDER" Name="BorunteRobotPlugin"/>
+              <Directory Id="HUASHUFOLDER" Name="HuaShuRobotPlugin"/>
+              <Directory Id="URFOLDER" Name="URRobotPlugin"/>
+              <Directory Id="FRANKAFOLDER" Name="FrankaRobotPlugin"/>
+              <Directory Id="ELITEFOLDER" Name="EliteRobotPlugin"/>
+              <!--<Directory Id="SIASUNFOLDER" Name="SiasunRobotPlugin"/>-->
+            </Directory>
+            <Directory Id="ALGORITHMPLUGINFOLDER" Name="algorithm"/>            
+          </Directory>
+        <Directory Id="SDKFOLDER" Name="sdk">
+			<Directory Id="SDKINCLUDEFOLDER" Name="include">
+				<Directory Id="SDKCOMMONFOLDER" Name="HYCommon">
+					<Directory Id="HYCOMMONFOLDER" Name="common" FileSource="$(env.HYSDK_ROOT)/include/HYCommon/common">
+						<Component Id="DeviceSDKIncludeCommon" Guid="{C5B114E5-22EF-4C0D-8892-6EE68CD0C64E}" Win64="yes">
+							<File Name="HYCommon.h" />
+							<File Name="HYErrorCategory.h" />
+						</Component>
+					</Directory>
+				</Directory>
+				<Directory Id="SDKPLUGINFOLDER" Name="HYPluginCore">
+					<Directory Id="HYPLUGINFOLDER" Name="common" FileSource="$(env.HYSDK_ROOT)/include/HYPluginCore/common">
+						<Component Id="DeviceSDKIncludePlugin" Guid="{AD4A0159-F83A-47CF-8604-DEFEAF0F5D1E}" Win64="yes">
+							<File Name="HYPlugin.hpp" />
+						</Component>
+					</Directory>
+				</Directory>
+				<Directory Id="SDKDEVICEFOLDER" Name="HYDevicePlugin">
+					<Directory Id="HYDEVICEFOLDER" Name="device" FileSource="$(env.HYSDK_ROOT)/include/HYDevicePlugin/device">
+						<Component Id="DeviceSDKIncludeDevice" Guid="{FFE33C8A-EA76-4587-8C76-AEB3E7D1D5CB}" Win64="yes">
+							<File Name="HYSensorPlugin.h" />
+						</Component>
+					</Directory>
+				</Directory>
+			</Directory>
+              <Directory Id="SDKLIBFOLDER" Name="lib" FileSource="$(env.HYSDK_ROOT)/lib">
+                <Component Id="DeviceSDKLib" Guid="{6E276A65-00F3-4F45-8683-9B8BB4F51D45}" Win64="yes">
+                  <File Name="HYCommon.lib" />
+				  <File Name="HYPluginCore.lib" />
+				    <File Name="HYDevicePlugin.lib" />
+                </Component>
+              </Directory>
+              <Directory Id="SDKBINFOLDER" Name="bin"/>
+              <Directory Id="SDKDEMOFOLDER" Name="demo">
+                <Directory Id="SDKDEVICEDEMOFOLDER" Name="HYDevicePluginDemo" FileSource="$(env.HYSDK_ROOT)/demo/HYDevicePluginDemo">
+                  <Component Id="DeviceSDKDemo" Guid="{588B847A-FB26-40A6-9537-0CC8A658D2D2}" Win64="yes">
+                    <File Name="HYDevicePluginDemo.cpp" />
+                    <File Name="HYDevicePluginDemo.vcxproj" />
+                    <File Name="HYDevicePluginDemo.vcxproj.filters" />
+                    <File Name="HYDeviceSDK.props" />
+                  </Component>
+                </Directory>
+              </Directory>
+            </Directory>
+        </Directory>
+      </Directory>
+      
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="$(var.ProductName)"/>
+      </Directory>
+      
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+      
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+    <!--定义组件-->
+		<Feature Id="Complete" Title="HyPick Setup" Level="1" Description="Install all components" Absent="disallow"
+             Display="expand" ConfigurableDirectory="INSTALLFOLDER">      
+      <Feature Id="DependencyComponents" InstallDefault="followParent" Title="Dependency Components"
+               Display="hidden" Absent="disallow" Description="Dependency Components" Level="1">
+        <ComponentRef Id="PCL"/>
+        <ComponentRef Id="Boost"/>
+        <ComponentRef Id="VTK"/>
+        <ComponentRef Id="FLANN"/>
+        <ComponentRef Id="OPENNI2"/>
+        <ComponentRef Id="OPENCV"/>
+        <ComponentRef Id="QT"/>
+        <ComponentRef Id="QTRES"/>
+        <ComponentRef Id="QTBEARER"/>
+        <ComponentRef Id="QTICONENGINE"/>
+        <ComponentRef Id="QTIMAGEFORMAT"/>
+        <ComponentRef Id="QTPLATFORM"/>
+        <ComponentRef Id="QTSTYLES"/>
+      </Feature>
+
+      <Feature Id="HYSDK" InstallDefault="followParent" Title="Hinyueng SDK"
+								Display="hidden" Absent="disallow" Description="Hinyueng SDK" Level="1">
+        <ComponentRef Id="HYSDK"/>
+        <!--<ComponentRef Id="HYPickDefault"/>
+        <ComponentRef Id="HYPickSolution"/>
+        <ComponentRef Id="HYPickBino"/>
+        <ComponentRef Id="HYPickMono"/>-->
+      </Feature>
+      
+      <Feature Id="HYPick" InstallDefault="followParent" Title="HYPick"
+          Absent="allow" Description="HYPick" Level="1">
+        <ComponentRef Id="HYPick"/>
+        <ComponentRef Id="HYPickDoc"/>
+        <!--<ComponentRef Id="HYPickLog"/>-->
+        <ComponentRef Id="HYPickTemplate"/>
+        <ComponentRef Id="ApplicationShortcut"/>
+        <ComponentRef Id="DesktopShortcut"/>
+        
+        <Feature Id="RobotPlugin" InstallDefault="followParent" Title="Robot Plugin"
+              Absent="allow" Description="Robot Plugin" Level="1">
+          <Feature Id="VirtualRobotPlugin" InstallDefault="followParent" Title="Virtual Robot Plugin"
+              Absent="allow" Description="Virtual Robot Plugin" Level="1">
+            <ComponentRef Id="VirtualPLUGIN"/>
+          </Feature>
+          <Feature Id="ABBRobotPlugin" InstallDefault="followParent" Title="ABB Robot Plugin"
+              Absent="allow" Description="ABB Robot Plugin" Level="1">
+            <ComponentRef Id="ABBSDK"/>
+            <ComponentRef Id="ABBPLUGIN"/>
+          </Feature>
+          <Feature Id="AuboRobotPlugin" InstallDefault="followParent" Title="Aubo Robot Plugin"
+              Absent="allow" Description="Aubo Robot Plugin" Level="1">
+            <ComponentRef Id="AuboSDK"/>
+            <ComponentRef Id="AuboPLUGIN"/>
+          </Feature>
+          <Feature Id="BorunteRobotPlugin" InstallDefault="followParent" Title="Borunte Robot Plugin"
+              Absent="allow" Description="Borunte Robot Plugin" Level="1">
+            <ComponentRef Id="BoruntePLUGIN"/>
+          </Feature>
+          <Feature Id="HuaShuRobotPlugin" InstallDefault="followParent" Title="HuaShu Robot Plugin"
+              Absent="allow" Description="HuaShu Robot Plugin" Level="1">
+            <ComponentRef Id="HuaShuSDK"/>
+            <ComponentRef Id="HuaShuPLUGIN"/>
+          </Feature>
+          <Feature Id="URRobotPlugin" InstallDefault="followParent" Title="UR Robot Plugin"
+              Absent="allow" Description="UR Robot Plugin" Level="1">
+            <ComponentRef Id="URPLUGIN"/>
+          </Feature>
+          <Feature Id="FrankaRobotPlugin" InstallDefault="followParent" Title="Franka Robot Plugin"
+              Absent="allow" Description="Franka Robot Plugin" Level="1">
+            <ComponentRef Id="FrankaSDK"/>
+            <ComponentRef Id="FrankaPLUGIN"/>
+          </Feature>
+          <Feature Id="EliteRobotPlugin" InstallDefault="followParent" Title="Elite Robot Plugin"
+              Absent="allow" Description="Elite Robot Plugin" Level="1">
+            <ComponentRef Id="ElitePLUGIN"/>
+          </Feature>
+          <Feature Id="DeviceSDK" InstallDefault="followParent" Title="DeviceSDK"
+							  Absent="allow" Description="DeviceSDK" Level="1">
+            <ComponentRef Id="DeviceSDKIncludeCommon"/>
+			<ComponentRef Id="DeviceSDKIncludePlugin"/>
+            <ComponentRef Id="DeviceSDKIncludeDevice"/>
+            <ComponentRef Id="DeviceSDKBin"/>
+            <ComponentRef Id="DeviceSDKLib"/>
+            <ComponentRef Id="DeviceSDKDemo"/>
+            <ComponentRef Id="DeviceSDKRoot"/>
+          </Feature>
+          <!--<Feature Id="SiasunRobotPlugin" InstallDefault="followParent" Title="Siasun Robot Plugin"
+              Absent="allow" Description="Siasun Robot Plugin" Level="1">
+            <ComponentRef Id="Siasun"/>
+          </Feature>-->
+        </Feature>
+      </Feature>
+		</Feature>
+	</Product>  
+  
+  <!--安装PCL-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="PCL" Guid="{6F54CC15-D6A4-4344-A774-F471C30AF27E}" Win64="yes">
+        <File Id="pcl_common.dll" Source="$(env.PCL_ROOT)/bin/pcl_common.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="pcl_filters.dll" Source="$(env.PCL_ROOT)/bin/pcl_filters.dll" Checksum="yes"/>
+        <File Id="pcl_features.dll" Source="$(env.PCL_ROOT)/bin/pcl_features.dll" Checksum="yes"/>
+        <File Id="pcl_io.dll" Source="$(env.PCL_ROOT)/bin/pcl_io.dll" Checksum="yes"/>
+        <File Id="pcl_io_ply.dll" Source="$(env.PCL_ROOT)/bin/pcl_io_ply.dll" Checksum="yes"/>
+        <File Id="pcl_kdtree.dll" Source="$(env.PCL_ROOT)/bin/pcl_kdtree.dll" Checksum="yes"/>
+        <File Id="pcl_recognition.dll" Source="$(env.PCL_ROOT)/bin/pcl_recognition.dll" Checksum="yes"/>
+        <File Id="pcl_registration.dll" Source="$(env.PCL_ROOT)/bin/pcl_registration.dll" Checksum="yes"/>
+        <File Id="pcl_sample_consensus.dll" Source="$(env.PCL_ROOT)/bin/pcl_sample_consensus.dll" Checksum="yes"/>
+        <File Id="pcl_search.dll" Source="$(env.PCL_ROOT)/bin/pcl_search.dll" Checksum="yes"/>
+        <File Id="pcl_segmentation.dll" Source="$(env.PCL_ROOT)/bin/pcl_segmentation.dll" Checksum="yes"/>
+        <File Id="pcl_surface.dll" Source="$(env.PCL_ROOT)/bin/pcl_surface.dll" Checksum="yes"/>
+        <File Id="pcl_visualization.dll" Source="$(env.PCL_ROOT)/bin/pcl_visualization.dll" Checksum="yes"/>
+        <File Id="pcl_octree.dll" Source="$(env.PCL_ROOT)/bin/pcl_octree.dll" Checksum="yes"/>
+        <File Id="pcl_ml.dll" Source="$(env.PCL_ROOT)/bin/pcl_ml.dll" Checksum="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--安装Boost-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="Boost" Guid="{17153B05-956F-46EB-8F7F-65C4D80FC6B7}" Win64="yes">
+        <File Id="boost_filesystem_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_filesystem-vc142-mt-x64-1_74.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="boost_log_setup_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_log_setup-vc142-mt-x64-1_74.dll" Checksum="yes"/>
+        <File Id="boost_log_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_log-vc142-mt-x64-1_74.dll" Checksum="yes"/>
+        <File Id="boost_regex_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_regex-vc142-mt-x64-1_74.dll" Checksum="yes"/>
+        <File Id="boost_thread_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_thread-vc142-mt-x64-1_74.dll" Checksum="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--安装VTK-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="VTK" Guid="{6F7B4A62-D19D-4044-A6FC-7A95E575E976}" Win64="yes">
+        <File Id="vtkCommonCore_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkCommonCore-8.2.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="vtkCommonSystem_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkCommonSystem-8.2.dll" Checksum="yes"/>
+        <File Id="vtkRenderingOpenGL2_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingOpenGL2-8.2.dll" Checksum="yes"/>
+        <File Id="vtkViewsCore_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkViewsCore-8.2.dll" Checksum="yes"/>
+        <File Id="vtkViewsQt_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkViewsQt-8.2.dll" Checksum="yes"/>
+        <File Id="vtkRenderingQt_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingQt-8.2.dll" Checksum="yes"/>
+        <File Id="vtkCommonDataModel_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkCommonDataModel-8.2.dll" Checksum="yes"/>
+        <File Id="vtkCommonMath_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkCommonMath-8.2.dll" Checksum="yes"/>
+        <File Id="vtkFiltersSources_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkFiltersSources-8.2.dll" Checksum="yes"/>
+        <File Id="vtkGUISupportQt_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkGUISupportQt-8.2.dll" Checksum="yes"/>
+        <File Id="vtkCommonExecutionModel_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkCommonExecutionModel-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkInteractionStyle_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkInteractionStyle-8.2.dll" Checksum="yes"/>
+        <File Id="vtkRenderingAnnotation_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingAnnotation-8.2.dll" Checksum="yes"/>
+        <File Id="vtkRenderingCore_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingCore-8.2.dll" Checksum="yes"/>
+        <File Id="vtkRenderingLOD_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingLOD-8.2.dll" Checksum="yes"/>
+        <File Id="vtkRenderingFreeType_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingFreeType-8.2.dll" Checksum="yes"/>  
+        <File Id="vtkIOLegacy_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkIOLegacy-8.2.dll" Checksum="yes"/>
+        <File Id="vtkIOGeometry_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkIOGeometry-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkIOPLY_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkIOPLY-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkIOImage_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkIOImage-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkIOCore_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkIOCore-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkImagingCore_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkImagingCore-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkChartsCore_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkChartsCore-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkViewsContext2D_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkViewsContext2D-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkRenderingContextOpenGL2_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingContextOpenGL2-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkInteractionWidgets_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkInteractionWidgets-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkFiltersModeling_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkFiltersModeling-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkFiltersExtraction_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkFiltersExtraction-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkImagingSources_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkImagingSources-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkRenderingContext2D_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingContext2D-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkCommonColor_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkCommonColor-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkFiltersGeneral_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkFiltersGeneral-8.2.dll" Checksum="yes"/> 
+        <File Id="vtkFiltersCore_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkFiltersCore-8.2.dll" Checksum="yes"/>
+        <File Id="vtkCommonTransforms_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkCommonTransforms-8.2.dll" Checksum="yes"/>
+        <File Id="vtksys_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtksys-8.2.dll" Checksum="yes"/>
+        <File Id="vtkCommonMisc_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkCommonMisc-8.2.dll" Checksum="yes"/>
+        <File Id="vtkImagingColor_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkImagingColor-8.2.dll" Checksum="yes"/>
+        <File Id="vtkFiltersGeometry_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkFiltersGeometry-8.2.dll" Checksum="yes"/>
+        <File Id="vtkCommonComputationalGeometry_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkCommonComputationalGeometry-8.2.dll" Checksum="yes"/>
+        <File Id="vtkfreetype_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkfreetype-8.2.dll" Checksum="yes"/>
+        <File Id="vtkglew_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkglew-8.2.dll" Checksum="yes"/>
+        <File Id="vtkzlib_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkzlib-8.2.dll" Checksum="yes"/>
+        <File Id="vtkmetaio_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkmetaio-8.2.dll" Checksum="yes"/>
+        <File Id="vtkDICOMParser_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkDICOMParser-8.2.dll" Checksum="yes"/>
+        <File Id="vtkpng_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkpng-8.2.dll" Checksum="yes"/>
+        <File Id="vtktiff_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtktiff-8.2.dll" Checksum="yes"/>
+        <File Id="vtklz4_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtklz4-8.2.dll" Checksum="yes"/>
+        <File Id="vtkjpeg_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkjpeg-8.2.dll" Checksum="yes"/>
+        <File Id="vtklzma_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtklzma-8.2.dll" Checksum="yes"/>
+        <File Id="vtkdoubleconversion_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkdoubleconversion-8.2.dll" Checksum="yes"/>
+        <File Id="vtkInfovisCore_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkInfovisCore-8.2.dll" Checksum="yes"/>
+        <File Id="vtkFiltersHybrid_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkFiltersHybrid-8.2.dll" Checksum="yes"/>
+        <File Id="vtkImagingGeneral_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkImagingGeneral-8.2.dll" Checksum="yes"/>
+        <File Id="vtkImagingHybrid_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkImagingHybrid-8.2.dll" Checksum="yes"/>
+        <File Id="vtkFiltersStatistics_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkFiltersStatistics-8.2.dll" Checksum="yes"/>
+        <File Id="vtkImagingFourier_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkImagingFourier-8.2.dll" Checksum="yes"/>
+        <File Id="vtkImagingMath_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkImagingMath-8.2.dll" Checksum="yes"/>
+        <File Id="vtkRenderingVolume_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingVolume-8.2.dll" Checksum="yes"/>
+        <File Id="vtkRenderingVolumeOpenGL2_8.2.dll" Source="$(env.PCL_ROOT)/3rdParty/VTK/bin/vtkRenderingVolumeOpenGL2-8.2.dll" Checksum="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--安装FLANN-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="FLANN" Guid="{B9533E48-A434-4031-9D47-633D4718FBD8}" Win64="yes">
+        <File Id="flann_cpp.dll" Source="$(env.PCL_ROOT)/3rdParty/FLANN/bin/flann_cpp.dll" KeyPath="yes" Checksum="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--安装OPENNI2-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="OPENNI2" Guid="{286DFCF5-5FF4-4356-AB27-AFC423C415B0}" Win64="yes">
+        <File Id="OpenNI2.dll" Source="$(env.OPENNI2_REDIST64)/OpenNI2.dll" KeyPath="yes" Checksum="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--安装OPENCV-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="OPENCV" Guid="{C2E06393-10EF-48CA-A4BF-B8BE0AF0E6A1}" Win64="yes">
+        <File Id="opencv_world440.dll" Source="$(env.OPENCV_ROOT)/x64/vc15/bin/opencv_world440.dll" KeyPath="yes" Checksum="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--安装QT-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER" >
+      <Component Id="QT" Guid="{E5D9B4A7-8AFC-488B-891A-DC65A6885E7D}" Win64="yes">
+        <File Id="Qt5Core.dll" Source="$(env.QT_ROOT)/bin/Qt5Core.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="Qt5Gui.dll" Source="$(env.QT_ROOT)/bin/Qt5Gui.dll" Checksum="yes"/>
+        <File Id="Qt5Widgets.dll" Source="$(env.QT_ROOT)/bin/Qt5Widgets.dll" Checksum="yes"/>
+        <File Id="Qt5Network.dll" Source="$(env.QT_ROOT)/bin/Qt5Network.dll" Checksum="yes"/>
+        <File Id="Qt5Designer.dll" Source="$(env.QT_ROOT)/bin/Qt5Designer.dll" Checksum="yes"/>
+        <File Id="Qt5Xml.dll" Source="$(env.QT_ROOT)/bin/Qt5Xml.dll" Checksum="yes"/>
+        <File Id="Qt5Svg.dll" Source="$(env.QT_ROOT)/bin/Qt5Svg.dll" Checksum="yes"/>    
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  
+  <!--安装HYSDK-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="HYSDK" Guid="{13F9AA1B-5E47-46C1-ADD9-37579B64EF12}" Win64="yes">
+        <File Id="HYCommon.dll" Source="$(env.HYSDK_ROOT)/bin/HYCommon.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="HYDevice.dll" Source="$(env.HYSDK_ROOT)/bin/HYDevice.dll" Checksum="yes"/>
+        <File Id="HYVision.dll" Source="$(env.HYSDK_ROOT)/bin/HYVision.dll" Checksum="yes"/>
+        <File Id="HYProcess.dll" Source="$(env.HYSDK_ROOT)/bin/HYProcess.dll" Checksum="yes"/>
+        <File Id="HYUIStyle.dll" Source="$(env.HYSDK_ROOT)/bin/HYUIStyle.dll" Checksum="yes"/>
+		<File Id="HYVisionController.dll" Source="$(env.HYSDK_ROOT)/bin/HYVisionController.dll" Checksum="yes"/>
+        <File Id="HYDeviceManager.exe" Source="$(env.HYSDK_ROOT)/bin/HYDeviceManager.exe" Checksum="yes"/>
+        <File Id="HYPluginCore.dll" Source="$(env.HYSDK_ROOT)/bin/HYPluginCore.dll" Checksum="yes"/>
+        <File Id="hidapi.dll" Source="$(env.HYSDK_ROOT)/3rdParty/hidapi/bin/hidapi.dll" Checksum="yes"/>
+        <File Id="cudart64_110.dll" Source="$(env.CUDA_PATH)/bin/cudart64_110.dll" Checksum="yes"/>
+        <File Id="sdk_zlib.dll" Source="$(env.HYSDK_ROOT)/3rdParty/zlib/bin/zlib.dll" Checksum="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--安装AccessSDK-->
+	<Fragment>
+		<DirectoryRef Id="SDKBINFOLDER">
+			<Component Id="DeviceSDKBin" Guid="{C1529CA8-C2C4-48E0-B282-135E9DFFC237}" Win64="yes">
+				<File Id="sdk_HYCommon.dll" Source="$(env.HYSDK_ROOT)/bin/HYCommon.dll" KeyPath="yes" Checksum="yes"/>
+				<File Id="sdk_HYPluginCore.dll" Source="$(env.HYSDK_ROOT)/bin/HYPluginCore.dll" Checksum="yes"/>
+				<File Id="sdk_HYDevicePlugin.dll" Source="$(env.HYSDK_ROOT)/bin/HYDevicePlugin.dll" Checksum="yes" />
+				<File Id="sdk_boost_filesystem_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_filesystem-vc142-mt-x64-1_74.dll" Checksum="yes"/>
+				<File Id="sdk_boost_log_setup_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_log_setup-vc142-mt-x64-1_74.dll" Checksum="yes"/>
+				<File Id="sdk_boost_log_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_log-vc142-mt-x64-1_74.dll" Checksum="yes"/>
+				<File Id="sdk_boost_regex_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_regex-vc142-mt-x64-1_74.dll" Checksum="yes"/>
+				<File Id="sdk_boost_thread_vc142_mt_x64_1_74.dll" Source="$(env.PCL_ROOT)/3rdParty/Boost/bin/boost_thread-vc142-mt-x64-1_74.dll" Checksum="yes"/>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+  <Fragment>  
+      <DirectoryRef Id="INSTALLFOLDER">
+        <Component Id="DeviceSDKRoot" Guid="{715672D0-FA40-4CC7-B7A4-468AD8A879C0}" Win64="yes">
+          <CreateFolder />
+          <Environment Id="HYDEVICE_SDK_ROOT"
+                   Action="set"
+                   Part="all"
+                   Name="HYDEVICE_SDK_ROOT"
+                   Permanent="no"
+                   System="yes"
+                   Value="[INSTALLFOLDER]sdk" />
+        </Component>
+       </DirectoryRef>
+  </Fragment>
+  
+    <!--安装HYPick-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="HYPick" Guid="{4290F6EA-4067-4977-8401-8394A41E171C}" Win64="yes">
+        <File Id="HYPick.exe" Source="$(env.HYSDK_ROOT)/bin/HYPick.exe" KeyPath="yes" Checksum="yes"/>
+        <File Id="MatchConfig.exe" Source="$(env.HYSDK_ROOT)/bin/MatchConfig.exe" Checksum="yes"/>
+        <File Id="WidgetBoxPlugin.dll" Source="$(env.HYSDK_ROOT)/3rdParty/WidgetBox/bin/WidgetBoxPlugin.dll" Checksum="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--安装Plugin Robot-->
+  <Fragment>
+    <DirectoryRef Id="VirtualFOLDER">
+      <Component Id="VirtualPLUGIN" Guid="{61137248-EFB0-4F33-9ED0-609CDD4E7488}" Win64="yes">
+        <File Id="VirtualRobotPlugin.dll" Source="$(env.HYSDK_ROOT)/plugin/robot/VirtualRobotPlugin/VirtualRobotPlugin.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="virtual_config.json" Source="$(env.HYSDK_ROOT)/plugin/robot/VirtualRobotPlugin/config.json" />
+        <File Id="virtual_coordinate.json" Source="$(env.HYSDK_ROOT)/plugin/robot/VirtualRobotPlugin/coordinate.json"/>
+        <File Id="virtual_workflow.json" Source="$(env.HYSDK_ROOT)/plugin/robot/VirtualRobotPlugin/workflow.json"/>
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="ABBSDK" Guid="{362EAD3E-2E78-4509-BEF3-92B01A269384}" Win64="yes">
+        <File Id="ABBConnector.dll" Source="$(env.HYSDK_ROOT)/3rdParty/ABB/bin/ABBConnector.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="ABBConnectorWrapper.dll" Source="$(env.HYSDK_ROOT)/3rdParty/ABB/bin/ABBConnectorWrapper.dll" Checksum="yes"/>
+        <File Id="ABB.Robotics.Controllers.PC.dll" Source="$(env.HYSDK_ROOT)/3rdParty/ABB/bin/ABB.Robotics.Controllers.PC.dll" Checksum="yes"/>
+        <File Id="RobotStudio.Services.RobApi.Desktop.dll" Source="$(env.HYSDK_ROOT)/3rdParty/ABB/bin/RobotStudio.Services.RobApi.Desktop.dll" Checksum="yes"/>
+        <File Id="RobotStudio.Services.RobApi.dll" Source="$(env.HYSDK_ROOT)/3rdParty/ABB/bin/RobotStudio.Services.RobApi.dll" Checksum="yes"/>
+        <Condition>INSTALLABB=1</Condition>
+      </Component>      
+    </DirectoryRef>
+    
+    <DirectoryRef Id="ABBFOLDER">
+      <Component Id="ABBPLUGIN" Guid="{E8E2AE08-47EA-4260-B748-DBB84E7EF316}" Win64="yes">
+        <File Id="ABBRobotPlugin.dll" Source="$(env.HYSDK_ROOT)/plugin/robot/ABBRobotPlugin/ABBRobotPlugin.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="abb_config.json" Source="$(env.HYSDK_ROOT)/plugin/robot/ABBRobotPlugin/config.json" />
+        <File Id="abb_coordinate.json" Source="$(env.HYSDK_ROOT)/plugin/robot/ABBRobotPlugin/coordinate.json" />
+        <File Id="abb_io_task.json" Source="$(env.HYSDK_ROOT)/plugin/robot/ABBRobotPlugin/io_task.json" />
+        <Condition>INSTALLABB=1</Condition>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="AUBOFOLDER">
+      <Component Id="AuboSDK" Guid="{AE9BC582-69BD-4127-BDE1-DC6E21D7B81E}" Win64="yes">
+        <File Id="libconfig.dll" Source="$(env.HYSDK_ROOT)/3rdParty/Aubo/bin/libconfig.dll" Checksum="yes"/>
+        <File Id="libgcc_s_seh_1.dll" Source="$(env.HYSDK_ROOT)/3rdParty/Aubo/bin/libgcc_s_seh-1.dll" Checksum="yes"/>
+        <File Id="libstdc___6.dll" Source="$(env.HYSDK_ROOT)/3rdParty/Aubo/bin/libstdc++-6.dll" Checksum="yes"/>
+        <File Id="libwinpthread_1.dll" Source="$(env.HYSDK_ROOT)/3rdParty/Aubo/bin/libwinpthread-1.dll" Checksum="yes"/>
+        <File Id="libserviceinterface.dll" Source="$(env.HYSDK_ROOT)/3rdParty/Aubo/bin/libserviceinterface.dll" Checksum="yes"/>
+        <Condition>INSTALLAUBO=1</Condition>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="AUBOFOLDER">
+      <Component Id="AuboPLUGIN" Guid="{F7AC7EE2-81E4-423A-BEC6-13907CA090FC}" Win64="yes">
+        <File Id="AuboRobotPlugin.dll" Source="$(env.HYSDK_ROOT)/plugin/robot/AuboRobotPlugin/AuboRobotPlugin.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="aubo_config.json" Source="$(env.HYSDK_ROOT)/plugin/robot/AuboRobotPlugin/config.json" />
+        <File Id="aubo_coordinate.json" Source="$(env.HYSDK_ROOT)/plugin/robot/AuboRobotPlugin/coordinate.json" />
+        <File Id="aubo_io_task.json" Source="$(env.HYSDK_ROOT)/plugin/robot/AuboRobotPlugin/io_task.json" />
+        <Condition>INSTALLAUBO=1</Condition>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="BORUNTEFOLDER">
+      <Component Id="BoruntePLUGIN" Guid="{DBBCEF1F-489A-4DD2-81E5-471FF8D3A8B6}" Win64="yes">
+        <File Id="BorunteRobotPlugin.dll" Source="$(env.HYSDK_ROOT)/plugin/robot/BorunteRobotPlugin/BorunteRobotPlugin.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="borunte_config.json" Source="$(env.HYSDK_ROOT)/plugin/robot/BorunteRobotPlugin/config.json" />
+        <File Id="borunte_coordinate.json" Source="$(env.HYSDK_ROOT)/plugin/robot/BorunteRobotPlugin/coordinate.json"/>
+        <File Id="borunte_io_task.json" Source="$(env.HYSDK_ROOT)/plugin/robot/BorunteRobotPlugin/io_task.json"/>
+        <Condition>INSTALLBORUNTE=1</Condition>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="HUASHUFOLDER">
+      <Component Id="HuaShuSDK" Guid="{73107F8A-75E7-4CBB-936B-3B6B50891F70}" Win64="yes">
+        <File Id="CommApi.dll" Source="$(env.HYSDK_ROOT)/3rdParty/HuaShu/bin/CommApi.dll" Checksum="yes"/>
+        <File Id="Hsc3Api.dll" Source="$(env.HYSDK_ROOT)/3rdParty/HuaShu/bin/Hsc3Api.dll" Checksum="yes"/>
+        <File Id="LogApi.dll" Source="$(env.HYSDK_ROOT)/3rdParty/HuaShu/bin/LogApi.dll" Checksum="yes"/>        
+        <Condition>INSTALLHUASHU=1</Condition>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="HUASHUFOLDER">
+      <Component Id="HuaShuPLUGIN" Guid="{7DC06E6C-C422-437D-A666-263B0C5D2C5D}" Win64="yes">
+        <File Id="HuaShuRobotPlugin.dll" Source="$(env.HYSDK_ROOT)/plugin/robot/HuaShuRobotPlugin/HuaShuRobotPlugin.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="huashu_config.json" Source="$(env.HYSDK_ROOT)/plugin/robot/HuaShuRobotPlugin/config.json"/>
+        <File Id="huashu_coordinate.json" Source="$(env.HYSDK_ROOT)/plugin/robot/HuaShuRobotPlugin/coordinate.json"/>
+        <File Id="huashu_io_task.json" Source="$(env.HYSDK_ROOT)/plugin/robot/HuaShuRobotPlugin/io_task.json"/>
+        <Condition>INSTALLHUASHU=1</Condition>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="URFOLDER">
+      <Component Id="URPLUGIN" Guid="{3614AD16-A273-4204-BD08-0D744DA059ED}" Win64="yes">
+        <File Id="URRobotPlugin.dll" Source="$(env.HYSDK_ROOT)/plugin/robot/URRobotPlugin/URRobotPlugin.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="ur_config.json" Source="$(env.HYSDK_ROOT)/plugin/robot/URRobotPlugin/config.json" />
+        <File Id="ur_coordinate.json" Source="$(env.HYSDK_ROOT)/plugin/robot/URRobotPlugin/coordinate.json"/>
+        <File Id="ur_io_task.json" Source="$(env.HYSDK_ROOT)/plugin/robot/URRobotPlugin/io_task.json"/>
+        <Condition>INSTALLUR=1</Condition>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="FRANKAFOLDER">
+      <Component Id="FrankaPLUGIN" Guid="{D5927253-8681-4B71-A2CA-72B9375ED839}" Win64="yes">
+        <File Id="FrankaRobotPlugin.dll" Source="$(env.HYSDK_ROOT)/plugin/robot/FrankaRobotPlugin/FrankaRobotPlugin.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="franka_config.json" Source="$(env.HYSDK_ROOT)/plugin/robot/FrankaRobotPlugin/config.json" />
+        <File Id="franka_coordinate.json" Source="$(env.HYSDK_ROOT)/plugin/robot/FrankaRobotPlugin/coordinate.json"/>
+        <File Id="franka_io_task.json" Source="$(env.HYSDK_ROOT)/plugin/robot/FrankaRobotPlugin/io_task.json"/>
+        <Condition>INSTALLFRANKA=1</Condition>
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="ELITEFOLDER">
+      <Component Id="ElitePLUGIN" Guid="{491FFCE9-A3B7-4C46-B070-0A000FC4143E}" Win64="yes">
+        <File Id="EliteRobotPlugin.dll" Source="$(env.HYSDK_ROOT)/plugin/robot/EliteRobotPlugin/EliteRobotPlugin.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="elite_config.json" Source="$(env.HYSDK_ROOT)/plugin/robot/EliteRobotPlugin/config.json" />
+        <File Id="elite_coordinate.json" Source="$(env.HYSDK_ROOT)/plugin/robot/EliteRobotPlugin/coordinate.json"/>
+        <File Id="elite_io_task.json" Source="$(env.HYSDK_ROOT)/plugin/robot/EliteRobotPlugin/io_task.json"/>
+        <Condition>INSTALLELITE=1</Condition>
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="FRANKAFOLDER">
+      <Component Id="FrankaSDK" Guid="{CC52CAD5-32D2-41DA-8982-3D10F156ECA6}" Win64="yes">
+        <File Id="franka.dll" Source="$(env.HYSDK_ROOT)/3rdParty/libfranka/bin/franka.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="PocoNet.dll" Source="$(env.HYSDK_ROOT)/3rdParty/Poco/bin/PocoNet.dll" Checksum="yes"/>
+        <File Id="PocoFoundation.dll" Source="$(env.HYSDK_ROOT)/3rdParty/Poco/bin/PocoFoundation.dll" Checksum="yes"/>
+        <Condition>INSTALLFRANKA=1</Condition>
+      </Component>
+    </DirectoryRef>
+
+    <!--<DirectoryRef Id="SIASUNFOLDER">
+      <Component Id="Siasun" Guid="{E995AE4D-1EEE-4AB8-BB32-5BE5E0E5BE6D}" Win64="yes">
+        <File Id="SiasunRobotPlugin.dll" Source="$(env.HYSDK_ROOT)/plugin/robot/SiasunRobotPlugin/SiasunRobotPlugin.dll" KeyPath="yes" Checksum="yes"/>
+        <File Id="siasun_config.json" Source="$(env.HYSDK_ROOT)/plugin/robot/SiasunRobotPlugin/config.json"/>
+        <File Id="siasun_coordinate.json" Source="$(env.HYSDK_ROOT)/plugin/robot/SiasunRobotPlugin/coordinate.json"/>
+        <File Id="siasun_io_task.json" Source="$(env.HYSDK_ROOT)/plugin/robot/SiasunRobotPlugin/io_task.json"/>
+      </Component>
+    </DirectoryRef>-->
+  </Fragment>
+
+  <!--安装快捷方式-->
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="{51447749-ECD7-47E9-AACA-A755257C7979}">
+        <Shortcut Id="LunchApplicationShortcut"  Name="HYPick" Description="Launch HYPick" Target="[INSTALLFOLDER]HYPick.exe" WorkingDirectory="INSTALLFOLDER">
+          <Icon Id="IconInstall" SourceFile="$(var.SolutionDir)HYUIStyle/resources/image/HyPick.ico"/>
+        </Shortcut>
+        <!--<Shortcut Id="UninstallApplicationShortcut"  Name="Uninstall HYPick" Description="Uninstall HYPick" Target="[SystemFolder]msiexec.exe" WorkingDirectory="SystemFolder" Arguments="/x [ProductCode]">
+          <Icon Id="IconUninstall" SourceFile="resources/Uninstall.ico"/>
+        </Shortcut>-->
+        <Shortcut Id="HYDeviceManagerShortcut"  Name="HYDeviceManager" Description="Launch HYDeviceManager" Target="[INSTALLFOLDER]HYDeviceManager.exe" WorkingDirectory="INSTALLFOLDER">
+          <Icon Id="IconDevice" SourceFile="$(var.SolutionDir)HYUIStyle/resources/image/Camera.ico"/>
+        </Shortcut>
+        <Shortcut Id="MatchConfigShortcut"  Name="MatchConfig" Description="Launch Match Config" Target="[INSTALLFOLDER]MatchConfig.exe" WorkingDirectory="INSTALLFOLDER">
+          <Icon Id="IconMatch" SourceFile="$(var.SolutionDir)HYUIStyle/resources/image/Settings.ico"/>
+        </Shortcut>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\Hinyueng\HYPick" Name="Installed" Type="string" Value="[INSTALLFOLDER]" KeyPath="yes"/>
+        <util:InternetShortcut Id="OnlineDocumentationShortcut" Name="Get Help" Target="http://www.hinyeung.com"/>
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="{453D9CED-D534-4508-ACE5-2AB9BBB5DFD7}">
+        <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="HYPick" Target="[INSTALLFOLDER]HYPick.exe" WorkingDirectory="INSTALLFOLDER" Icon="IconInstall"></Shortcut>
+        <RegistryValue Root="HKCU" Key="Software\Hinyueng\HYPick" Name="Installed" Type="string" Value="[INSTALLFOLDER]" KeyPath="yes"/>
+        <!--<RegistryValue Root="HKCU" Key="Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" Name="Installed" Type="string" Value="[INSTALLFOLDER]HYPick.exe"/>-->
+      </Component>
+    </DirectoryRef>
+	</Fragment>
+</Wix>
