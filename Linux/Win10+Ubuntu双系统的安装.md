@@ -1,4 +1,4 @@
-# Linux系统的安装
+# Win10+Ubuntu双系统的安装
 
 ## win10+Ubuntu双系统
 
@@ -25,3 +25,37 @@
 
 ### win10和Ubuntu装在不同的一块硬盘上
 
+
+## 可能会遇到的问题
+
+### 安装后直接进win10，找不到Ubuntu的启动项
+
+[参考链接][Ubuntu18]（注意：仅适用于Ubuntu18）
+
+1、在机器上插入Ubuntu系统的安装U盘，首先U盘引导，进入try ubuntu的选项，相当于进入了一个U盘体验系统。
+
+2、确保主机已经联网，打开终端，分别运行下面两行命令：
+
+```bash
+sudo add-apt-repository ppa:yannubuntu/boot-repair && sudo apt-get update
+sudo apt-get install -y boot-repair && boot-repair
+```
+
+3、运行后会启动Boot Repair软件，点击上面的recommended repair按钮。
+
+![](asset/BootRepair.png)
+
+根据提示进行修复即可，修复完成后会弹出如下对话框，注意这还没有完成，还需要后续操作
+
+![](asset/BootRepair02.png)
+
+重启机器，在终端中分别运行下面两行命令：
+
+```bash
+sudo update-grub
+sudo update-grub2
+```
+
+重启机器，可以看到开机时会出现双系统引导菜单，如下图所示：
+
+[Ubuntu18]:https://blog.csdn.net/discoverer100/article/details/94148635
