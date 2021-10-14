@@ -171,3 +171,78 @@
 ```
 
 其中的`Environment`元素的`Part`字段一定要是`"last"`否则会将原来Path里的所有内容覆盖掉，导致原来安装的环境变量全部失效。
+
+## Environment 元素详解
+
+### Action
+
+即设置环境变量的操作
+
+1. create:
+   1. 如果变量不存在就创建该变量
+   2. 安装期间设置改变量
+   3. 如果该变量已存在则不对其做任何操作
+2. set
+   1. 如果变量不存在就创建该变量
+   2. 安装期间设置改变量
+   3. 如果该变量已存在则修改其值
+3. remove
+   1. 安装期间删除该变量
+   2. 只有当变量名和变量的值都相同时才删除
+   3. 如果变量值为空，则无论该变量为何值都将其删除
+
+create
+Creates the environment variable if it does not exist, then set it during installation. This has no effect on the value of the environment variable if it already exists.
+set
+Creates the environment variable if it does not exist, and then set it during installation. If the environment variable exists, set it during the installation.
+remove
+Removes the environment variable during an installation. The installer only removes an environment variable during an installation if the name and value of the variable match the entries in the Name and Value attributes. If you want to remove an environment variable, regardless of its value, do not set the Value attribute.
+
+### Part
+
+即环境变量操作开始的地方，或者直接覆盖
+
+1. all
+   1. 默认为此值，对环境变量操作的时候会对整个环境变量进行操作
+   2. 如果已有值则全部覆盖
+2. first
+   1. 对环境变量操作的时候会从环境变量最前面开始进行操作
+   2. 如果已有值则在最前面添加
+3. last
+   1. 对环境变量操作的时候会从环境变量最后面开始进行操作
+   2. 如果已有值则在最后面添加
+
+all
+This value is the entire environmental variable. This is the default.
+first
+This value is prefixed.
+last
+This value is appended.
+
+### Name
+
+### Permanent
+
+该值决定了设置了环境变量在运行卸载程序后是否会被移除。
+
+1. yes
+   1. 运行卸载程序后不会被移除
+2. no
+   1. 运行卸载程序后会被移除
+
+Specifies that the environment variable should not be removed on uninstall.
+
+### System
+
+该值决定了设置了环境变量是系统变量还是用户变量。
+
+1. yes
+   1. 设置的是系统变量
+2. no
+   1. 设置的是用户变量
+
+Specifies that the environment variable should be added to the system environment space. The default is 'no' which indicates the environment variable is added to the user environment space.
+
+### Value
+
+设置该环境变量的值
