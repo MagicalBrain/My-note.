@@ -283,6 +283,10 @@ int main() {
 > ##### 术语 `connection_hdl`
 > 由于`connection_ptr`的线程安全性有限，库还提供了一个更灵活的连接标识符`connection_hdl`。`connection_hdl`有类型`websocketpp::connection_hdl`，它在`<websocketpp/common/connection_hdl.hpp>`中定义。注意，与`connection_ptr`不同，它不依赖于终端的类型或配置。简单地存储或传输`connection_hdl`但不使用它们的代码可以只包含上面的头文件，并可以把它的hdl当作值。
 
+Connection handles are not used directly. They are used by endpoint methods to identify the target of the desired action. For example, the endpoint method that sends a new message will take as a parameter the hdl of the connection to send the message to.
+
+连接句柄不是直接使用的。端点方法使用它们来标识所需操作的目标。例如，发送新消息的端点方法将把要发送消息的连接的hdl作为参数。
+
 ----
 
 @import "./websocketpp-client-sample.md"
