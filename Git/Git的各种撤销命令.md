@@ -6,6 +6,8 @@
 
 趁着还没有commit，赶紧输入命令`git reset HEAD`来撤销。
 
+其实好像没这么麻烦，趁着还没有commit，删掉add错的东西，再`git add *`就行了。
+
 ## 撤销 git commit
 
 先用`git log`命令查看commit的历史记录。
