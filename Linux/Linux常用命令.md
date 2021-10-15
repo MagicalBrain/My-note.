@@ -143,8 +143,20 @@ sudo chmod a+w filename
 
 ## 七、查看网络地址（IP）
 
+### ifconfig
+
 ```bash
 ifconfig
 ```
 
 输入该命令找就行了。
+
+如果显示没有安装，就按提示安装`net tools`就行了
+
+### ip address
+
+这个命令应该可以直接用
+
+```bash
+ip address
+```
