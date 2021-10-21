@@ -1,3 +1,5 @@
+[toc]
+
 # OpenCV-contrib安装编译
 
 ## 安装前的准备工作
