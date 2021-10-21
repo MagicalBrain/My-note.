@@ -35,6 +35,8 @@
 
 ----
 
+### cmake gui生成
+
 打开cmake gui
 设置好路径，点击`configure`
 
@@ -43,13 +45,53 @@
 一开始全红很正常，别紧张。
 我们慢慢来……
 
-// To-Do
+记住：
+**Slow is quick, quick is slow.**
 
 当 CMake 界面上下两块都没有红色部分，且下方出现了Configuring done，点击generate按钮
 第一次弄，还是建议当没有红色的时候，再点击`generate`
 
-## vs2019编译遇到问题
+如果generate前没有红的话，generate是不会有问题的。
 
+generate完了直接点击旁边的`open project`，这样就可以用vs打开工程了。
+
+### vs生成
+
+打开vs工程之后：
+
+第一步
+![](asset/opencv-vs01.png)
+
+第二步
+![](asset/opencv-vs02.png)
+
+等个二十来分钟（时间会根据机子的性能而定），就生成好了
+
+![](asset/opencv-vs03.png)
+
+查看目录：
+lib:
+![](asset/opencv-lib.png)
+
+bin:
+![](asset/opencv-dll.png)
+
+### 配置环境变量
+
+参考opencv的配置方法
+
+## 安装过程遇到的问题
+
+### cmake configure
+
+主要是一些包下载不下来的问题，详情参考链接。
+
+主要思路就是：
+
+1. 修改cmake文件里的下载链接
+2. 事先下好文件，放到cmake指定的下载目录下
+
+### vs2019编译遇到问题
 
 错误代码	MSB3073	
 
@@ -94,4 +136,6 @@ if %errorlevel% neq 0 goto :VCEnd
 https://blog.csdn.net/weijifen000/article/details/93377143
 
 ### 问题解决
+
+https://blog.csdn.net/Destiny_zc/article/details/107007432
 
