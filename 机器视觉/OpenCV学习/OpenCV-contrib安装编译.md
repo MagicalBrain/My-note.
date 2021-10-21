@@ -306,6 +306,7 @@ using namespace std;
 
 int main()
 {
+    // 自己找两幅图吧，我懒得弄了
     Mat image01 = imread("2.png", 1);    //右图
     Mat image02 = imread("1.png", 1);    //左图
     namedWindow("p2", 0);
