@@ -185,7 +185,7 @@ Assign a name to the container
 
 ## 命令例子解析
 
-以`ros:kinetic`为例（**注意：这个命令是macOS上的**
+以`ros:kinetic`为例（**注意：这个命令是macOS上的**）
 
 ```bash
 docker run --name hmi \
@@ -198,6 +198,16 @@ library/ros:kinetic
 
 **--mount**
 给容器挂载文件系统
+
+### 修改成我自己的macos
+
+```bash
+docker run --name MyROS \
+--mount type=bind,source=/Users/hrl/Docker_filesystem,target=/root/ros_workspaces \
+-itd -p 6080:6080 -p 7777:7777 -p 9111:9111 -p 1314:1314 -p 1222:1222 \
+library/ros:melodic
+```
+
 
 ### 修改成win10的（以`ros:melodic`为例）：
 
