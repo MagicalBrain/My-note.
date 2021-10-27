@@ -1,16 +1,4 @@
-# ROS使用教程——Hello World
-
-Publisher和Subscriber是ROS系统中最基本、最常用的通信方式。
-接下来以经典的“Hello, world”为例来学习如何创建Publisher和Subscriber
-
-## 如何创建Publisher
-
-Publisher的主要作用是针对指定话题发布特定数据类型的消息。我们尝试使用代码实现一个节点，节点中创建一个Publisher并发布字符串“Hello World”，源码learning_communication\src\talker.cpp的详细内容如下：
-
-```cpp
 #include <sstream>
-
-// 为了避免包含大量的头文件，ros.h已经包含了大部分ROS所需的头文件
 #include "ros/ros.h"
 #include "std_msgs/String.h"￼￼        
 
@@ -52,4 +40,3 @@ int main(int argc, char **argv)￼
     
     return 0;
 }
-```
