@@ -152,6 +152,43 @@ read operation timed out
 
 [解决方案链接][update]
 
+## 测试安装
+
+输入命令`roscore`启动ros
+
+如果显示如下：
+
+```bash
+... logging to /home/hrl/.ros/log/41e60760-36c9-11ec-aea9-d4258b01eb3b/roslaunch-hrl-GL62VR-7RFX-26850.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+started roslaunch server http://hrl-GL62VR-7RFX:38589/
+ros_comm version 1.14.12
+
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rosdistro: melodic
+ * /rosversion: 1.14.12
+
+NODES
+
+auto-starting new master
+process[master]: started with pid [26860]
+ROS_MASTER_URI=http://hrl-GL62VR-7RFX:11311/
+
+setting /run_id to 41e60760-36c9-11ec-aea9-d4258b01eb3b
+process[rosout-1]: started with pid [26871]
+started core service [/rosout]
+
+```
+
+则说明安装成功，ros可以正常启动了。
+
 ## 参考链接
 
 [install]:https://blog.csdn.net/KIK9973/article/details/118755045
