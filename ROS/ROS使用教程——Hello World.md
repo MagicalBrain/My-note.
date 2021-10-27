@@ -53,3 +53,37 @@ int main(int argc, char **argv)￼
     return 0;
 }
 ```
+
+### 初始化
+
+在调用任何ros的函数前必须要先调用`ros:init()`函数
+
+## ros:init()
+
+[ros:init()][init]
+
+### **声明如下**：
+
+```cpp
+void ros::init(
+    <command line or remapping arguments>, 
+    std::string node_name, 
+    uint32_t options
+);
+```
+
+### **参数说明**：
+
+#### argc and argv
+
+ROS uses these to parse remapping arguments from the command line. It also modifies them so that they no longer contain any remapping arguments, so that if you call ros::init() before processing your command line you will not need to skip those arguments yourself.
+
+#### node_name
+
+This is the name that will be assigned to your node unless it's overridden by one of the remapping arguments. Node names must be unique across the ROS system. If a second node is started with the same name as the first, the first will be shutdown automatically. In cases where you want multiple of the same node running without worrying about naming them uniquely, you may use the init_options::AnonymousName option described below.
+
+#### options
+
+This is an optional argument that lets you specify certain options that change roscpp's behavior. The field is a bitfield, so multiple options can be specified. The options are described in the Initialization Options section.
+
+[init]:http://wiki.ros.org/roscpp/Overview/Initialization%20and%20Shutdown

@@ -1,4 +1,6 @@
 #include <sstream>
+
+// 为了避免包含大量的头文件，ros.h已经包含了大部分ROS所需的头文件
 #include "ros/ros.h"
 #include "std_msgs/String.h"￼￼        
 

@@ -1,3 +1,5 @@
+[toc]
+
 # ROS安装-Linux教程
 
 推荐使用Ubuntu
@@ -27,6 +29,24 @@ Set up your keys
 sudo apt install curl # if you haven't already installed curl
 curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 ```
+
+----
+
+上面的官方命令如果到安装的时候`sudo apt update`命令不出问题就好了，实际情况则是没什么卵(luan)用。
+
+1、换中科大的源
+
+```bash
+sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list'
+```
+
+2、设置公钥
+
+```bash
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+```
+
+到这才可以继续往下走。
 
 ## 安装
 
@@ -146,6 +166,40 @@ read operation timed out
 ```
 
 其实不管超时还是什么奇奇怪怪的错误，其本质都是网络被墙。
+
+需要修改链接的文件：
+
+/usr/lib/python2.7/dist-packages/rosdep2/sources_list.py
+
+download_rosdep_data
+
+url="https://ghproxy.com/"+url
+
+/usr/lib/python2.7/dist-packages/rosdistro/__init__.py
+
+DEFAULT_INDEX_URL = 'https://ghproxy.com/https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml'
+
+```
+/usr/lib/python2.7/dist-packages/rosdep2/gbpdistro_support.py 36行
+
+/usr/lib/python2.7/dist-packages/rosdep2/sources_list.py 72行
+
+/usr/lib/python2.7/dist-packages/rosdep2/rep3.py	39行
+
+/usr/lib/python2.7/dist-packages/rosdistro/manifest_provider/github.py 68行 119行
+```
+
+/usr/lib/python2.7/dist-packages/rosdep2/gbpdistro_support.py   206行
+
+gbpdistro_url = “https://ghproxy.com/” + gbpdistro_url
+
+再次尝试
+
+```bash
+sudo rosdep update
+```
+
+问题解决
 
 **注意：**
 当你按以下链接修改`.py`文件的时候，在url前添加"https://ghproxy.com/"
