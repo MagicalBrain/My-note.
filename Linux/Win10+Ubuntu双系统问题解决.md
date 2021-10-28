@@ -31,6 +31,44 @@ sudo hwclock --localtime --systohc
 Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
 ```
 
+### sudo apt-get install ntpdate 遇到问题
+
+```bash
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+```
+
+输入命令检查是否有之前的进程占用了`apt-get`：
+
+```bash
+ps -e|grep apt-get
+```
+
+如果有进程占用了，则记住ID，用kill杀死进程：
+
+```bash
+sudo kill [ID]
+```
+
+不幸的事，我的电脑并没有进程占用`apt-get`
+
+那就试试——强制解锁：
+
+```bash
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock
+```
+
+### 重启Ubuntu进Win10卡住
+
+一直卡在关机的页面，还显示文字：
+
+```bash
+Unattended-upgrade in progress during ……
+```
+
+原来不是卡住而是得等，得等半个小时啊
+
 ### 参考链接
 
 https://zhuanlan.zhihu.com/p/149192081
