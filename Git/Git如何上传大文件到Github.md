@@ -40,3 +40,11 @@ git add *.pptx
 git commit -m "upload *pptx"
 git push origin master
 ```
+
+## 克隆lfs仓库
+
+```bash
+git lfs clone [url:http or ssh]
+```
+
+尽管这样可以大大提升在Windows上的性能，但是依然很慢。
