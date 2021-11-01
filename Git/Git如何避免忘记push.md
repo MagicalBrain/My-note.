@@ -37,3 +37,21 @@ function acpnote() {
 `acp`是一般仓库用的
 
 `acpnote`是My-note仓库用的，因为同时上传到gitee和github的main分支。
+
+### win下设置/etc/bash.bashrc
+
+/etc/bash.bashrc位置：
+
+![](./asset/git-win-bashrc.png)
+
+如果时默认安装在C盘的话，就是我这个位置。
+
+用vscode打开编辑：
+
+![](asset/git-win-bashrc-vscode.png)
+
+然后保存的时候右下角会弹出，对话框（如下）点击Retry as admin即可：
+
+![](asset/git-win-vscodesave.png)
+
+我拷贝了一份自己的`/etc/bash.bashrc`在`./code/`里，以供参考
