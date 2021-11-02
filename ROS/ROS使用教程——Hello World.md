@@ -93,7 +93,7 @@ int main(int argc, char **argv)￼
 
 1. 初始化ROS节点
 2. 向ROS Master注册节点信息
-3. 安装一定的频率发布消息·
+3. 安装一定的频率发布消息
 
 ## 如何创建Subscriber
 
@@ -125,6 +125,20 @@ int main(int argc, char **argv)
     return 0;
 }
 ```
+
+**总结 Subscriber 的实现流程**
+·
+1. 初始化ROS节点
+2. 订阅需要的话题
+3. 循环等待话题消息，接收到消息后进入回调函数
+4. 在回调函数完成消息处理
+
+## 编译功能包
+
+## 运行Publisher与Subscriber
+
+
+
 
 ## ros::init()
 
