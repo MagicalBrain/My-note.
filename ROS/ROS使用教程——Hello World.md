@@ -135,6 +135,30 @@ int main(int argc, char **argv)
 
 ## 编译功能包
 
+节点的代码已经完成了，在运行前需要将代码编译成可执行文件。
+
+打开功能包里的`CMakeLists.txt`文件，找到以下代码修改：
+
+```bash
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+# talker
+add_executable(talker src/talker.cpp)
+
+target_link_libraries(talker ${catkin_LIBRARIES})       
+
+add_dependencies(talker ${PROJECT_NAME}_generate_messages_cpp)
+
+# listener
+add_executable(listener src/listener.cpp)
+
+target_link_libraries(listener ${catkin_LIBRARIES})
+
+add_dependencies(talker ${PROJECT_NAME}_generate_messages_cpp)
+```
+
+对于这个较为简单的功能包，主要用到了以下四种配置语句：
+
 ## 运行Publisher与Subscriber
 
 

@@ -168,30 +168,41 @@ read operation timed out
 其实不管超时还是什么奇奇怪怪的错误，其本质都是网络被墙。
 
 需要修改链接的文件：
+没有特别说明的就是在url前面加 "https://ghproxy.com/"
 
-/usr/lib/python2.7/dist-packages/rosdep2/sources_list.py
+1、 
+`/usr/lib/python2.7/dist-packages/rosdep2/sources_list.py`    
 
-download_rosdep_data
+72 line 
 
-url="https://ghproxy.com/"+url
+675 行 download_rosdep_data函数的try语句块里的第一句加上 如下代码：
 
-/usr/lib/python2.7/dist-packages/rosdistro/__init__.py
+```bash
+url = "https://ghproxy.com/" + url
+```
 
+2、
+`/usr/lib/python2.7/dist-packages/rosdistro/__init__.py`
+里面的`DEFAULT_INDEX_URL`进行如下替换：
+
+```bash
 DEFAULT_INDEX_URL = 'https://ghproxy.com/https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml'
-
-```
-/usr/lib/python2.7/dist-packages/rosdep2/gbpdistro_support.py 36行
-
-/usr/lib/python2.7/dist-packages/rosdep2/sources_list.py 72行
-
-/usr/lib/python2.7/dist-packages/rosdep2/rep3.py	39行
-
-/usr/lib/python2.7/dist-packages/rosdistro/manifest_provider/github.py 68行 119行
 ```
 
-/usr/lib/python2.7/dist-packages/rosdep2/gbpdistro_support.py   206行
+3、
+`/usr/lib/python2.7/dist-packages/rosdep2/gbpdistro_support.py` 36 Line
 
-gbpdistro_url = “https://ghproxy.com/” + gbpdistro_url
+204 Line(206Line) 添加如下代码：
+
+```bash
+gbpdistro_url = "https://ghproxy.com/" + gbpdistro_url
+```
+
+4、
+`/usr/lib/python2.7/dist-packages/rosdep2/rep3.py` 39 line
+
+5、
+`/usr/lib/python2.7/dist-packages/rosdistro/manifest_provider/github.py` 68 line 119 line
 
 再次尝试
 
@@ -242,6 +253,30 @@ started core service [/rosout]
 ```
 
 则说明安装成功，ros可以正常启动了。
+
+### 可能会遇到的问题
+
+运行`roscore`报错：
+
+```bash
+Traceback (most recent call last):
+  File "/opt/ros/melodic/lib/python2.7/dist-packages/roslaunch/__init__.py", line 279, in main
+    write_pid_file(options.pid_fn, options.core, options.port)
+  File "/opt/ros/melodic/lib/python2.7/dist-packages/roslaunch/__init__.py", line 111, in write_pid_file
+    with open(pid_fn, "w") as f:
+IOError: [Errno 13] Permission denied: '/home/hrl/.ros/roscore-11311.pid'
+```
+
+**解决方案**：
+
+You should run 'sudo rosdep fix-permissions' and invoke 'rosdep update' again without sudo.
+
+```bash
+sudo rosdep fix-permissions
+rosdep update
+```
+
+这个问题其实前面运行`rosdep update`命令的时候前面不小心加了sudo
 
 ## 参考链接
 
