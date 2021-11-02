@@ -1,5 +1,11 @@
 # ROS使用教程——分析乌龟例程
 
+## 下载乌龟示例程序
+
+```bash
+sudo apt-get install ros-melodic-turtlesim
+```
+
 ## 启动乌龟测试例程
 
 1. 启动ros，运行命令：`roscore`
