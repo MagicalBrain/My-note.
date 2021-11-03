@@ -137,7 +137,7 @@ int main(int argc, char **argv)
 
 节点的代码已经完成了，在运行前需要将代码编译成可执行文件。
 
-打开功能包里的`CMakeLists.txt`文件，找到以下代码修改：
+打开功能包里的`CMakeLists.txt`文件，找到以下代码修改（==注意是功能包里的CMakeLists.txt，而不是工作空间src里的CMakeLists.txt==）：
 
 ```bash
 include_directories(include ${catkin_INCLUDE_DIRS})
@@ -160,7 +160,6 @@ add_dependencies(talker ${PROJECT_NAME}_generate_messages_cpp)
 对于这个较为简单的功能包，主要用到了以下四种配置语句：
 
 ## 运行Publisher与Subscriber
-
 
 
 
