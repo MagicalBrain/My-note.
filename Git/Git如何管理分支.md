@@ -3,6 +3,10 @@
 ## 如何新建分支
 
 ```bash
+git branch [new branch name]
+```
+
+```bash
 git checkout -b new-branch
 ```
 
@@ -51,3 +55,7 @@ git push origin --delete new-branch
 即git clone或者git pull之后一定要新建或者切换到自己的分支才能做修改。
 
 上传也是上传到自己的分支，如果你的修改被管理员接收，那么他就会将你的分支合并到master主分支上去。
+
+## 参考链接
+
+https://www.runoob.com/git/git-branch.html
