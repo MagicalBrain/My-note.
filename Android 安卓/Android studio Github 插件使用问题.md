@@ -62,3 +62,9 @@ com.example.a37487.myapplication01
 在 setting->VCS->ignoring file中按“+”号添加要忽略的文件或文件夹
 
 由于不同的电脑编译出来的package是不同的，所以我忽略了app/build.gradle文件
+
+## 建议
+
+在学会了Git的操作后，我为啥不直接用`Git bash`呢？
+
+这个插件并没有想象中的那么好用。
