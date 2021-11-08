@@ -55,3 +55,11 @@ function acpnote() {
 ![](asset/git-win-vscodesave.png)
 
 我拷贝了一份自己的`/etc/bash.bashrc`在`./code/`里，以供参考
+
+### macOS 设置
+
+我的macOS安装了zsh，所以设置是在`~/.zshrc`里面改的
+
+```bash
+sudo vim ~/.zshrc
+```
