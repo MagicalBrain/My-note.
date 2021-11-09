@@ -95,6 +95,17 @@ function acpnote() {
     git push github main
 }
 
+# sync for gitee/master and github/master branch
+function acpgit() { 
+    log=$1
+    git add *
+    git commit -m "$1"
+    git pull gitee master
+    git pull github master
+    git push gitee master
+    git push github master
+}
+
 # sync for origin/master and hyfs/master branch
 function acphyfs() { 
     log=$1
