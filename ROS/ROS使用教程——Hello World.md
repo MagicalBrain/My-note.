@@ -3,6 +3,19 @@
 Publisher和Subscriber是ROS系统中最基本、最常用的通信方式。
 接下来以经典的“Hello, world”为例来学习如何创建Publisher和Subscriber
 
+注意：
+在继续看下面的内容之前，先回顾一下`ROS使用教程——创建工作空间和功能包`里内容。
+
+简单回顾一下：
+
+工作空间是我们用来搞ROS开发的一个总的文件夹，我的工作空间名为：`MyROSWorkspace`。
+
+而功能包一般创建在`MyROSWorkspace/src/`下
+
+例如我创建了一个功能包为：
+
+`MyROSWorkspace/src/pkg-HRL`
+
 ## 如何创建Publisher
 
 Publisher的主要作用是针对指定话题发布特定数据类型的消息。我们尝试使用代码实现一个节点，节点中创建一个Publisher并发布字符串“Hello World”，源码learning_communication\src\talker.cpp的详细内容如下：
@@ -161,7 +174,48 @@ add_dependencies(talker ${PROJECT_NAME}_generate_messages_cpp)
 
 ## 运行Publisher与Subscriber
 
+这里用`catkin_ws`来代替你创建的功能包的名字
 
+编译完成后，我们终于可以运行Publisher和Subscriber节点了。在运行节点之前，需要在终端中设置环境变量，否则无法找到功能包最终编译生成的可执行文件：
+```bash
+cd ～/catkin_ws
+source ./devel/setup.bash
+```
+
+也可以将环境变量的配置脚本添加到终端的配置文件中：
+
+```bash
+echo "source ～/catkin_ws/devel/setup.bash" >> ～/.bashrc
+source ～/.bashrc
+```
+
+环境变量设置成功后，可以按照以下步骤启动例程。
+
+1．启动roscore
+在运行节点之前，首先需要确保ROS Master已经成功启动：
+```bash
+roscore
+```
+
+2．启动Publisher
+Publisher和Subscriber节点的启动顺序在ROS中没有要求，这里先使用rosrun命令启动Publisher：
+
+```bash
+rosrun learning_communication talker
+```
+
+如果Publisher节点运行正常，会出现对应的日志信息
+
+3．启动Subscriber
+Publisher节点已经成功运行，接下来需要运行Subscriber节点，订阅Publisher发布的消息：
+
+```bash
+rosrun learning_communication listener
+```
+
+如果消息订阅成功，会在终端中显示接收到的消息内容，如图3-27所示。
+
+## 自定义话题消息
 
 ## ros::init()
 

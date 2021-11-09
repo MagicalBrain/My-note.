@@ -130,4 +130,12 @@ Successfully created files in /home/hrl/Desktop/MyROSWorkspace/src/pkg-HRL. Plea
 catkin_create_pkg [package name] [depend 1] [depend 2] [depend 3] ...
 ```
 
-###
+## 工作空间和功能包的关系
+
+工作空间是我们用来搞ROS开发的一个总的文件夹，我的工作空间名为：`MyROSWorkspace`。
+
+而功能包一般创建在`MyROSWorkspace/src/`下
+
+例如我创建了一个功能包为：
+
+`MyROSWorkspace/src/pkg-HRL`
