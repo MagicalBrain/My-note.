@@ -1,0 +1,8 @@
+# ignore .out
+*.out
+*.o
+
+*.dsYM
+
+# ignore shell script files
+*.sh
