@@ -48,6 +48,28 @@ git status
 git push origin --delete new-branch
 ```
 
+## 如何删除本地和远程分支
+
+合并分需要将被合并的分支删除
+
+删除本地分支：
+
+* 当分支被推送到远程后删除本地分支：
+```bash
+git branch -d [branch name]
+```
+
+* 当分支没有被推送到远程后删除本地分支，这时需要强制删除本地分支：
+```bash
+git branch -D [branch name]
+```
+
+删除远程分支：
+
+```bash
+git push origin -d [remote_branch_name]
+```
+
 ## 如何同时push和pull多个分支
 
 同时push本地所有分支：
