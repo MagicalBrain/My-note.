@@ -48,6 +48,20 @@ git status
 git push origin --delete new-branch
 ```
 
+## 如何同时push和pull多个分支
+
+同时push本地所有分支：
+
+```bash
+git push --all origin
+```
+
+同时pull远程库所有分支：
+
+```bash
+git pull
+```
+
 ## 管理多人协作的分支
 
 如果在参与多人协作的项目时，自己的修改一定要在自己的分支上。
