@@ -43,4 +43,26 @@ my %counting =(
 my @DNA_bases = ('A','T','C','G');
 my @gaussian; # will hold random fragment lengths
 
-my ($sequence_length,$conversion_rate,$number_of_sequences,$error_rate,$number_of_SNPs,$quality,$fixed_length_adapter,$variable_length_adapter,$adapter_dimer,$random,$colorspace,$genome_folder,$non_directional,$CG_conversion_rate,$CH_conversion_rate,$paired_end,$minfrag,$maxfrag,$output_dir) = process_command_line();
+my (
+	$sequence_length,
+	$conversion_rate,
+	$number_of_sequences,
+	$error_rate,
+	$number_of_SNPs,
+	$quality,
+	$fixed_length_adapter,
+	$variable_length_adapter,
+	$adapter_dimer,
+	$random,
+	$colorspace,
+	$genome_folder,
+	$non_directional,
+	$CG_conversion_rate,
+	$CH_conversion_rate,
+	$paired_end,
+	$minfrag,
+	$maxfrag,
+	$output_dir
+) = process_command_line();
+# 关于 process_command_line()的问题，请查看：
+# https://stackoverflow.com/questions/44372171/perl-script-gives-a-syntax-error-with-perl-v5-20-but-not-with-v5-10/44372608#44372608
