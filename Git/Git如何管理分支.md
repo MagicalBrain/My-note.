@@ -70,6 +70,43 @@ git branch -D [branch name]
 git push origin -d [remote_branch_name]
 ```
 
+## 如何对分支进行重命名
+
+**本地分支**
+
+如果当前分支已经是需要重命名的分支，则运行以下命令：
+```bash
+git branch -m new_branch_name
+```
+
+如果需要重命名的分支不是当前所在的分支，则运行以下命令：
+
+```bash
+git branch -m old_branch_name new_branch_name
+```
+
+**远程分支**
+
+* 1、重命名本地分支
+
+* 2、删除远程分支
+
+```bash
+git push --delete origin old_branch_name
+```
+
+* 3、上传新命名的本地分支
+
+```bash
+git push origin new_branch_name
+```
+
+* 4、关联修改后的本地分支和远程的分支
+
+```bash
+git branch --set-upstream-to origin/new_branch_name
+```
+
 ## 如何同时push和pull多个分支
 
 同时push本地所有分支：
