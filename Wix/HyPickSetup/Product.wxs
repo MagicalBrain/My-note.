@@ -23,6 +23,7 @@
     
 		<MediaTemplate EmbedCab="yes" />
 
+    <!-- 设置只支持x64架构 -->
     <Condition Message="Only x64 architecture supported.">
       Msix64
     </Condition>
@@ -34,6 +35,7 @@
     <UIRef Id="WixUI_Mondo"/>
     <UIRef Id="WixUI_ErrorProgressText"/>
     
+    <!-- 设置许可证文件 -->
     <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)HYUIStyle/resources/license/License-en.rtf"/>
     <!--<WixVariable Id="WixUIBannerBmp" Value="resource/logo.bmp"/>
     <WixVariable Id="WixUIDialogBmp" Value="resource/Dialog.bmp"/>-->
