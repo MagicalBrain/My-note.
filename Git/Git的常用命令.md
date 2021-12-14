@@ -79,6 +79,24 @@ git push github master
 
 当然，写成脚本更方便（Win用cmd脚本，Linux用shell脚本）
 
+## 读取log
+
+```bash
+git log
+```
+
+但是更好用的命令是
+
+```bash
+git log --oneling
+```
+
+这个命令我强烈建议用alias设置成
+
+```bash
+git logl
+```
+
 ## 冲突的处理
 
 ### 回退
