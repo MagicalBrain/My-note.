@@ -1,4 +1,4 @@
-# Qt如何实现停靠悬浮窗口
+# Qt如何实现停靠悬浮窗口(QDockWidget)
 
 参考链接：
 https://www.cnblogs.com/huipengbo/p/8228130.html
