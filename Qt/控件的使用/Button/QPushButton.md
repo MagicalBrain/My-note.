@@ -57,5 +57,27 @@ See also `pressed()`, `released()`, and `toggled()`.
 
 ![](asset/toggled_signal.png)
 
-## 
+## 5种默认信号量的触发先后
+
+写一段简单的代码就知道了
+
+## 设计点击弹起和点击按下时进行不同的操作
+
+关键在于如何使用`QPushButton::isChecked()`
+
+这个功能有点类似`QCheckBox`
+
+```cpp
+    // 实现按下按钮 和 按回按钮 执行不同的操作
+    connect(ui->getPosition_robotleft, &QPushButton::clicked, this, [=](){
+        if (ui->getPosition_robotleft->isChecked()) {
+            ui->position_robotleft->setText("robotleft is true");
+            qDebug()<<"true";
+        }
+        else {
+            ui->position_robotleft->setText("robotleft is false");
+            qDebug()<<"false";
+        }
+    });
+```
 
