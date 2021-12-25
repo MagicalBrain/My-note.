@@ -61,11 +61,57 @@ See also `pressed()`, `released()`, and `toggled()`.
 
 写一段简单的代码就知道了
 
+```cpp
+    // 绑定 pressed 信号
+    connect(ui->getPosition_robotleft, &QPushButton::pressed, this, [=](){
+        qDebug()<<"this Button has been pressed!";
+    });
+
+    // 绑定 released 信号
+    connect(ui->getPosition_robotleft, &QPushButton::released, this, [=](){
+        qDebug()<<"this Button has been released!";
+    });
+
+    // 绑定 toggled 信号
+    connect(ui->getPosition_robotleft, &QPushButton::toggled, this, [=](){
+        qDebug()<<"this Button has been toggled!";
+    });
+
+    // 绑定 clicked 信号
+    connect(ui->getPosition_robotleft, &QPushButton::clicked, this, [=](){
+        if (ui->getPosition_robotleft->isChecked()) {
+            ui->position_robotleft->setText("robotleft is true");
+            qDebug()<<"true";
+        }
+        else {
+            ui->position_robotleft->setText("robotleft is false");
+            qDebug()<<"false";
+        }
+    });
+```
+
+输出结果如下：
+
+```bash
+this Button has been pressed!
+this Button has been toggled!
+this Button has been released!
+true
+```
+
+可见：
+先后顺序为：
+
+pressed -> toggled -> released -> clicked
+
 ## 设计点击弹起和点击按下时进行不同的操作
 
 关键在于如何使用`QPushButton::isChecked()`
 
 这个功能有点类似`QCheckBox`
+
+按下后`QPushButton::isChecked() = true`
+再点击一次按钮弹起后`QPushButton::isChecked() = false`
 
 ```cpp
     // 实现按下按钮 和 按回按钮 执行不同的操作
