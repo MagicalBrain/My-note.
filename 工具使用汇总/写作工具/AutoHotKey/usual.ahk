@@ -105,6 +105,11 @@ return
 Run, "C:\Program Files\Git\git-bash.exe" --cd-to-home
 return
 
+;打开everything
+!e::
+Run, "C:\Program Files\Everything\Everything.exe"
+return
+
 ;打开Terminal
 #T::
 Run, "wt.exe" 
