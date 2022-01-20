@@ -8,6 +8,7 @@
 int main ()
 {
     char* pName = "D:\\aa\\bb\\cc\\da.jpg";
+    char *pName1 = "C:\hy\HinYeun-FS\robotplugin-fs\URRobotPlugin"
     char *p = strrchr(pName, '\\');
 
     printf ("%s\n", p+1);
