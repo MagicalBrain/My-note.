@@ -1,4 +1,4 @@
-# C++ map容器的使用
+# 11 map关联容器的使用
 
 map是一种关联容器，是`关键字-值`对的集合
 
@@ -10,15 +10,15 @@ map的作用主要是根据关键字来获取对应的值。
 
 ```cpp
 //统计每个单词在输入中出现的次数
-map<string, size t> word count; // string到sizet的空map string word;
+map<string, size_t> word_count; // string到sizet的空map string word;
 while (cin >> word)
-++word count [word];
+++word_count[word];
+
 //提取word的计数器并将其加1
 for (const auto &w : word_count) //对map中的每个元素
-//打印结果
-cout < w.first   occurs
-K w. second
-<< ((w.second > 1) ? " times" : " time") << endl;
+    //打印结果
+    cout << w.first <<  "occurs"
+        << w.second << ((w.second > 1) ? " times" : " time") << endl;
 ```
 
 ## map类型的定义
