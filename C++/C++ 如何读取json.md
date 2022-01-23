@@ -117,3 +117,7 @@ int HYPlugin::load(const std::string& file, std::map<std::string, HYPluginConfig
 	return HY_FAIL_UNDEFINE;
 }
 ```
+
+## 参考链接
+
+https://www.cnblogs.com/liaocheng/p/4263237.html
