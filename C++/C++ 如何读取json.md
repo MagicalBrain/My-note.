@@ -1,6 +1,8 @@
 # C++ 如何读取json
 
-## 使用map直接处理？
+## 使用 boost::property_tree::ptree
+
+### 使用map直接处理？
 
 HYPlugin.hpp里处理json的代码
 
@@ -118,6 +120,14 @@ int HYPlugin::load(const std::string& file, std::map<std::string, HYPluginConfig
 }
 ```
 
-## 参考链接
+### 参考链接
 
 https://www.cnblogs.com/liaocheng/p/4263237.html
+
+## 使用 nlohmann
+
+注意看`HYRobotPluginParam.hpp`文件及其实现`HYRobotPluginParam.cpp`文件
+
+`#include <nlohmann/json.hpp>`
+
+
