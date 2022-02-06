@@ -7,3 +7,11 @@
 ```cpp
 
 ```
+
+## 获取不带扩展名的文件名
+
+`boost::filepath path.stem()`
+
+```cpp
+
+```
