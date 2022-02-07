@@ -4,4 +4,6 @@
 
 可以在vs的开发者powershell里直接调用
 
-
+```shell
+dumpbin /exports filename.dll
+```
