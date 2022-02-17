@@ -342,6 +342,10 @@ $\Longleftrightarrow$
 显示效果：
 $$\dots = \cdots$$
 
+## 特殊公式显示
+
+### 大括号公式
+
 ```
 \begin{equation}  
 \left\{  
@@ -361,10 +365,22 @@ $$
   y=s, & 0\leq s\leq L,|t|\leq1.\\  
   z=\dfrac{3\pi}{2}(1+2t)\sin(\dfrac{3\pi}{2}(1+2t)), &    
   \end{array}  
-\right.  
+\right. 
 $$
 
+### 带编号的公式显示
 
+$$
+\left\{  
+  \begin{array}{lr}  
+  x=\dfrac{3\pi}{2}(1+2t)\cos(\dfrac{3\pi}{2}(1+2t)), &  \\  
+  y=s, & 0\leq s\leq L,|t|\leq1.\\  
+  z=\dfrac{3\pi}{2}(1+2t)\sin(\dfrac{3\pi}{2}(1+2t)), &    
+  \end{array}  
+\right.  \tag{1}
+$$
+
+## 特殊数学符号（字母）
 
 $$
 \mathfrak{R}
