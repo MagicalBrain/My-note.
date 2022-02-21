@@ -2,6 +2,12 @@
 
 ## vector的定义
 
+## 如何定义一个空的vector
+
+```cpp
+std::vector<double> pose;
+```
+
 ## vector的初始化
 
 ## vector元素的访问

@@ -42,6 +42,16 @@ git commit -m "注释"
 
 注释一定要用简短的语言清晰地描述修改的内容
 
+### 修改commit
+
+如果上一次的commit信息需要修改，那么可以：
+
+```bash
+git commit --amend
+# 或者
+git commit --am
+```
+
 ## 提交更改上库
 
 ```bash
