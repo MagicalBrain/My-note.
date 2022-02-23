@@ -1,0 +1,22 @@
+default namespace =
+  "http://schemas.openxps.org/oxps/v1.0/signature-definitions"
+namespace sd =
+  "http://schemas.openxps.org/oxps/v1.0/signature-definitions"
+namespace xs = "http://www.w3.org/2001/XMLSchema"
+
+sd_SignatureDefinitionsType =
+  element SignatureDefinition { sd_SignatureDefinitionType }+
+sd_SpotLocationType =
+  attribute PageURI { xsd:anyURI },
+  attribute StartX { xsd:double },
+  attribute StartY { xsd:double }
+sd_SignatureDefinitionType =
+  attribute SpotID { xsd:ID },
+  attribute SignerName { xsd:string }?,
+  xml_lang?,
+  element SpotLocation { sd_SpotLocationType }?,
+  element Intent { xsd:string }?,
+  element SignBy { xsd:dateTime }?,
+  element SigningLocation { xsd:string }?
+sd_SignatureDefinitions =
+  element SignatureDefinitions { sd_SignatureDefinitionsType }

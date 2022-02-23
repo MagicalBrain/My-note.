@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://schemas.openxps.org/oxps-3d/v1.0" xmlns:oxps="http://schemas.openxps.org/oxps/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:x="http://schemas.openxps.org/oxps/v1.0/resourcedictionary-key" targetNamespace="http://schemas.openxps.org/oxps-3d/v1.0" elementFormDefault="qualified" blockDefault="#all">
+	<!-- Import XPS and related XML Schemas -->
+	<xs:import namespace="http://schemas.openxps.org/oxps/v1.0"/>
+	<xs:import namespace="http://schemas.openxps.org/oxps/v1.0/resourcedictionary-key"/>
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <!-- Names used for types and groups:
+        ST_*        simpleType
+        CT_*        complexType
+        G_*            group
+        AG_*        attributeGroup    -->
+  <!-- Complex Types -->
+	<xs:complexType name="CT_Brush3D">
+		<xs:sequence>
+			<xs:element ref="oxps:ImageBrush.Transform" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="AG_Brush3D"/>
+	</xs:complexType>
+	<!-- Root elements -->
+	<xs:element name="Brush3D">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="CT_Brush3D"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- Attribute Groups -->
+	<xs:attributeGroup name="AG_Brush3D">
+		<xs:attribute name="Source3D" type="ST_UriImage3D" use="required"/>
+		<xs:attribute ref="x:Key"/>
+		<xs:attribute name="Transform" type="oxps:ST_RscRefMatrix"/>
+		<xs:attribute name="Viewbox" type="oxps:ST_ViewBox" use="required"/>
+		<xs:attribute name="Viewport" type="oxps:ST_ViewBox" use="required"/>
+		<xs:attribute name="ViewboxUnits" type="oxps:ST_ViewUnits" use="required" fixed="Absolute"/>
+		<xs:attribute name="ViewportUnits" type="oxps:ST_ViewUnits" use="required" fixed="Absolute"/>
+	</xs:attributeGroup>
+	<!-- Simple Types -->
+	<xs:simpleType name="ST_UriImage3D">
+		<xs:restriction base="xs:anyURI">
+			<xs:pattern value="([^\{].*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

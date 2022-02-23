@@ -1,0 +1,2 @@
+include "OpenXPSDiscardControl.rnc"
+start = dc_DiscardControl

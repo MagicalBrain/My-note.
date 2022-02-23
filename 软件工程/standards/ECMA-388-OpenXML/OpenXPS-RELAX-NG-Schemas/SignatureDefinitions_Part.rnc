@@ -1,0 +1,3 @@
+include "OpenXPSSignatureDefinitions.rnc"
+include "xml.rnc"
+start = sd_SignatureDefinitions

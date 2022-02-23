@@ -1,0 +1,509 @@
+default namespace oxps = "http://schemas.openxps.org/oxps/v1.0"
+namespace x =
+  "http://schemas.openxps.org/oxps/v1.0/resourcedictionary-key"
+namespace xs = "http://www.w3.org/2001/XMLSchema"
+
+oxps_CT_MatrixTransform = oxps_AG_MatrixTransform
+oxps_CT_SolidColorBrush = oxps_AG_Brush, oxps_AG_SolidColorBrush
+oxps_CT_ImageBrush =
+  oxps_AG_Brush,
+  oxps_AG_TileBrush,
+  oxps_AG_ImageBrush,
+  oxps_ImageBrush.Transform?
+oxps_CT_VisualBrush =
+  oxps_AG_Brush,
+  oxps_AG_TileBrush,
+  oxps_AG_VisualBrush,
+  oxps_VisualBrush.Transform?,
+  oxps_VisualBrush.Visual?
+oxps_CT_LinearGradientBrush =
+  oxps_AG_Brush,
+  oxps_AG_GradientBrush,
+  oxps_AG_LinearGradientBrush,
+  oxps_LinearGradientBrush.Transform?,
+  oxps_LinearGradientBrush.GradientStops
+oxps_CT_RadialGradientBrush =
+  oxps_AG_Brush,
+  oxps_AG_GradientBrush,
+  oxps_AG_RadialGradientBrush,
+  oxps_RadialGradientBrush.Transform?,
+  oxps_RadialGradientBrush.GradientStops
+oxps_CT_GradientStop = oxps_AG_GradientStop
+oxps_CT_PathGeometry =
+  oxps_AG_PathGeometry, oxps_PathGeometry.Transform?, oxps_PathFigure*
+oxps_CT_Glyphs =
+  oxps_AG_Glyphs,
+  oxps_Glyphs.RenderTransform?,
+  oxps_Glyphs.Clip?,
+  oxps_Glyphs.OpacityMask?,
+  oxps_Glyphs.Fill?
+oxps_CT_Path =
+  oxps_AG_Path,
+  oxps_AG_AutomationProvider,
+  oxps_AG_SnapsToDevicePixels,
+  oxps_Path.RenderTransform?,
+  oxps_Path.Clip?,
+  oxps_Path.OpacityMask?,
+  oxps_Path.Fill?,
+  oxps_Path.Stroke?,
+  oxps_Path.Data?
+oxps_CT_PathFigure =
+  oxps_AG_PathFigure,
+  (oxps_PolyLineSegment
+   | oxps_PolyBezierSegment
+   | oxps_ArcSegment
+   | oxps_PolyQuadraticBezierSegment)+
+oxps_CT_ArcSegment = oxps_AG_ArcSegment
+oxps_CT_PolyQuadraticBezierSegment = oxps_AG_PolyQuadraticBezierSegment
+oxps_CT_PolyLineSegment = oxps_AG_PolyLineSegment
+oxps_CT_PolyBezierSegment = oxps_AG_PolyBezierSegment
+oxps_CT_Canvas =
+  oxps_AG_Canvas,
+  oxps_AG_AutomationProvider,
+  oxps_Canvas.Resources?,
+  oxps_Canvas.RenderTransform?,
+  oxps_Canvas.Clip?,
+  oxps_Canvas.OpacityMask?,
+  (oxps_Path | oxps_Glyphs | oxps_Canvas)*
+oxps_CT_ResourceDictionary =
+  oxps_AG_ResourceDictionary,
+  (oxps_ImageBrush
+   | oxps_LinearGradientBrush
+   | oxps_RadialGradientBrush
+   | oxps_VisualBrush
+   | oxps_SolidColorBrush
+   | oxps_MatrixTransform
+   | oxps_PathGeometry
+   | oxps_Path
+   | oxps_Glyphs
+   | oxps_Canvas)*
+oxps_CT_FixedPage =
+  oxps_AG_FixedPage,
+  oxps_FixedPage.Resources?,
+  (oxps_Path | oxps_Glyphs | oxps_Canvas)*
+oxps_CT_FixedDocument = oxps_PageContent+
+oxps_CT_PageContent = oxps_AG_PageContent, oxps_PageContent.LinkTargets?
+oxps_CT_FixedDocumentSequence = oxps_DocumentReference+
+oxps_CT_DocumentReference = oxps_AG_DocumentReference
+oxps_CT_LinkTarget = oxps_AG_LinkTarget
+oxps_CT_CP_LinkTargets = oxps_LinkTarget+
+oxps_CT_CP_Transform = oxps_MatrixTransform
+oxps_CT_CP_Visual = oxps_Path | oxps_Glyphs | oxps_Canvas
+oxps_CT_CP_GradientStops = oxps_GradientStop+
+oxps_CT_CP_Geometry = oxps_PathGeometry
+oxps_CT_CP_Brush =
+  oxps_ImageBrush
+  | oxps_LinearGradientBrush
+  | oxps_RadialGradientBrush
+  | oxps_SolidColorBrush
+  | oxps_VisualBrush
+oxps_CT_CP_Resources = oxps_ResourceDictionary?
+oxps_MatrixTransform =
+  element MatrixTransform { oxps_CT_MatrixTransform }
+oxps_SolidColorBrush =
+  element SolidColorBrush { oxps_CT_SolidColorBrush }
+oxps_ImageBrush = element ImageBrush { oxps_CT_ImageBrush }
+oxps_VisualBrush = element VisualBrush { oxps_CT_VisualBrush }
+oxps_LinearGradientBrush =
+  element LinearGradientBrush { oxps_CT_LinearGradientBrush }
+oxps_RadialGradientBrush =
+  element RadialGradientBrush { oxps_CT_RadialGradientBrush }
+oxps_Glyphs = element Glyphs { oxps_CT_Glyphs }
+oxps_Path = element Path { oxps_CT_Path }
+oxps_Canvas = element Canvas { oxps_CT_Canvas }
+oxps_GradientStop = element GradientStop { oxps_CT_GradientStop }
+oxps_ResourceDictionary =
+  element ResourceDictionary { oxps_CT_ResourceDictionary }
+oxps_PathGeometry = element PathGeometry { oxps_CT_PathGeometry }
+oxps_PathFigure = element PathFigure { oxps_CT_PathFigure }
+oxps_PolyLineSegment =
+  element PolyLineSegment { oxps_CT_PolyLineSegment }
+oxps_ArcSegment = element ArcSegment { oxps_CT_ArcSegment }
+oxps_PolyBezierSegment =
+  element PolyBezierSegment { oxps_CT_PolyBezierSegment }
+oxps_PolyQuadraticBezierSegment =
+  element PolyQuadraticBezierSegment {
+    oxps_CT_PolyQuadraticBezierSegment
+  }
+oxps_FixedPage = element FixedPage { oxps_CT_FixedPage }
+oxps_FixedDocument = element FixedDocument { oxps_CT_FixedDocument }
+oxps_PageContent = element PageContent { oxps_CT_PageContent }
+oxps_FixedDocumentSequence =
+  element FixedDocumentSequence { oxps_CT_FixedDocumentSequence }
+oxps_DocumentReference =
+  element DocumentReference { oxps_CT_DocumentReference }
+oxps_LinkTarget = element LinkTarget { oxps_CT_LinkTarget }
+oxps_PageContent.LinkTargets =
+  element PageContent.LinkTargets { oxps_CT_CP_LinkTargets }
+oxps_ImageBrush.Transform =
+  element ImageBrush.Transform { oxps_CT_CP_Transform }
+oxps_VisualBrush.Transform =
+  element VisualBrush.Transform { oxps_CT_CP_Transform }
+oxps_LinearGradientBrush.Transform =
+  element LinearGradientBrush.Transform { oxps_CT_CP_Transform }
+oxps_RadialGradientBrush.Transform =
+  element RadialGradientBrush.Transform { oxps_CT_CP_Transform }
+oxps_PathGeometry.Transform =
+  element PathGeometry.Transform { oxps_CT_CP_Transform }
+oxps_Glyphs.RenderTransform =
+  element Glyphs.RenderTransform { oxps_CT_CP_Transform }
+oxps_Path.RenderTransform =
+  element Path.RenderTransform { oxps_CT_CP_Transform }
+oxps_Canvas.RenderTransform =
+  element Canvas.RenderTransform { oxps_CT_CP_Transform }
+oxps_VisualBrush.Visual =
+  element VisualBrush.Visual { oxps_CT_CP_Visual }
+oxps_LinearGradientBrush.GradientStops =
+  element LinearGradientBrush.GradientStops { oxps_CT_CP_GradientStops }
+oxps_RadialGradientBrush.GradientStops =
+  element RadialGradientBrush.GradientStops { oxps_CT_CP_GradientStops }
+oxps_Glyphs.Clip = element Glyphs.Clip { oxps_CT_CP_Geometry }
+oxps_Path.Clip = element Path.Clip { oxps_CT_CP_Geometry }
+oxps_Canvas.Clip = element Canvas.Clip { oxps_CT_CP_Geometry }
+oxps_Glyphs.OpacityMask =
+  element Glyphs.OpacityMask { oxps_CT_CP_Brush }
+oxps_Path.OpacityMask = element Path.OpacityMask { oxps_CT_CP_Brush }
+oxps_Canvas.OpacityMask =
+  element Canvas.OpacityMask { oxps_CT_CP_Brush }
+oxps_Glyphs.Fill = element Glyphs.Fill { oxps_CT_CP_Brush }
+oxps_Path.Fill = element Path.Fill { oxps_CT_CP_Brush }
+oxps_Path.Data = element Path.Data { oxps_CT_CP_Geometry }
+oxps_Path.Stroke = element Path.Stroke { oxps_CT_CP_Brush }
+oxps_Canvas.Resources =
+  element Canvas.Resources { oxps_CT_CP_Resources }
+oxps_FixedPage.Resources =
+  element FixedPage.Resources { oxps_CT_CP_Resources }
+oxps_AG_GradientStop =
+  attribute Color { oxps_ST_Color },
+  attribute Offset { oxps_ST_Double }
+oxps_AG_Brush =
+  
+  ## default value: 1.0
+  attribute Opacity { oxps_ST_ZeroOne }?,
+  x_Key?
+oxps_AG_TileBrush =
+  attribute Transform { oxps_ST_RscRefMatrix }?,
+  attribute Viewbox { oxps_ST_ViewBox },
+  attribute Viewport { oxps_ST_ViewBox },
+  
+  ## default value: None
+  attribute TileMode { oxps_ST_TileMode }?,
+  attribute ViewboxUnits { oxps_ST_ViewUnits },
+  attribute ViewportUnits { oxps_ST_ViewUnits }
+oxps_AG_VisualBrush = attribute Visual { oxps_ST_RscRef }?
+oxps_AG_GradientBrush =
+  
+  ## default value: SRgbLinearInterpolation
+  attribute ColorInterpolationMode { oxps_ST_ClrIntMode }?,
+  
+  ## default value: Pad
+  attribute SpreadMethod { oxps_ST_SpreadMethod }?,
+  attribute MappingMode { oxps_ST_MappingMode }
+oxps_AG_SolidColorBrush = attribute Color { oxps_ST_Color }
+oxps_AG_ImageBrush = attribute ImageSource { oxps_ST_UriCtxBmp }
+oxps_AG_LinearGradientBrush =
+  attribute Transform { oxps_ST_RscRefMatrix }?,
+  attribute StartPoint { oxps_ST_Point },
+  attribute EndPoint { oxps_ST_Point }
+oxps_AG_RadialGradientBrush =
+  attribute Transform { oxps_ST_RscRefMatrix }?,
+  attribute Center { oxps_ST_Point },
+  attribute GradientOrigin { oxps_ST_Point },
+  attribute RadiusX { oxps_ST_GEZero },
+  attribute RadiusY { oxps_ST_GEZero }
+oxps_AG_PathGeometry =
+  attribute Figures { oxps_ST_AbbrGeom }?,
+  
+  ## default value: EvenOdd
+  attribute FillRule { oxps_ST_FillRule }?,
+  attribute Transform { oxps_ST_RscRefMatrix }?,
+  x_Key?
+oxps_AG_ResourceDictionary = attribute Source { xsd:anyURI }?
+oxps_AG_PolyLineSegment =
+  attribute Points { oxps_ST_Points },
+  
+  ## default value: true
+  attribute IsStroked { oxps_ST_Boolean }?
+oxps_AG_ArcSegment =
+  attribute Point { oxps_ST_Point },
+  attribute Size { oxps_ST_PointGE0 },
+  attribute RotationAngle { oxps_ST_Double },
+  attribute IsLargeArc { oxps_ST_Boolean },
+  attribute SweepDirection { oxps_ST_SweepDirection },
+  
+  ## default value: true
+  attribute IsStroked { oxps_ST_Boolean }?
+oxps_AG_PolyBezierSegment =
+  attribute Points { oxps_ST_PointsM3 },
+  
+  ## default value: true
+  attribute IsStroked { oxps_ST_Boolean }?
+oxps_AG_PolyQuadraticBezierSegment =
+  attribute Points { oxps_ST_PointsM2 },
+  
+  ## default value: true
+  attribute IsStroked { oxps_ST_Boolean }?
+oxps_AG_Glyphs =
+  
+  ## default value: 0
+  attribute BidiLevel {
+    xsd:integer { minInclusive = "0" maxInclusive = "61" }
+  }?,
+  attribute CaretStops { oxps_ST_CaretStops }?,
+  attribute DeviceFontName { oxps_ST_UnicodeString }?,
+  attribute Fill { oxps_ST_RscRefColor }?,
+  attribute FontRenderingEmSize { oxps_ST_GEZero },
+  attribute FontUri { xsd:anyURI },
+  attribute OriginX { oxps_ST_Double },
+  attribute OriginY { oxps_ST_Double },
+  
+  ## default value: false
+  attribute IsSideways { oxps_ST_Boolean }?,
+  attribute Indices { oxps_ST_Indices }?,
+  attribute UnicodeString { oxps_ST_UnicodeString }?,
+  
+  ## default value: None
+  attribute StyleSimulations { oxps_ST_StyleSimulations }?,
+  attribute RenderTransform { oxps_ST_RscRefMatrix }?,
+  attribute Clip { oxps_ST_RscRefAbbrGeomF }?,
+  
+  ## default value: 1.0
+  attribute Opacity { oxps_ST_ZeroOne }?,
+  attribute OpacityMask { oxps_ST_RscRef }?,
+  attribute Name { oxps_ST_Name }?,
+  attribute FixedPage.NavigateUri { xsd:anyURI }?,
+  xml_lang?,
+  x_Key?
+oxps_AG_Path =
+  attribute Data { oxps_ST_RscRefAbbrGeomF }?,
+  attribute Fill { oxps_ST_RscRefColor }?,
+  attribute RenderTransform { oxps_ST_RscRefMatrix }?,
+  attribute Clip { oxps_ST_RscRefAbbrGeomF }?,
+  
+  ## default value: 1.0
+  attribute Opacity { oxps_ST_ZeroOne }?,
+  attribute OpacityMask { oxps_ST_RscRef }?,
+  attribute Stroke { oxps_ST_RscRefColor }?,
+  attribute StrokeDashArray { oxps_ST_EvenArrayPos }?,
+  
+  ## default value: Flat
+  attribute StrokeDashCap { oxps_ST_DashCap }?,
+  
+  ## default value: 0.0
+  attribute StrokeDashOffset { oxps_ST_Double }?,
+  
+  ## default value: Flat
+  attribute StrokeEndLineCap { oxps_ST_LineCap }?,
+  
+  ## default value: Flat
+  attribute StrokeStartLineCap { oxps_ST_LineCap }?,
+  
+  ## default value: Miter
+  attribute StrokeLineJoin { oxps_ST_LineJoin }?,
+  
+  ## default value: 10.0
+  attribute StrokeMiterLimit { oxps_ST_GEOne }?,
+  
+  ## default value: 1.0
+  attribute StrokeThickness { oxps_ST_GEZero }?,
+  attribute Name { oxps_ST_Name }?,
+  attribute FixedPage.NavigateUri { xsd:anyURI }?,
+  xml_lang?,
+  x_Key?
+oxps_AG_PathFigure =
+  
+  ## default value: false
+  attribute IsClosed { oxps_ST_Boolean }?,
+  attribute StartPoint { oxps_ST_Point },
+  
+  ## default value: true
+  attribute IsFilled { oxps_ST_Boolean }?
+oxps_AG_Canvas =
+  attribute RenderTransform { oxps_ST_RscRefMatrix }?,
+  attribute Clip { oxps_ST_RscRefAbbrGeomF }?,
+  
+  ## default value: 1.0
+  attribute Opacity { oxps_ST_ZeroOne }?,
+  attribute OpacityMask { oxps_ST_RscRef }?,
+  attribute Name { oxps_ST_Name }?,
+  attribute RenderOptions.EdgeMode { oxps_ST_EdgeMode }?,
+  attribute FixedPage.NavigateUri { xsd:anyURI }?,
+  xml_lang?,
+  x_Key?
+oxps_AG_PageContent =
+  attribute Source { xsd:anyURI },
+  attribute Width { oxps_ST_GEOne }?,
+  attribute Height { oxps_ST_GEOne }?
+oxps_AG_LinkTarget = attribute Name { oxps_ST_Name }
+oxps_AG_DocumentReference = attribute Source { xsd:anyURI }
+oxps_AG_MatrixTransform =
+  attribute Matrix { oxps_ST_Matrix },
+  x_Key?
+oxps_AG_FixedPage =
+  attribute Width { oxps_ST_GEOne },
+  attribute Height { oxps_ST_GEOne },
+  attribute ContentBox { oxps_ST_ContentBox }?,
+  attribute BleedBox { oxps_ST_BleedBox }?,
+  xml_lang,
+  attribute Name { oxps_ST_Name }?
+oxps_AG_AutomationProvider =
+  attribute AutomationProperties.Name { xsd:string }?,
+  attribute AutomationProperties.HelpText { xsd:string }?
+oxps_AG_SnapsToDevicePixels =
+  attribute SnapsToDevicePixels { oxps_ST_Boolean }?
+oxps_ST_Name =
+  xsd:ID {
+    pattern =
+      "(\p{Lu}|\p{Ll}|\p{Lt}|\p{Lo}|\p{Nl}|_)(\p{Lu}|\p{Ll}|\p{Lt}|\p{Lo}|\p{Nl}|\p{Mn}|\p{Mc}|\p{Nd}|_)*"
+  }
+oxps_ST_Boolean = xsd:boolean { pattern = "true|false" }
+oxps_ST_ZeroOne =
+  xsd:double {
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+    minInclusive = "0.0"
+    maxInclusive = "1.0"
+  }
+oxps_ST_GEZero =
+  xsd:double {
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+    minInclusive = "0.0"
+  }
+oxps_ST_GEOne =
+  xsd:double {
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+    minInclusive = "1.0"
+  }
+oxps_ST_Double =
+  xsd:double {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+  }
+oxps_ST_Point =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+  }
+oxps_ST_PointGE0 =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+  }
+oxps_ST_Points =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))*"
+  }
+oxps_ST_PointsM2 =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)(( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)){2})*"
+  }
+oxps_ST_PointsM3 =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)){2}(( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)){3})*"
+  }
+oxps_ST_EvenArrayPos =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) (\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( (\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) (\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))*"
+  }
+oxps_ST_Array =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "(((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ?)*"
+  }
+oxps_ST_ViewBox =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+  }
+oxps_ST_ContentBox =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+  }
+oxps_ST_BleedBox =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+  }
+oxps_ST_Matrix =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)"
+  }
+oxps_ST_Color =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "(#([0-9a-fA-F]{2})?[0-9a-fA-F]{6})|(sc# ?(\-?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+)))( ?, ?)(\-?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+)))( ?, ?)(\-?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+)))(( ?, ?)(\-?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))))?)|(ContextColor [\S]+ (\-?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+)))(( ?, ?)(\-?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+)))){1,8})"
+  }
+oxps_ST_CaretStops =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern = "[0-9A-Fa-f]*"
+  }
+oxps_ST_Indices =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "(((\(([1-9][0-9]*)(:([1-9][0-9]*))?\))?([0-9]+))?(,(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)?(,((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)?(,((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))?)?)?)(;((\(([1-9][0-9]*)(:([1-9][0-9]*))?\))?([0-9]+))?(,(\+?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)?(,((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)?(,((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))?)?)?)*"
+  }
+oxps_ST_UnicodeString =
+  xsd:string { pattern = "(([^\{]|(\{\}))(.|[\r\n])*)?" }
+oxps_ST_AbbrGeomF =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "(F ?(0|1))?( ?(M|m)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)))(( ?(M|m)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)))|( ?(L|l)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))*)|( ?(H|h|V|v)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))*)|( ?(Q|q|S|s)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))(( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)){2})*)|( ?(C|c)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)){2})(( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)){3})*)|( ?(A|a)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) [0-1] [0-1] ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) [0-1] [0-1] ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))*)|( ?(Z|z)))*"
+  }
+oxps_ST_AbbrGeom =
+  xsd:string {
+    # whiteSpace="collapse" is removed.
+    pattern =
+      "( ?(M|m)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)))(( ?(M|m)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)))|( ?(L|l)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))*)|( ?(H|h|V|v)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))*)|( ?(Q|q|S|s)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))(( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)){2})*)|( ?(C|c)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)){2})(( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)){3})*)|( ?(A|a)( ?((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) [0-1] [0-1] ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))( ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?) [0-1] [0-1] ((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?)( ?, ?)((\-|\+)?(([0-9]+(\.[0-9]+)?)|(\.[0-9]+))((e|E)(\-|\+)?[0-9]+)?))*)|( ?(Z|z)))*"
+  }
+oxps_ST_UriImage = xsd:anyURI { pattern = "([^\{].*)?" }
+oxps_ST_CtxBmpImage =
+  xsd:string {
+    pattern = "\{ColorConvertedBitmap[\s]+[\S]+[\s]+[\S]+\}[\s]*"
+  }
+oxps_ST_UriCtxBmp = oxps_ST_UriImage | oxps_ST_CtxBmpImage
+oxps_ST_RscRef =
+  xsd:string { pattern = "\{StaticResource[\s]+[\S]+\}[\s]*" }
+oxps_ST_RscRefColor = oxps_ST_Color | oxps_ST_RscRef
+oxps_ST_RscRefMatrix = oxps_ST_Matrix | oxps_ST_RscRef
+oxps_ST_RscRefAbbrGeomF = oxps_ST_AbbrGeomF | oxps_ST_RscRef
+oxps_ST_SweepDirection = "Clockwise" | "Counterclockwise"
+oxps_ST_DashCap = "Flat" | "Round" | "Square" | "Triangle"
+oxps_ST_LineCap = "Flat" | "Round" | "Square" | "Triangle"
+oxps_ST_LineJoin = "Miter" | "Bevel" | "Round"
+oxps_ST_TileMode = "None" | "Tile" | "FlipX" | "FlipY" | "FlipXY"
+oxps_ST_ClrIntMode =
+  "ScRgbLinearInterpolation" | "SRgbLinearInterpolation"
+oxps_ST_SpreadMethod = "Pad" | "Reflect" | "Repeat"
+oxps_ST_FillRule = "EvenOdd" | "NonZero"
+oxps_ST_EdgeMode = "Aliased"
+oxps_ST_StyleSimulations =
+  "None"
+  | "ItalicSimulation"
+  | "BoldSimulation"
+  | "BoldItalicSimulation"
+oxps_ST_ViewUnits = "Absolute"
+oxps_ST_MappingMode = "Absolute"
