@@ -48,6 +48,10 @@ git status
 git push origin --delete new-branch
 ```
 
+## 如何拉取远程库新分支
+
+
+
 ## 如何删除本地和远程分支
 
 合并分需要将被合并的分支删除
