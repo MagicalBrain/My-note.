@@ -14,7 +14,7 @@
 
 * 生成密钥
 ```bash
-ssh-keygen -t rsa -C "xxxxx@xxxxx.com" [yourname]
+ssh-keygen -t rsa -C "xxxxx@xxxxx.com" -f [key file path]
 
 # 例如
 ssh-keygen -t rsa -C "hrl@github.com" hrl
