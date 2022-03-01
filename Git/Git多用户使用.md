@@ -57,3 +57,21 @@ Hi abc! You've successfully authenticated, but GITEE.COM does not provide shell 
 ```
 
 接下来就可以在当前文件夹里用自己的account愉快地玩耍了
+
+**注意**
+
+以上方法并不是一劳永逸的，一劳永逸则需要下面的脚本
+
+## 编写脚本
+
+编写一个`.sh`脚本
+
+```bash
+eval $(ssh-agent -s)
+# id_name 就是私钥文件的名字
+ssh-add ~/.ssh/id_name
+# test the setting
+ssh -T name@gitee.com
+```
+
+其他配置也可仿照这个来。
