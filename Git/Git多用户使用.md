@@ -7,7 +7,7 @@
 
 ## 准备工作
 
-* 创建一个自己的文件夹
+* 创建一个自己的文件夹`MyFile`
 * 用git bash打开这个文件夹
   
 ## 密钥配置
@@ -40,4 +40,20 @@ PreferredAuthentications publickey
 IdentityFile ~/.ssh/def
 ```
 
+* 在文件夹`MyFile`下配置
+```bash
+eval $(ssh-agent -s)
+# 此时命令会打印类似的内容：
+Agent pid 2492
+```
+这是继续输入以下命令：
+```bash
+# 添加ssh密钥
+ssh-add ~/.ssh/hrl
+# 测试配置是否成功
+ssh -T abc@github.com
+# 输出以下内容则表示配置成功
+Hi abc! You've successfully authenticated, but GITEE.COM does not provide shell access.
+```
 
+接下来就可以在当前文件夹里用自己的account愉快地玩耍了
