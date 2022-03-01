@@ -32,4 +32,12 @@ Host abc
 HostName github.com
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/hrl
+
+# 第二个账户名的设置
+Host def
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/def
 ```
+
+
