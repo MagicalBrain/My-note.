@@ -1,0 +1,25 @@
+digraph G {
+
+    subgraph cluster_0 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        "algorithm 1" -> "robot 1";
+        label = "thread 1";
+    }
+
+    subgraph cluster_1 {
+        node [style=filled];
+        "algorithm 2" -> "robot 2";
+        label = "thread 2";
+        color=blue
+    }
+    start -> sensor;
+    sensor -> "algorithm 1";
+    sensor -> "algorithm 2";
+    "robot 1" -> end;
+    "robot 2" -> end;
+
+    start [shape=Mdiamond];
+    end [shape=Msquare];
+}
