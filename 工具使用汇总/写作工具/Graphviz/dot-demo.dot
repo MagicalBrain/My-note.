@@ -1,24 +1,35 @@
 digraph G {
+    rankdir="LR";
 
+    node [fontname="SimHei"]
+    
+    sensor [label="相机拍照"]
+    
+    algo01 [label="识别算法01"]
+    algo02 [label="识别算法02"]
+    
+    robot01 [label="左臂"]
+    robot02 [label="右臂"]
+    
     subgraph cluster_0 {
         style=filled;
         color=lightgrey;
         node [style=filled,color=white];
-        "algorithm 1" -> "robot 1";
+        algo01-> robot01;
         label = "thread 1";
     }
 
     subgraph cluster_1 {
         node [style=filled];
-        "algorithm 2" -> "robot 2";
+        algo02 -> robot02;
         label = "thread 2";
         color=blue
     }
     start -> sensor;
-    sensor -> "algorithm 1";
-    sensor -> "algorithm 2";
-    "robot 1" -> end;
-    "robot 2" -> end;
+    sensor -> algo01[label="ROI1 filled"];
+    sensor -> algo02[label="ROI2 filled"];
+    robot01 -> end;
+    robot02 -> end;
 
     start [shape=Mdiamond];
     end [shape=Msquare];

@@ -88,3 +88,42 @@ dot -Tpng -Gdpi=300 filename.dot -o filename.png
 ```
 
 这是dpi为300
+
+### 设置方向
+
+```
+rankdir="LR";
+```
+
+```
+digraph G {
+    rankdir="LR";
+    
+    subgraph cluster_0 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        "algorithm 1" -> "robot 1";
+        label = "thread 1";
+    }
+
+    subgraph cluster_1 {
+        node [style=filled];
+        "algorithm 2" -> "robot 2";
+        label = "thread 2";
+        color=blue
+    }
+    start -> sensor;
+    sensor -> "algorithm 1";
+    sensor -> "algorithm 2";
+    "robot 1" -> end;
+    "robot 2" -> end;
+
+    start [shape=Mdiamond];
+    end [shape=Msquare];
+}
+```
+
+## 中文支持
+
+https://blog.csdn.net/lizzy05/article/details/88543328
