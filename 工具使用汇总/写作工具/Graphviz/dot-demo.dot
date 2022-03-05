@@ -26,8 +26,8 @@ digraph G {
         color=blue
     }
     start -> sensor;
-    sensor -> algo01[label="ROI1 filled"];
-    sensor -> algo02[label="ROI2 filled"];
+    sensor -> algo01[label="ROI1 filter"];
+    sensor -> algo02[label="ROI2 filter"];
     robot01 -> end;
     robot02 -> end;
 
