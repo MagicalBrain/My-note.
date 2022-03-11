@@ -17,7 +17,7 @@
 ssh-keygen -t rsa -C "xxxxx@xxxxx.com" -f [key file path]
 
 # 例如
-ssh-keygen -t rsa -C "hrl@github.com" hrl
+ssh-keygen -t rsa -C "hrl@github.com" -f hrl
 # 这样就会生成名为hrl的密钥文件和hrl.pub的公钥文件
 ```
 * 将生成的密钥添加到你用的代码托管平台里绑定（github或者gitee啥的）
