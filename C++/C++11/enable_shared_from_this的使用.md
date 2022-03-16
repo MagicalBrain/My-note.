@@ -114,6 +114,7 @@ std::enable_shared_from_this是模板类，内部有个_Tp类型weak_ptr指针�
 #include <iostream>
 #include <memory>
 
+// 继承 std::enable_shared_from_this模板类
 class Widget : public std::enable_shared_from_this<Widget>{
 public:
     Widget(){
@@ -123,6 +124,7 @@ public:
         std::cout << "Widget destructor run" << std::endl;
     }
 
+    // 实现 获取this智能指针
     std::shared_ptr<Widget> GetSharedObject(){
         return shared_from_this();
     }
