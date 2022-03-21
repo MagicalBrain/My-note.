@@ -140,6 +140,21 @@ git reset --hard origin/main
 git pull
 ```
 
+## 查看commit的内容
+
+使用`git show`命令
+
+```bash
+# 查看某个commit id的内容
+git show commitid
+```
+
+例如：
+
+```bash
+git show 97a74e2aa8c4a0d311b60e12ee2dba301d3ed8d0
+```
+
 ## 分支的管理
 
 ### 新建分支
