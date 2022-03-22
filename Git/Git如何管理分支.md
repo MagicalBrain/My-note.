@@ -52,6 +52,25 @@ git push origin --delete new-branch
 
 https://blog.csdn.net/you18131371836/article/details/110404967
 
+```bash
+# 新建分支
+git branch new_branch
+# or
+git checkout -b new_branch
+
+# 切换分支
+git checkout new_branch
+
+# 拉取分支
+git pull origin branch
+```
+
+但是如果远程分支和本地仓库是没有历史联系的，那么就会拉取失败，此时可以使用命令：
+
+```bash
+git pull origin branch --allow-unrelated-histories
+```
+
 ## 如何删除本地和远程分支
 
 合并分需要将被合并的分支删除
