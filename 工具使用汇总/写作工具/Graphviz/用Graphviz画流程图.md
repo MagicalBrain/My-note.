@@ -127,3 +127,37 @@ digraph G {
 ## 中文支持
 
 https://blog.csdn.net/lizzy05/article/details/88543328
+
+其实主要就是添加以下两行代码：
+
+```bash
+node [fontname="SimHei"]
+edge [fontname="SimHei"]
+```
+
+```bash
+digraph G {
+    rankdir="LR";
+
+    node [fontname="SimHei"]
+    edge [fontname="SimHei"]
+    
+    start [label="待测目标物\n进入"]
+
+    plc [label="PLC"]
+
+    sensor [label="相机拍照"]
+    
+    algo [label="算法计算并识别"]
+    
+    end [label="输出结果"]
+        
+    start -> plc;
+    plc -> sensor[label="ROI撒"];
+    sensor -> algo[label="ROI"];
+    algo->end
+    
+    start [shape=Mdiamond];
+    end [shape=Msquare];
+}
+```
