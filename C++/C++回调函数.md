@@ -125,6 +125,12 @@ int main(){
 
 那如果不想为了实现回调而新定义一个基类，那就只能用C++11里的function和bind库了
 
+例子：
+
+```cpp
+open->LiveCallback = std::bind(&MainWindow::onLivePlayback, this, std::placeholders::_1, std::placeholders::_2);
+```
+
 ### function库
 
 
