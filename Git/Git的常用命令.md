@@ -12,6 +12,14 @@ git --config global user.name "[yourname]"
 git --config global user.email "[youremail]"
 ```
 
+### 生成ssh密钥
+
+```bash
+ssh-keygen -t rsa -C "xxxxx@xxxxx.com"
+```
+
+然后将密钥添加到对应代码托管平台应该就可以了。
+
 ## 检查本地分支的更改
 
 ```git status```
