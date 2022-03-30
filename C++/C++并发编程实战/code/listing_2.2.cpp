@@ -1,3 +1,8 @@
+/*
+* 等待线程结束
+* 一般可用joinable()来判断线程是否结束
+* 但有时我们需要放在异常将线程结束了，即需要处理异常
+*/
 #include <thread>
 
 void do_something(int& i)

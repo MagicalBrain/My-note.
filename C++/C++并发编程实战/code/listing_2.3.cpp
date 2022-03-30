@@ -1,3 +1,7 @@
+/*
+* 用RAII方式等待线程结束
+* 在类的析构函数中结束线程
+*/
 #include <thread>
 
 class thread_guard
