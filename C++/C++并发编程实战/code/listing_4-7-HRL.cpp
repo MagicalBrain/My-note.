@@ -1,14 +1,20 @@
 /*
 * 通过 std::async 向任务函数传递参数
 */
+#include <iostream>
 #include <string>
 #include <future>
 
 // 定义了一个类
 struct X
 {
-    void foo(int,std::string const&);
-    std::string bar(std::string const&);
+    void foo(int a,std::string const& s) {
+        std::cout << s << " " << a << std::endl;
+    }
+
+    std::string bar(std::string const& s) {
+        std::cout << s << std::endl;
+    }
 };
 
 // 实例化类对象
@@ -21,16 +27,21 @@ auto f2=std::async(&X::bar,x,"goodbye");
 
 struct Y
 {
-    double operator()(double);
+    double operator()(double d) {
+        std::cout << d << std::endl;
+        return d;
+    }
 };
 
 Y y;
 
 auto f3=std::async(Y(),3.141);
-// 
+// 注意这种用法
 auto f4=std::async(std::ref(y),2.718);
 
-X baz(X&);
+X baz(X& x) {
+    return x;
+}
 
 // 书上源码是：std::async(baz,std::ref(x));
 // 这里是译者修改为auto f6 的

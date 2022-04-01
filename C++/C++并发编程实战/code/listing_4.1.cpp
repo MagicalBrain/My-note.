@@ -1,3 +1,6 @@
+/*
+* 用 std::condition_variable 来等待数据
+*/
 #include <mutex>
 #include <condition_variable>
 #include <thread>
