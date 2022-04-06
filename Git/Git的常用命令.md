@@ -123,6 +123,30 @@ git logl
 
 再用`git reset --hard id`将当前分支回退到id对应的commit
 
+那么直接回退上一个版本呢？
+
+```bash
+git reset --hard HEAD^
+```
+
+回退上两个个版本命令：
+```bash
+git reset --hard HEAD^^
+```
+
+回退上三个版本命令：
+
+```bash
+git reset --hard HEAD~3
+```
+
+回退上第$n$个版本命令：
+```bash
+git reset --hard HEAD~n
+```
+
+----
+
 但是回退后，正常`git push`是不行的，只能强制push：
 ```bash
 git push -f origin main
