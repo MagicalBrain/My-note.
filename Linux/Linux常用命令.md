@@ -155,9 +155,25 @@ sudo chmod a+w filename
 
 [参考链接]:[[参考链接]](https://www.runoob.com/linux/linux-comm-chmod.html)
 
-## 七、查看网络地址（IP）
+## 七、网络设置
 
-### ifconfig
+### WiFi
+
+#### 查看WiFi
+
+```bash
+nmcli dev wifi
+```
+
+#### 连接WiFi
+
+```bash
+nmcli dev wifi connect [wifiname/ssid] password [wifi password]
+```
+
+### 查看网络地址（IP）
+
+#### ifconfig
 
 ```bash
 ifconfig
@@ -167,7 +183,7 @@ ifconfig
 
 如果显示没有安装，就按提示安装`net tools`就行了
 
-### ip address
+#### ip address
 
 这个命令应该可以直接用
 
