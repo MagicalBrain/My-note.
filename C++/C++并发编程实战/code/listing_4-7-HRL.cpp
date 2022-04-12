@@ -65,6 +65,7 @@ public:
 };
 
 X getXx(X& x) {
+    //std::cout << x << std::endl;
     return x;
 }
 
@@ -74,29 +75,30 @@ int main() {
 
     // 注意学习这里是如何通过 std::async 调用类成员函数的
     // (函数指针， 类对象指针， 参数1， 参数2)
-    auto f1 = std::async(&X::pIntAndString, &x, 42, "hello");
-    auto f2 = std::async(&X::pString, x, "goodbye");
+    //auto f1 = std::async(&X::pIntAndString, &x, 42, "hello");
+    //f1.get();
+    
+    //auto f2 = std::async(&X::pString, x, "goodbye");
+    //f2.get();
 
     // 书上源码是：std::async(baz,std::ref(x));
     // 这里是译者修改为auto f6 的
     //auto f6=std::async(baz,std::ref(x));
     // 我重新调了一下顺序为 f5
     auto f3 = std::async(getXx, std::ref(x));
+    f3.get();
 
     // 实例化Y类的对象y
     Y y;
 
-    auto f4 = std::async(Y(), 3.141);
+    //auto f4 = std::async(Y(), 3.141);
+    //f4.get();
+
     // 注意这种用法
-    auto f5 = std::async(std::ref(y), 2.718);
+    //auto f5 = std::async(std::ref(y), 2.718);
+    //f5.get();
 
     auto f6 = std::async(move_only());
-
-    f1.get();
-    f2.get();
-    f3.get();
-    f4.get();
-    f5.get();
     f6.get();
 
     return 0;
