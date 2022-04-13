@@ -19,3 +19,7 @@ vscode 尝试创建目录但失败，没有访问权限……
 添加，新增一个Everyone的用户，权限为完全控制
 
 点击应用保存即可。
+
+参考链接：
+
+https://blog.csdn.net/LearnerzzZ/article/details/115406542
