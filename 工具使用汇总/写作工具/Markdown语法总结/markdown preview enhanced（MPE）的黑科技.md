@@ -5,14 +5,12 @@
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=3 orderedList=false} -->
 
 <!-- code_chunk_output -->
-
 - [markdown preview enhanced（MPE）的黑科技](#markdown-preview-enhancedmpe的黑科技)
   - [实时目录显示](#实时目录显示)
   - [导入其他文本文件到markdown](#导入其他文本文件到markdown)
   - [运行代码块里的代码](#运行代码块里的代码)
   - [制作简单的幻灯片](#制作简单的幻灯片)
-  - [参考连接](#参考连接)
-
+  - [参考链接](#参考链接)
 <!-- /code_chunk_output -->
 
 ## 导入其他文本文件到markdown
@@ -33,8 +31,8 @@
 
 ## 制作简单的幻灯片
 
-## 参考连接
+## 参考链接
 
 我的知乎收藏
 
-
+https://www.bookstack.cn/read/mpe/zh-cn-file-imports.md
