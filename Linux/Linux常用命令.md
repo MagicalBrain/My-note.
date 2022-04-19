@@ -183,6 +183,20 @@ ifconfig
 
 如果显示没有安装，就按提示安装`net tools`就行了
 
+##### 使用ifconfig命令设置ip
+
+ifconfig除了能够查看ip地址之外还可以设置ip地址和子网掩码，例如：
+
+```bash
+ifconfig [ip-address] netmask [netmask]
+```
+
+一般来讲设置ip和子网掩码都需要管理员权限，子网掩码一般都是`255.255.255.0`
+
+```bash
+sudo ifconfig 192.168.6.6 netmask 255.255.255.0
+```
+
 #### ip address
 
 这个命令应该可以直接用
@@ -190,3 +204,7 @@ ifconfig
 ```bash
 ip address
 ```
+
+### 永久设置ip地址
+
+https://zhuanlan.zhihu.com/p/42118356
