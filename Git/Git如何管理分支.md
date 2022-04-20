@@ -71,6 +71,27 @@ git pull origin branch
 git pull origin branch --allow-unrelated-histories
 ```
 
+----
+
+还有一种做法就是新建一个空白的分支，然后将远程库的分支代码拉下到这个分支。
+
+*注意：这里的空白分支并不是说这个分支里没有内容，内容是空白的；而是它的历史纪录是空白的。即用git log是看不到任何commit信息的。*
+
+```bash
+#  新建一个空白分支
+git checkout --orphan [branch name]
+
+# 此时已经自动切换到这个空白的新分支了
+# 用ls命令是可以看到内容的，内容就是切换前分支的内容
+ls
+
+# 删除原来的分支的内容，防止拉下来的时候有冲突
+git rm -rf ./
+
+# 假设origin就是远程库的名字，那么以下命令就能将对应的分支拉下来了
+git pull origin [branch name]
+```
+
 ## 如何删除本地和远程分支
 
 合并分需要将被合并的分支删除
