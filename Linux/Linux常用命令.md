@@ -2,6 +2,26 @@
 
 [toc]
 
+## 查看系统版本
+
+1
+```bash
+uname -a
+```
+
+2
+```bash
+cat /proc/version
+```
+其实方法一的命令就是从方法二这获取的
+
+3
+```bash
+lsb_release -a
+```
+
+这个命令查看ubuntu的版本号会方便点。
+
 ## 一、进程管理
 
 **查看进程**
