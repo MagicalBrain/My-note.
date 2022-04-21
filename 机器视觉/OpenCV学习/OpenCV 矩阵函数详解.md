@@ -1,8 +1,4 @@
-﻿# OpenCV 矩阵函数详解
-
-标签（空格分隔）： OpenCV
-
----
+﻿# OpenCV Mat矩阵计算函数详解
 
 **在自己电脑上的路径：**
 C:\OpenCV 3.3\opencv\sources\modules\core\src

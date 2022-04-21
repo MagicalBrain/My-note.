@@ -50,5 +50,9 @@ image2 = image1.clone();
 image1.converTo();
 ```
 
+## 如何访问Mat中的某个元素
 
+## 如何将Mat与std::vector互转
+
+## 如何将cv::Mat转成char*（做缓存buffer）
 

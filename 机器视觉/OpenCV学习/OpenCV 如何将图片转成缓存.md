@@ -1,4 +1,4 @@
-# OpenCV 如何将图片转成缓存
+# OpenCV 如何将图片转成缓存(char*)
 
 ## cv::imencode 方法
 
