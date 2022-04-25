@@ -1,3 +1,0 @@
-/home/hrl/demo4Cmake/simple_example/build/CMakeFiles/rebuild_cache.dir
-/home/hrl/demo4Cmake/simple_example/build/CMakeFiles/simple_example.dir
-/home/hrl/demo4Cmake/simple_example/build/CMakeFiles/edit_cache.dir
