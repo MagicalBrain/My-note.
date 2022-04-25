@@ -1,0 +1,5 @@
+# 如何使用一个CMakeLists编译win和Linux项目
+
+自从我跑了RobotPlugin和HYDeviceSDK这两个项目后，我就一直很想解决这个问题。
+
+其实关键在于环境变量的配置问题，如果环境变量配好且能够两个平台适配，那么一个用CMakeLists.txt直接就能实现win和Linux跨平台编译了。
