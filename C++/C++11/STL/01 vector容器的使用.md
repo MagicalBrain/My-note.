@@ -12,7 +12,46 @@ std::vector<double> pose;
 
 ## vector元素的访问
 
+**注意**：
+在对vector元素的访问的时候，我们都假定vector是非空的，一定是有元素的。
+
+### 访问第一个元素
+
+以下所有代码都是基于自定义的类的[^MyClass]
+
+```cpp
+        /// <summary>
+		/// 访问第一个元素
+		/// </summary>
+		/// <param name="e"></param>
+		void TheFirst(int& e) {
+			e = this->data.front();
+			// 或者
+			// e = *(this->data.begin());
+		}
+```
+
 ### 添加元素
+
+#### 在vector最前面添加元素
+
+#### 在vector后面添加元素
+
+#### 在指定位置添加元素
+
+### 删除元素
+
+#### 在vector最前面删除元素
+
+#### 在vector后面删除元素
+
+#### 在指定位置删除元素
+
+erase
+
+#### 删除指定位置区间的元素
+
+erase
 
 ### 遍历元素
 
@@ -78,3 +117,27 @@ vec.size();
 推荐使用`empty()`，因为算法复杂度为$O(1)$，而`size() == 0`，算法复杂度为$O(n)$.
 
 因此，对于STL容器，只要有`empty()`，就应该使用它
+
+## 类的定义
+
+```cpp
+    /// <summary>
+	/// 这个类主要是用来学习vector的用法，元素类型为int
+	/// </summary>
+	class MyVector
+	{
+	public:
+		MyVector();
+		~MyVector();
+
+        private:
+		std::vector<int> data;
+
+	};
+```
+
+## 参考链接
+
+http://c.biancheng.net/view/6846.html
+
+[^MyClass]: 代码参考 类的定义

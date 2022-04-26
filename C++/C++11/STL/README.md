@@ -12,7 +12,7 @@
 3. list
 4. forward_list
 5. array
-6. string
+6. string[^string]
 
 **vector**：
 可变大小数组。支持快速随机访问。在尾部之外的位置插入或删除元素可能很慢
@@ -44,6 +44,8 @@ list
 
 
 ### 关联容器
+
+[^string]: 关于`std::string`是否是STL容器目前还有争议，因为它的开发完全是独立与其他STL的，但同时又具有类似的用法
 
 关联容器有：
 1. map
