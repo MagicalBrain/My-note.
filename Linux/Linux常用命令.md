@@ -228,3 +228,66 @@ ip address
 ### 永久设置ip地址
 
 https://zhuanlan.zhihu.com/p/42118356
+
+### 修改网卡的速度
+
+使用ethtool
+
+```bash
+sudo ethtool -s eth0 speed 1000 duplex full autoneg off
+sudo ethtool -s eth0 speed 1000 duplex full autoneg on
+```
+
+修改前：
+
+```bash
+Settings for eth0:
+        Supported ports: [ TP MII ]
+        Supported link modes:   10baseT/Half 10baseT/Full
+                                100baseT/Half 100baseT/Full
+                                1000baseT/Full
+        Supported pause frame use: Symmetric Receive-only
+        Supports auto-negotiation: Yes
+        Supported FEC modes: Not reported
+        Advertised link modes:  10baseT/Half 10baseT/Full
+                                100baseT/Half 100baseT/Full
+                                1000baseT/Full
+        Advertised pause frame use: Symmetric Receive-only
+        Advertised auto-negotiation: Yes
+        Advertised FEC modes: Not reported
+        Speed: 100Mb/s
+        Duplex: Full
+        Port: MII
+        PHYAD: 1
+        Transceiver: internal
+        Auto-negotiation: off
+        Supports Wake-on: g
+        Wake-on: d
+        Link detected: yes
+```
+
+修改后：
+
+```bash
+Settings for eth0:
+        Supported ports: [ TP MII ]
+        Supported link modes:   10baseT/Half 10baseT/Full
+                                100baseT/Half 100baseT/Full
+                                1000baseT/Full
+        Supported pause frame use: Symmetric Receive-only
+        Supports auto-negotiation: Yes
+        Supported FEC modes: Not reported
+        Advertised link modes:  1000baseT/Full
+        Advertised pause frame use: Symmetric Receive-only
+        Advertised auto-negotiation: No
+        Advertised FEC modes: Not reported
+        Speed: 1000Mb/s
+        Duplex: Full
+        Port: MII
+        PHYAD: 1
+        Transceiver: internal
+        Auto-negotiation: off
+        Supports Wake-on: g
+        Wake-on: d
+        Link detected: yes
+```
