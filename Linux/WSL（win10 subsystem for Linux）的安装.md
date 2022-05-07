@@ -28,7 +28,7 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 到官网下载 wsl_update_x64.msi
 
 其他常用组件的安装：
-1、安装Windows terminal并将其设置为默认启动WSL
+1、安装Windows terminal并将其设置为默认启动WSL（如果找不到，重启以下terminal即可）
 2、安装gcc
 3、安装 oh-my-zsh
 
@@ -85,3 +85,7 @@ https://zhuanlan.zhihu.com/p/356397851
 装好Hyper-V之后，别忘了在`services.msc`里启用`Hyper-V主机计算服务`
 
 https://blog.csdn.net/qq_36191272/article/details/119191992
+
+## 流程参考链接
+
+https://zhuanlan.zhihu.com/p/273237897
