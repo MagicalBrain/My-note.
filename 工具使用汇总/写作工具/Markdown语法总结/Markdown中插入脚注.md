@@ -27,3 +27,20 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
     `{ my code }`
 
     Add as many paragraphs as you like.
+
+**注意**
+
+这个脚注也是可以支持中文的：
+
+```markdown
+[^错误1]
+
+[^错误1]: 这个错误的解决方法就是把错误的地方删除。
+
+```
+
+效果如下：
+
+[^错误1]
+
+[^错误1]: 这个错误的解决方法就是把错误的地方删除。
