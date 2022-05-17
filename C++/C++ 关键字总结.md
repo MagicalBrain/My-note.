@@ -8,6 +8,20 @@
 
 [^static]: 菜鸟教程 https://www.runoob.com/w3cnote/cpp-static-usage.html
 
+## const 关键字
+
+使用const关键字是因为我们不想改变某些变量的值（让这些变量作为常量），如果后面还需要改的话，那么就是程序设计的问题导致用错了const。
+
+这个时候也有补救的办法，但是这个办法不建议使用，如果需要修改const变量，应该修改的不是代码，而是相关部分的程序设计。
+因为所谓补救的办法也是不能修改cosnt变量的值的，而是修改其类型使某些不支持const类型变量的函数接受。
+
+### const_cast
+
+```cpp
+const string in = "asdf";
+string* out = const_cast<string*>(&in);
+```
+
 ## inline 关键字
 
 为了解决一些频繁调用的小函数大量消耗栈空间（栈内存）的问题，特别的引入了 inline 修饰符，表示为内联函数。
