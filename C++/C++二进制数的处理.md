@@ -27,9 +27,14 @@ int main()
     std::cout << "b1:" << b1 << "; b2:" << b2 << "; b3:" << b3 << "; b4:" << b4 << '\n';
  
     // bitset supports bitwise operations:
-    b3 |= 0b0100; assert(b3 == 0b0111);
-    b3 &= 0b0011; assert(b3 == 0b0011);
-    b3 ^= std::bitset<4>{0b1100}; assert(b3 == 0b1111);
+    b3 |= 0b0100; 
+    assert(b3 == 0b0111);
+    
+    b3 &= 0b0011; 
+    assert(b3 == 0b0011);
+    
+    b3 ^= std::bitset<4>{0b1100}; 
+    assert(b3 == 0b1111);
  
     // operations on the whole set:
     b3.reset(); assert(b3 == 0);
