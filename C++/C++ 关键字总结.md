@@ -15,6 +15,14 @@
 这个时候也有补救的办法，但是这个办法不建议使用，如果需要修改const变量，应该修改的不是代码，而是相关部分的程序设计。
 因为所谓补救的办法也是不能修改cosnt变量的值的，而是修改其类型使某些不支持const类型变量的函数接受。
 
+参考链接：
+[微软官方文档](https://docs.microsoft.com/zh-cn/cpp/cpp/const-cpp?view=msvc-170)
+[cppreference](https://en.cppreference.com/w/cpp/keyword/const)
+
+### C与C++里const的区别
+
+
+
 ### const_cast
 
 ```cpp
@@ -131,3 +139,22 @@ inline void Foo(int x, int y) {} // inline 与函数定义体放在一起
 （1）如果函数体内的代码比较长，使用内联将导致内存消耗代价较高。 
 （2）如果函数体内出现循环，那么执行函数体内代码的时间要比函数调用的开销大。
 （3）类的构造函数和析构函数不应该是内联的，尽管内联构造函数和析构函数容易让人误解成使用内联更有效。要当心构造函数和析构函数可能会隐藏一些行为，如"偷偷地"执行了基类或成员对象的构造函数和析构函数。所以不要随便地将构造函数和析构函数的定义体放在类声明中。一个好的编译器将会根据函数的定义体，自动地取消不值得的内联（这进一步说明了 inline 不应该出现在函数的声明中）。
+
+## constexpr 关键字
+
+在C++11中引入，在C++14中改进。
+
+constexpr的作用有点类似与const，但是它不仅可以作用于变量还可作用于表达式，甚至还可以用于函数和类
+
+### constexpr与const区别
+
+||const|constexpr|
+|:--:|:--|:--|
+|作用对象|1. 变量<br>2. **类成员函数**|1. 变量<br>2. 函数<br>3. 类<br>4. **表达式**|
+|作用|1. 指定变量为常量，告知编译器不可修改<br>（但如果错误地使用，也还是可以修改的，但不建议这么做，除非不得已而为之）<br>2. 指定类成员函数为**只读**函数，该类型的函数不会修改其调用的对象||
+
+
+
+参考链接：
+[微软官方文档](https://docs.microsoft.com/zh-cn/cpp/cpp/constexpr-cpp?view=msvc-170)
+[cppreference](https://en.cppreference.com/w/cpp/language/constexpr)
