@@ -229,6 +229,37 @@ ip address
 
 https://zhuanlan.zhihu.com/p/42118356
 
+其实就是修改文件`/etc/network/interfaces`为如下内容
+
+```bash
+# interfaces(5) file used by ifup(8) and ifdown(8)
+# Include files from /etc/network/interfaces.d:
+#source-directory /etc/network/interfaces.d
+
+# localhost
+auto lo
+iface lo inet loopback
+
+# static ip
+auto eth0
+iface eth0 inet static
+address 192.168.6.6
+netmask 255.255.255.0
+gateway 192.168.6.1
+```
+
+**注意**：
+上面的eth0就是要修改的网卡id
+
+然后重启服务：
+使用命令
+
+```bash
+sudo /etc/init.d/networking restart
+# 或
+sudo service networking restart
+```
+
 ### 修改网卡的速度
 
 使用ethtool
