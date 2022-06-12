@@ -6,6 +6,7 @@ rem setx /M MYSDK_ROOT C:\hrl\
 
 set cpplib=C:\hrl\MyCPP\PTA-Basic
 
-setx /m "MYSDK_ROOT" "C:\hrl\MyCPP\"
+::添加变量进MYSDK_ROOT变量
+setx /m "MYSDK_ROOT" "%cpplib%;%MYSDK_ROOT%"
 
 pause

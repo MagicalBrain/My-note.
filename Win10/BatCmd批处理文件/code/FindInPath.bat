@@ -1,3 +1,4 @@
+@echo off
 rem "尝试在MySDK_ROOT里寻找变量"
 
 rem  tarDir 是  我们要寻找的变量
