@@ -2,6 +2,12 @@
 
 ## 文件处理
 
+### 打开文件 or 文件夹
+
+```batch
+start [filename]
+```
+
 ### 显示目录
 
 ```batch
@@ -31,6 +37,27 @@ set
 setx
 ```
 
+### if-else语句
+
+```batch
+if [condition] (
+
+)
+else {
+
+}
+```
+
+例子：
+
+```batch
+if [condition] (
+
+)
+else {
+
+}
+```
 
 ### 循环
 
@@ -38,6 +65,20 @@ setx
 for
 ```
 
+### 读取键盘的输入
+
+使用set命令的/p参数
+
+```batch
+set /p var=请输入----
+echo 您输入的内容为%var%  
+```
+
+输出结果为：
+
+```batch
+
+```
 
 ## 其它
 
