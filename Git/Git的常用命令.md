@@ -199,7 +199,27 @@ git checkout -b [NewBranch]
 
 此命令会新建分支并转到新建的分支上来。
 
-## 切换分支
+```bash
+git branch [NewBranch]
+```
+
+此命令会新建分支但不会转到新建的分支上来。
+
+### 单独从远程库拉下某分支
+
+如果本地没有clone，那么可以用以下命令来clone
+
+```bash
+git clone -b [branch name] [git repo address]
+```
+
+如果已经clone了，那么可以用以下命令单独拉下分支
+
+```bash
+git checkout -b [branch name] [remote repo name]/[branch name]
+```
+
+### 切换分支
 
 ```bash
 git checkout [Branch]
