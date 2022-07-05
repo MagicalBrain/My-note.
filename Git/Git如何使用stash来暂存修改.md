@@ -31,7 +31,7 @@ git stash list
 git stash show  # 等价：git stash@{0} show 命令
 
 # 查看倒数第二次stash的内容 具体是哪个可以通过stash列表来查看
-git stash@{1} show 
+git stash show stash@{1}
 ```
 
 ## 应用暂存的修改
@@ -39,9 +39,13 @@ git stash@{1} show
 ```bash
 # 恢复修改，且不在stash列表中删除
 git stash apply
+# 恢复倒数第二次修改，且不在stash列表中删除
+git stash apply stash@{1}
 
 # 恢复修改，且在stash列表中删除
 git stash pop
+# 恢复倒数第二次修改，且在stash列表中删除
+git stash pop stash@{1}
 ```
 
 ## 丢弃某次暂存
