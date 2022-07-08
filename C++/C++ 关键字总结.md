@@ -158,3 +158,41 @@ constexpr的作用有点类似与const，但是它不仅可以作用于变量还
 参考链接：
 [微软官方文档](https://docs.microsoft.com/zh-cn/cpp/cpp/constexpr-cpp?view=msvc-170)
 [cppreference](https://en.cppreference.com/w/cpp/language/constexpr)
+
+## volatile 关键字
+
+这个关键字是用来防止编译器优化的。说白了，在PC上面这个关键词很难起到作用，基本是只有在嵌入式平台才会用。
+
+举个例子：
+
+```cpp
+int a;
+
+a = 10;
+a = 11;
+a = 12;
+a = 13;
+```
+
+以上四条语句中，编译器会认为只有最后一条`a = 13`是有用的，所以编译器只会生成`a = 13`的机器码，但是在嵌入式系统和多线程编程中，这样做可能会产生问题。
+
+而且是否使用volatile关键字是区分普通的软件工程师和嵌入式工程师的明显区别之一。
+
+### volatile与const
+
+### cv关键词
+
+https://zh.cppreference.com/w/cpp/language/cv
+
+### volatile限定的成员函数
+
+即所谓的非静态成员函数
+
+### 具体例子
+
+### 参考链接
+
+[百度百科](https://baike.baidu.com/item/volatile/10606957)
+[逼乎文章](https://zhuanlan.zhihu.com/p/138819184)
+[cppreference](https://zh.cppreference.com/w/cpp/keyword/volatile)
+[微软官方文档](https://docs.microsoft.com/zh-cn/cpp/cpp/volatile-cpp?view=msvc-170)
