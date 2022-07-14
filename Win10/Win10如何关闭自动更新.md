@@ -16,4 +16,6 @@ services.msc
 
 不知道是真是假，反正就是要通过四种途径都把自动更新关了才算成功，值得一试，几分钟就可以搞定。
 
+如果上文中的`gpedit.msc`运行不了，可以参考https://jingyan.baidu.com/article/cbf0e500ccb8836eaa2893c7.html
+
 真的长时间的测试被win10给整惨了。
