@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SharedPtr", "SharedPtr\Shar
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SharedPtrLock", "SharedPtrLock\SharedPtrLock.vcxproj", "{D092F008-CDB2-4E4D-AA50-D296E7617DD9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SmartPtr2CommonPtr", "SmartPtr2CommonPtr\SmartPtr2CommonPtr.vcxproj", "{7895D8A4-EDE9-495E-AC24-B585BAFB6FAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{D092F008-CDB2-4E4D-AA50-D296E7617DD9}.Release|x64.Build.0 = Release|x64
 		{D092F008-CDB2-4E4D-AA50-D296E7617DD9}.Release|x86.ActiveCfg = Release|Win32
 		{D092F008-CDB2-4E4D-AA50-D296E7617DD9}.Release|x86.Build.0 = Release|Win32
+		{7895D8A4-EDE9-495E-AC24-B585BAFB6FAB}.Debug|x64.ActiveCfg = Debug|x64
+		{7895D8A4-EDE9-495E-AC24-B585BAFB6FAB}.Debug|x64.Build.0 = Debug|x64
+		{7895D8A4-EDE9-495E-AC24-B585BAFB6FAB}.Debug|x86.ActiveCfg = Debug|Win32
+		{7895D8A4-EDE9-495E-AC24-B585BAFB6FAB}.Debug|x86.Build.0 = Debug|Win32
+		{7895D8A4-EDE9-495E-AC24-B585BAFB6FAB}.Release|x64.ActiveCfg = Release|x64
+		{7895D8A4-EDE9-495E-AC24-B585BAFB6FAB}.Release|x64.Build.0 = Release|x64
+		{7895D8A4-EDE9-495E-AC24-B585BAFB6FAB}.Release|x86.ActiveCfg = Release|Win32
+		{7895D8A4-EDE9-495E-AC24-B585BAFB6FAB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
