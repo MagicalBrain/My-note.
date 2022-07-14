@@ -43,3 +43,43 @@ https://docs.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/fatal-erro
 ### E2422 默认化的默认构造函数不能是 constexpr，因为对应的隐式声明的默认构造函数不会是 constexpr	
 
 编译Qt项目时出现这个错误，检查一下是不是有qt项目没有设置qt好的版本和路径
+
+## 打开项目的时候vs2019报错：配置“Debug|Win32”的 Designtime 生成失败。IntelliSense 可能不可用 出错内容
+
+这种问题比较难查找错误来源，因为啥都没说就说不可用
+
+但还是有方法可以找到错误来源的。
+
+### 设置环境变量
+
+打开：
+
+`C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019\Visual Studio Tools\VC`
+
+![](./asset/../x64_Native_Tools.png)
+
+打开上图中的`x64 Native Tools Command Prompt for VS 2019`
+
+然后关闭vs，输入：
+
+```bash
+set TraceDesignTime=true
+```
+
+### 重启vs打开项目
+
+重新打开vs
+
+这个时候vs下方的输出窗口就会输出日志信息，不过这里的还不够完整，只是显示输出了日志文件。
+
+### 找到错误信息
+
+我们还需要到：
+
+`C:\Users\Administrator\AppData\Local\Temp`去找日志文件
+
+日志文件名称一般是：`[项目名称]_ProjectCache_133021773601266452.designtime.log`
+
+这个文件里信息比较多，直接所搜==失败==然后就可以在附近找到相关的错误信息，并以此来处理问题了。
+
+[参考链接](https://blog.csdn.net/zhoufei95/article/details/121030163)
