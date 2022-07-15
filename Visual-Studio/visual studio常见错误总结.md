@@ -56,7 +56,7 @@ https://docs.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/fatal-erro
 
 `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2019\Visual Studio Tools\VC`
 
-![](./asset/../x64_Native_Tools.png)
+![](./asset/x64_Native_Tools.png)
 
 打开上图中的`x64 Native Tools Command Prompt for VS 2019`
 
@@ -83,3 +83,12 @@ set TraceDesignTime=true
 这个文件里信息比较多，直接所搜==失败==然后就可以在附近找到相关的错误信息，并以此来处理问题了。
 
 [参考链接](https://blog.csdn.net/zhoufei95/article/details/121030163)
+
+## 调试运行程序时遇到的未经处理的异常
+
+### 堆栈Cookie检测代码检测到基于堆栈的缓冲区溢出
+
+解决办法：
+1. 排查数组越界
+2. 将栈变量申请为堆变量
+3. 
