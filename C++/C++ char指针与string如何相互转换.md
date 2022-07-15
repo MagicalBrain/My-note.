@@ -1,5 +1,15 @@
 # C++ char指针与string如何相互转换
 
+注意：这里讨论的string均是`#include <string>`里的`std::string`
+
+## string与char*的区别
+
+### 结尾最后一个字符
+
+string是结尾是没有`\0` 的，而`char*, char [], const char*`等，只要和char有关的结尾都是有`\0`的。
+
+而且char转string的时候会把`\0`去掉，string转char的时候要把`\0`加上
+
 ## string转char*
 
 ### c_str()
