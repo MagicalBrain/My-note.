@@ -10,6 +10,17 @@ string是结尾是没有`\0` 的，而`char*, char [], const char*`等，只要�
 
 而且char转string的时候会把`\0`去掉，string转char的时候要把`\0`加上
 
+所以在string转char的时候尤其要小心size
+
+```cpp
+char cstr[10] = {0};
+std::string sstr;
+std::cin >> sstr;
+
+// 注意这里，如果 sstr.size()
+cstr = sstr.c_str();
+```
+
 ## string转char*
 
 ### c_str()

@@ -13,3 +13,8 @@ https://blog.csdn.net/thdxs/article/details/19358719
 https://www.cnblogs.com/pandamohist/p/14590076.html
 
 ## macOS
+
+## Qt
+
+可以使用Qt这个框架来进行，Qt这个框架本身也是跨平台的。
+详细信息可以查看本笔记库中关于Qt的部分
