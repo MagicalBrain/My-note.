@@ -30,3 +30,27 @@ else {
 ## 读取文件的大小
 
 ## 计算文件夹里所有文件的大小
+
+```cpp
+qint64 fileSize(const QString &path)
+{
+     QDir dir(path);
+     qint64 size = 0;
+
+     foreach(QFileInfo fileInfo, dir.entryInfoList(QDir::Files)) {
+         size += fileInfo.size();
+     }
+
+     foreach(QString subDir, dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot)) {
+         size += fileSize(path + QDir::separator() + subDir);
+     }
+
+     return size;
+}
+
+```
+
+## 参考链接
+
+[Qt5官方文档](https://doc.qt.io/qt-5/qdir.html)
+[Qt6官方文档](https://doc.qt.io/qt-6/qdir.html)
