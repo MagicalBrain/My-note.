@@ -1,4 +1,4 @@
-# QTablieWidget设置某一行不可编辑
+# QTableWidget设置某一行不可编辑
 
 示例代码：
 

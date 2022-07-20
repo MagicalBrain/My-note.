@@ -1,6 +1,6 @@
 # QTableWidget
 
-在Qt里我们使用QTablieWidget来写表格
+在Qt里我们使用QTableWidget来写表格
 
 ## 参考链接
 
