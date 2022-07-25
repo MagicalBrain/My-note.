@@ -82,6 +82,22 @@ Date: Tue Dec 14 22:47:44 2021 +0800
 Successfully rebased and updated refs/heads/main.
 ```
 
+==如果失败了==，如果显示：
+
+```bash
+branch | rebase
+git status # 显示：
+interactive rebase in progress; onto
+```
+
+那么只要输入以下命令：
+
+```bash
+git rebase --continue
+```
+
+ 就可以看见上面编辑commit信息的vim界面了。
+
 最后使用 git logl 确认所有这次开发中的 commit message 都被压缩成了一个 (这边只介绍了 git rebase的最简单直接的用法，有兴趣的读者可以去阅读官方文档，了解更详细、高级的用法，如第一次vim界面里使用 f 替代 s 有时候更方便）
 
 最后 git push origin feat-1 把本地仓库推到远端仓库
