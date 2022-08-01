@@ -45,6 +45,7 @@ pick 2685240 init feat-1
 pick a7e5705 develop feat-1 phase 2
 pick 1d23813 develop feat-1 phase 3
 ```
+
 记住不要动最上面的那行，把下面几行开头的 pick 换成 s , 然后保存这时会显示另一个 vim 界面:
 
 ```bash

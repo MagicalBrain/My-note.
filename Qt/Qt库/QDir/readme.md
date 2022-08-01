@@ -29,23 +29,44 @@ else {
 
 ## 读取文件的大小
 
+## 计算文件夹里文件个数
+
+```cpp
+QDir *dir = new QDir("D:\\");  
+
+QStringList filter;
+//filter<<"*.dat";
+//dir->setNameFilters(filter); //过滤文件类型
+
+QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
+
+int count=fileInfo->count();  //文件个数
+cout<<count<<endl;
+cout<<fileInfo->at(2).filePath().toStdString()<<endl;  //文件路径
+cout<<fileInfo->at(2).fileName().toStdString()<<endl;  //文件名称
+```
+
 ## 计算文件夹里所有文件的大小
 
 ```cpp
 qint64 fileSize(const QString &path)
 {
-     QDir dir(path);
-     qint64 size = 0;
+    QDir dir(path);
+    qint64 size = 0;
+    
+    //dir.entryInfoList(QDir::Files)返回文件信息
+    // 遍历获取目录内所有文件和子文件夹
+    foreach(QFileInfo fileInfo, dir.entryInfoList(QDir::Files)) {
+        size += fileInfo.size();
+    }
+    
+    //dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot) 返回所有子目录，并进行过滤 
+    foreach(QString subDir, dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot)) {
+        //若存在子目录，则递归调用fileSize()函数（即本函数）
+        size += fileSize(path + QDir::separator() + subDir);
+    }
 
-     foreach(QFileInfo fileInfo, dir.entryInfoList(QDir::Files)) {
-         size += fileInfo.size();
-     }
-
-     foreach(QString subDir, dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot)) {
-         size += fileSize(path + QDir::separator() + subDir);
-     }
-
-     return size;
+    return size;
 }
 
 ```
