@@ -214,4 +214,6 @@ WebKit.org has instructions for building WebKit on Windows. ICU is required for 
 
 The tools bison, flex and gperf which are required for building are provided for convenience in the folder gnuwin32\bin. If you are using shadow builds, you must add this directory to your PATH, else no special actions need to be done manually in order to use them.
 
+## 参考链接
+
 [Qt5官方文档](https://wiki.qt.io/Building_Qt_5_from_Git#Getting_the_source_code)
