@@ -1,11 +1,12 @@
 [toc]
 
-# OpenCV-contrib安装编译
+# OpenCV-contrib(4.4.0) 安装编译
 
 ## 安装前的准备工作
 
 1. cmake（如何安装参考我的笔记）
 2. vs2019（这个就简单了，按C++开发的来就行）
+3. 30G的磁盘空间
 
 ## 下载opencv
 
@@ -40,6 +41,15 @@
 ### cmake gui生成
 
 打开cmake gui
+
+设置路径：
+
+where is the source code —— 这个是源代码路径（opencv440的，不含contrib的）
+`C:/opencvWITHcontrib/opencv-4.4.0`
+
+where to build the binaries —— 这个是编译之后存放二进制文件的路径
+`C:/opencvWITHcontrib/opencv-build`
+
 设置好路径，点击`configure`
 
 ![](asset/opencv-cmake01.png)
