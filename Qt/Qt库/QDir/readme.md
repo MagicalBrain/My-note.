@@ -27,6 +27,23 @@ else {
 }
 ```
 
+## 删除整个文件夹
+
+删除整个文件夹及其里面的所有内容
+
+```cpp
+// 文件夹的路径
+QString del_file = QString("./data/2019-03-23");
+QDir dir;
+// 设置QDir对象的路径
+dir.setPath(del_file);
+// 开始删除
+dir.removeRecursively();
+```
+
+注意：
+这个方法Qt5之后的Qt版本才有
+
 ## 读取文件的大小
 
 ## 计算文件夹里文件个数
