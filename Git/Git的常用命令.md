@@ -280,17 +280,24 @@ git branch [NewBranch]
 
 ### 单独从远程库拉下某分支
 
+#### 没有克隆远程仓库
+
 如果本地没有clone，那么可以用以下命令来clone
 
 ```bash
 git clone -b [branch name] [git repo address]
 ```
 
+#### 已经克隆远程仓库
+
 如果已经clone了，那么可以用以下命令单独拉下分支
 
 ```bash
 git checkout -b [branch name] [remote repo name]/[branch name]
 ```
+
+如果上面的命令失败了，那要先运行`git branch -a`看看有没有要拉下来的远程分支；
+如果没有就需要运行`git fetch`命令
 
 ### 切换分支
 
