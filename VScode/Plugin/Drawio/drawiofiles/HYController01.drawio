@@ -1,0 +1,46 @@
+<mxfile host="65bd71144e">
+    <diagram id="0ZwW-vUITOqkvyoN0IJ5" name="Page-1">
+        <mxGraphModel dx="1130" dy="534" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="4" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;strokeColor=#050505;strokeWidth=3;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="&lt;span style=&quot;font-size: 18px&quot;&gt;开始&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FAFAFA;fontColor=#030303;strokeWidth=3;strokeColor=#030303;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="80" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;span style=&quot;font-size: 16px&quot;&gt;相机拍照&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=20;fillColor=#FAFAFA;strokeColor=#030303;fontColor=#030303;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="&lt;span style=&quot;font-size: 16px&quot;&gt;算法计算&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=20;fillColor=#FAFAFA;strokeColor=#030303;fontColor=#030303;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="330" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" style="edgeStyle=none;html=1;fontSize=18;strokeColor=#050505;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="3" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="280" as="sourcePoint"/>
+                        <mxPoint x="280" y="280" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#050505;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="5" target="13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="300" y="250" as="sourcePoint"/>
+                        <mxPoint x="330" y="420" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="&lt;span style=&quot;font-size: 18px&quot;&gt;结束&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FAFAFA;fontColor=#030303;strokeWidth=3;strokeColor=#030303;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="80" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&lt;span style=&quot;font-size: 16px&quot;&gt;机器人运动抓取&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;arcSize=20;fillColor=#FAFAFA;strokeColor=#030303;fontColor=#030303;strokeWidth=3;" vertex="1" parent="1">
+                    <mxGeometry x="550" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=none;html=1;entryX=0.55;entryY=1.05;entryDx=0;entryDy=0;fontSize=18;strokeColor=#050505;strokeWidth=3;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryPerimeter=0;" edge="1" parent="1" source="13" target="12">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="460" y="340" as="sourcePoint"/>
+                        <mxPoint x="550" y="340" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
