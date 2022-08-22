@@ -4,12 +4,12 @@
 
 设置账户名：
 ```bash
-git --config global user.name "[yourname]"
+git config --global user.name "[yourname]"
 ```
 
 设置账户的电子邮箱
 ```bash
-git --config global user.email "[youremail]"
+git config --global user.email "[youremail]"
 ```
 
 ### 生成ssh密钥
