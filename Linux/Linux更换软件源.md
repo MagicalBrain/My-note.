@@ -17,6 +17,8 @@ sudo apt-get upgrade
 
 ## 软件源
 
+在```/etc/apt/sources.txt```文件的最前面根据Linux的版本添加对应的内容。
+
 ### Ubuntu 18.04
 
 * 中科大源
