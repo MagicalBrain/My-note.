@@ -62,4 +62,10 @@ http://wiki.ros.org/IDEs
 
 ## ROS 学习的参考网站
 
+1. answers.ros.org，这是一个ROS问答网站，大家可以在上边提出任何关于ROS的问题，全球很多开发者都很乐意回答我们的问题；
+2. wiki.ros.org，这是ROS的维基百科，记录了ROS教程和各种功能包的使用；
+3. discourse.ros.org，这是ROS论坛，关于ROS开发的新鲜事都可以在这里发表和查看，比如ROS的活动、新功能包的发布等等
+4. index.ros.org，是ROS各种资源的一个索引网站；
+5. packages.ros.org，是ROS功能包存储的数据库。
+
 ![](asset/ROS_Websites.png)
