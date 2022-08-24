@@ -6,7 +6,7 @@
 
 ### Visual Studio Keymap
 
-<div align=left><img width = '350' src ="./asset/VSkeymap.png"/></div>
+<div align=left><img width = '350' src ="../asset/VSkeymap.png"/></div>
 
 习惯了visual studio的快捷键，想在vscode里也用上？
 
@@ -16,9 +16,9 @@
 
 ## 参考vscode配置截图
 
-<div align=left><img width = '350' src ="./asset/vscode-plugin-list01.png"/></div>
+<div align=left><img width = '350' src ="../asset/vscode-plugin-list01.png"/></div>
 
-<div align=left><img width = '350' src ="./asset/vscode-plugin-list02.png"/></div>
+<div align=left><img width = '350' src ="../asset/vscode-plugin-list02.png"/></div>
 
-<div align=left><img width = '350' src ="./asset/VSkeymap.png"/></div>
+<div align=left><img width = '350' src ="../asset/VSkeymap.png"/></div>
 
