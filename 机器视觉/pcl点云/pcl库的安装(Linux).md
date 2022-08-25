@@ -6,7 +6,7 @@ https://blog.csdn.net/mystyle_/article/details/109827365
 
 以Ubuntu 18.04为例
 
-### 直接安装预编译版本
+## 直接安装预编译版本
 
 ```
 sudo apt install libpcl-dev
@@ -21,13 +21,13 @@ sudo apt install libpcl-dev
 sudo apt install pcl-tools
 ```
 
-#### 预编译版本的pcl的卸载
+### 预编译版本的pcl的卸载
 
 ```
 sudo apt remove libpcl-dev
 ```
 
-### 使用cmake从源码编译安装
+## 使用cmake从源码编译安装
 
 https://blog.csdn.net/mystyle_/article/details/109827365
 
