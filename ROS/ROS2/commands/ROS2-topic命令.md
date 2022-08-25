@@ -34,9 +34,17 @@ Commands:
 
 查看topic的相关信息
 
+```bash
+ros2 topic info [topic_name]
+```
+
 ## topic list
 
 列出所有的topic
+
+```bash
+ros2 topic list
+```
 
 ## topic pub
 
