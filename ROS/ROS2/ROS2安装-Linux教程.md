@@ -67,6 +67,9 @@ E: Unable to locate package ros-humble-desktop
 * 3、环境设置 安装完成后 
 
 ```bash
-echo “source /opt/ros/foxy/setup.bash” >> ~/.bashrc
+# 仅在当前终端中生效
+source /opt/ros/humble/setup.bash
+# 终端窗口永久生效，其实就是以后每次打开新的终端，都会自动执行以上命令
+echo " source /opt/ros/humble/setup.bash" >> ~/.bashrc
 ```
 
