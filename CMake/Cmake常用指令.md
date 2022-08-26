@@ -38,5 +38,23 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/src/main/jnilibs/${ANDR
 
 其中`PROJECT_SOURCE_DIR` 是cmake内置宏，指向构建工程的全路径。详细介绍可参考
 
+## message命令
+
+用来打印信息的
+
+```bash
+message( [STATUS|WARNING|AUTHOR_WARNING|FATAL_ERROR|SEND_ERROR]
+  "message to display" ...)
+```
+
+(无) = 重要消息；
+ STATUS = 非重要消息；
+ WARNING = CMake 警告, 会继续执行；
+ AUTHOR_WARNING = CMake 警告 (dev), 会继续执行；
+ SEND_ERROR = CMake 错误, 继续执行，但是会跳过生成的步骤；
+ FATAL_ERROR = CMake 错误, 终止所有处理过程；
+
+https://blog.csdn.net/Zhanganliu/article/details/99850603
+
 ## add_custom_target
 
