@@ -16,6 +16,61 @@ services.msc
 
 不知道是真是假，反正就是要通过四种途径都把自动更新关了才算成功，值得一试，几分钟就可以搞定。
 
-如果上文中的`gpedit.msc`运行不了，可以参考https://jingyan.baidu.com/article/cbf0e500ccb8836eaa2893c7.html
+如果上文中的`gpedit.msc`运行不了，可以参考[这篇文章](https://jingyan.baidu.com/article/cdddd41cb0d76f53ca00e144.html)
 
 真的长时间的测试被win10给整惨了。
+
+----
+
+永久关闭自动更新的四个步骤：
+
+### 1、禁用win10 update服务
+
+`Win + R`
+
+`services.msc`
+
+### 2、组策略关闭win10自动更新的相关服务
+
+`Win + R`
+
+`gpedit.msc`
+
+### 3、禁止任务计划中的win10自动更新服务
+
+`Win + R`
+
+`taskschd.msc`
+
+### 4、通过注册表关闭win10自动更新
+
+`Win + R`
+
+`regedit`
+
+注意：
+这里的命令是没有`.msc`后缀的
+
+![](asset/注册表关闭win11自动更新01.png)
+
+双击start，十六进制 2 改成 4
+
+注意这里的修改要小心，仔细对照，确认没有问题了再点击确定。
+
+![](asset/注册表关闭win11自动更新02.png)
+
+![](asset/注册表关闭win11自动更新03.png)
+
+----
+
+## 家庭版win10/win11无法打开组策略的解决办法
+
+直接管理员运行`打开组策略.cmd`这个cmd脚本
+
+然后等待运行结束：
+
+![](asset/开启win11组策略.png)
+
+然后重启电脑后再通过上面的操作打开组策略
+
+这个脚本运行结束后会生成一个`List.txt`脚本，运行后可以删除了。
