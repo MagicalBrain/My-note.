@@ -91,6 +91,55 @@ int main(int argc, char * argv[])
 
 ```
 
+### 重要api详解
+
+#### node::create_publisher<>()
+
+```cpp
+publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
+```
+
+* create_publisher() [1/2]
+
+```cpp
+template<typename MessageT , typename Alloc , typename PublisherT >
+std::shared_ptr< PublisherT > rclcpp::Node::create_publisher	(	const std::string & 	topic_name,
+size_t 	qos_history_depth,
+std::shared_ptr< Alloc > 	allocator = nullptr 
+)		
+```
+
+Create and return a Publisher.
+
+Parameters
+[in]	topic_name	The topic for this publisher to publish on.
+[in]	qos_history_depth	The depth of the publisher message queue.
+[in]	allocator	Optional custom allocator.
+Returns
+Shared pointer to the created publisher.
+
+----
+
+* create_publisher() [2/2]
+```cpp
+template<typename MessageT , typename Alloc , typename PublisherT >
+std::shared_ptr< PublisherT > rclcpp::Node::create_publisher	(	const std::string & 	topic_name,
+const rmw_qos_profile_t & 	qos_profile = rmw_qos_profile_default,
+std::shared_ptr< Alloc > 	allocator = nullptr 
+)		
+```
+
+Create and return a Publisher.
+
+Parameters
+[in]	topic_name	The topic for this publisher to publish on.
+[in]	qos_profile	The quality of service profile to pass on to the rmw implementation.
+[in]	allocator	Optional custom allocator.
+Returns
+Shared pointer to the created publisher.
+
+这里我们用的是第一种
+
 ## 开始编译
 
 ### 在package.xml文件中添加依赖和描述信息
@@ -203,6 +252,10 @@ install(TARGETS
 
 ament_package()
 ```
+
+## 功能包源码
+
+/d/hrl/MyNotes/ROS/ROS2/rclcpp/code/cpp_pubsub
 
 ## 参考链接
 
