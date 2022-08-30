@@ -53,6 +53,11 @@ https://gitee.com/CPLASF000000/design-pattern-learning
 5. 如何不修改源代码增加新功能？
 6. 能够更好地阅读和理解现有类库和其它系统的源代码
 
+现代软件设计的特征就是 需求的频繁变化
+而设计模式的要求就是 寻找变化点，然后在变化点处应用设计模式，从而更好地面对需求的变化。
+
+真正在用的时候不能够拘泥某一种设计模式，通常来说，单一设计模式是无法满足我们的需求的，我们需要“重构获得设计模式” refactoring to Patterns
+
 ## 学习的建议
 
 1. 不要背类图而是要背案例
@@ -99,7 +104,11 @@ Open-Closed Principle OCP
 
 ### 3、里氏代换原则
 
+其实就算 Liskov替换原则（LSP）
+
 ![](./asset/里氏代换原则.png)
+
+子类必须能够替换他们的基类
 
 ### 4、依赖倒转原则
 
@@ -114,15 +123,23 @@ Dependence Inversion Principle, DIP
 
 ![](asset/DIP01.png)
 
+说白了就是，编程的时候的具体的类依赖抽象的类，而抽象的类应该是稳定的，很少修改的。
+
+例如，实际业务中视觉传感器有好几种相机，那么可以定义一个抽象类`Camera`，再根据这个类去定义具体的相机类`Camera_HK`海康的相机
+
 ### 5、接口隔离原则
 
 ![](asset/接口隔离原则.png)
+
+接口标准化！
 
 ### 6、合成复用原则
 
 Composite Reuse Principle, CRP
 
 ![](asset/合成复用原则.png)
+
+优先使用不同类的对象组合，而不是类继承。
 
 ### 7、迪米特法则
 
@@ -134,4 +151,68 @@ Law of Demeter, LoD
 
 具体做法大概就是弄一个中间类，只提供必要的接口，只读取必要的数据，只输出必要的结果。
 
+## 从封装变化的角度对模式进行分类
 
+### 组件协作
+
+现代软件专业分工后第一个结果就是“框架与应用程序分离”
+
+组件协作模式通过晚绑定，来实现框架和应用程序之间的松耦合。
+
+* Template Method
+* Strategy
+* Observer/Event
+
+### 单一职责
+
+* Decorator
+* Bridge
+
+### 对象创建
+
+* Factory Method
+* Abstract Factory
+* Prototypr
+* Builder
+
+### 对象性能
+
+* Singleton
+* Flyweight
+
+### 接口隔离
+
+* Facade
+* Proxy
+* Mediator
+* Adapter
+
+### 状态变化
+
+* Memento
+* State
+
+### 数据结构
+
+* Composite
+* Iterator
+* Chain of Resposibility
+
+### 行为变化
+
+* Command
+* Visitor
+
+### 领域问题
+
+* Interpreter
+
+![](asset/按封装来分类.png)
+
+## 重构的关键技法
+
+* 静态（绑定） -> 动态
+* 早绑定 ->晚绑定
+* 继承 -> 组合
+* 编译时依赖 -> 运行时依赖
+* 紧耦合 -> 松耦合
