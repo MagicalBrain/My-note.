@@ -20,7 +20,8 @@ colcon build
 如果需要仅仅编译其中一个包：
 
 ```bash
-colcon build --package-select my_package
+# 单独编译一个名为 my_package的包
+colcon build --packages-select my_package
 ```
 
 ## CMakelists.txt的编写
