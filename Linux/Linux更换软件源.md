@@ -1,7 +1,7 @@
 # Linux更换软件源
 
 ## 方法
-其实就是编辑```/etc/apt/sources.txt```文件
+其实就是编辑```/etc/apt/sources.list```文件
 
 编辑前记得备份
 
