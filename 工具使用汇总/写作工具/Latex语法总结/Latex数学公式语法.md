@@ -263,7 +263,12 @@ $\neq$
 
 
 
-## 集合论
+## 集合
+
+### 实数集
+
+$\mathbb{R}$ 或 $\mathbb R$
+
 ### 补集
 $\complement A$
 $\overline A$
