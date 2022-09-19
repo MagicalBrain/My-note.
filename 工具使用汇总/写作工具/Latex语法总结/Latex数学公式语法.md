@@ -269,6 +269,10 @@ $\neq$
 
 $\mathbb{R}$ 或 $\mathbb R$
 
+### 复数集
+
+$\mathbb{C}$ 或 $\mathbb C$
+
 ### 补集
 $\complement A$
 $\overline A$
