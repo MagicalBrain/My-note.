@@ -396,6 +396,15 @@ $$
 \right.  \tag{1}
 $$
 
+$$
+\begin{equation} 
+  \begin{split}
+  n&=\left[\frac{b-a}{0.01}\right]+1,    \\
+  &=\frac{1}{n}\sum\limits_{j=1}^{n}(\lambda_{0j}-\lambda_{j}).
+  \end{split}
+\end{equation}
+$$
+
 ## 特殊数学符号（字母）
 
 $$
