@@ -122,6 +122,8 @@ $$\oiiint$$
 
 $$\lim_{x \to+ \infty}$$
 
+$\lim\limits_{x \to+ \infty}$
+
 ## 线性代数
 ### 矩阵
 $$
@@ -286,6 +288,8 @@ $\emptyset$
 ### 累加
 $$\sum_{i = 1}^{i = k}$$
 
+$\sum\limits_{i = 1}^{i = k}$
+
 ### 累乘
 $$\prod_{i = 1}^{i = k}$$
 
@@ -342,6 +346,9 @@ $\uparrow$	↑↑
 $\Longleftrightarrow$
 \leftrightarrow	↔↔
 \Leftrightarrow	⇔⇔
+
+$$\mathop{OC}\limits ^{\longrightarrow}$$
+
 ### 省略号
 ```
 \dots
