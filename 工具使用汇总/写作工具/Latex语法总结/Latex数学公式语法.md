@@ -83,6 +83,18 @@ $\because$
 ```
 $\therefore$
 
+## 几何学
+
+### 相似
+
+$\sim$
+
+$\backsim$
+
+$\cong$
+
+$\backcong$
+
 ## 高数（微积分）
 ### 微元
 $\Delta$
@@ -150,6 +162,10 @@ $$
 
 ### 波浪线
 $\sim$
+
+## 李群与李代数
+
+$\mathfrak{sim}(3)$
 
 ## 特殊字母
 ### 希腊字母
@@ -221,6 +237,9 @@ $\Rho$
 psi	$\psi$
 
 $\Psi$
+
+xi $\xi$
+$\Xi$
 
 http://www.cnblogs.com/maryl/articles/2330119.html
 
