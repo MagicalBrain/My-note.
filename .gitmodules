@@ -1,0 +1,3 @@
+[submodule "Git-Notes"]
+	path = Git-Notes
+	url = https://gitee.com/CPLASF000000/git-notes.git
