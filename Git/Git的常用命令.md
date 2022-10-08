@@ -280,6 +280,16 @@ git branch [NewBranch]
 
 ### 单独从远程库拉下某分支
 
+```bash
+git checkout -b [locate branch name] [remote name]/[remove branch name]
+```
+
+例如我想拉取sample库（sample是`git remote -v`里的名字）的old分支
+
+```bash
+git checkout -b old sample/old
+```
+
 #### 没有克隆远程仓库
 
 如果本地没有clone，那么可以用以下命令来clone
