@@ -1,3 +1,4 @@
-git push gitee main
+git push gitee $(git branch --show-current)
 
-git push github main
+git push github $(git branch --show-current)
+
