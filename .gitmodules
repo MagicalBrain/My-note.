@@ -10,3 +10,6 @@
 [submodule "Linux"]
 	path = Linux
 	url = https://gitee.com/CPLASF000000/linux-notes.git
+[submodule "Qt"]
+	path = Qt
+	url = https://gitee.com/CPLASF000000/qt-notes.git
