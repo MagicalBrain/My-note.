@@ -37,3 +37,9 @@
 [submodule "OpenCV-Learning"]
 	path = OpenCV-Learning
 	url = https://gitee.com/CPLASF000000/open-cv-notes.git
+[submodule "Colcon"]
+	path = Colcon
+	url = https://gitee.com/CPLASF000000/colcon-notes.git
+[submodule "PCL-Learning"]
+	path = PCL-Learning
+	url = https://gitee.com/CPLASF000000/pcl-notes.git
