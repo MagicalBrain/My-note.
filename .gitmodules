@@ -19,3 +19,9 @@
 [submodule "Eigen-Learning"]
 	path = Eigen-Learning
 	url = https://gitee.com/CPLASF000000/eigen-notes.git
+[submodule "OpenGL"]
+	path = OpenGL
+	url = https://gitee.com/CPLASF000000/open-gl-notes.git
+[submodule "计算机图形学"]
+	path = 计算机图形学
+	url = https://gitee.com/CPLASF000000/compute-graphics-notes.git
