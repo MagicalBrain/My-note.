@@ -1,3 +1,9 @@
 [submodule "Git-Notes"]
 	path = Git-Notes
 	url = https://gitee.com/CPLASF000000/git-notes.git
+[submodule "CMake"]
+	path = CMake
+	url = https://gitee.com/CPLASF000000/cmake-notes.git
+[submodule "C++"]
+	path = C++
+	url = https://gitee.com/CPLASF000000/cpp-notes.git

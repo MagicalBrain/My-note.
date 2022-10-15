@@ -1,3 +1,0 @@
-# 如何在vs2019里使用GoogleTest
-
-vs2019已经提供了使用googletest的项目模板
