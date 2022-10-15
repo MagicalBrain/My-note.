@@ -7,3 +7,6 @@
 [submodule "C++"]
 	path = C++
 	url = https://gitee.com/CPLASF000000/cpp-notes.git
+[submodule "Linux"]
+	path = Linux
+	url = https://gitee.com/CPLASF000000/linux-notes.git
