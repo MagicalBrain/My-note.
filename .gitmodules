@@ -25,3 +25,12 @@
 [submodule "计算机图形学"]
 	path = 计算机图形学
 	url = https://gitee.com/CPLASF000000/compute-graphics-notes.git
+[submodule "数学/高等数学"]
+	path = 数学/高等数学
+	url = https://gitee.com/CPLASF000000/advanced-mathematics-notes.git
+[submodule "数学/线性代数"]
+	path = 数学/线性代数
+	url = https://gitee.com/CPLASF000000/linear-algebra-notes.git
+[submodule "数学/数理统计与概率论"]
+	path = 数学/数理统计与概率论
+	url = https://gitee.com/CPLASF000000/probabllity-statistics-notes.git
