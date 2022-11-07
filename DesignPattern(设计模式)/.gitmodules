@@ -1,0 +1,3 @@
+[submodule "Code"]
+	path = Code
+	url = https://gitee.com/CPLASF000000/design-pattern-learning.git
