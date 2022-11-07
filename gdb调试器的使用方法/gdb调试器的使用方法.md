@@ -24,7 +24,7 @@ gdb filename
 
 如果最后打印的一行为：
 ```
-Reading symbols from HYDeviceDemo...done.
+Reading symbols from MyDemo...done.
 (gdb)
 ```
 

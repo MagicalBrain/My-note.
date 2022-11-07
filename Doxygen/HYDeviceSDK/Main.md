@@ -133,7 +133,7 @@ HYSensorClient 中公共成员函数承担了与三维视觉设备建立连接�
 ### 视觉设备连接
 
 ```cpp
-bool hy::HYGRPCClient::connect(const std::string& uri)
+bool hrl::HYGRPCClient::connect(const std::string& uri)
 ```
 
 函数功能：在开启设备服务的前提下，按照指定ip和端口与视觉设备进行连接。
@@ -147,7 +147,7 @@ bool hy::HYGRPCClient::connect(const std::string& uri)
 ### 断开连接
 
 ```cpp
-void hy::HYGRPCClient::disconnect()
+void hrl::HYGRPCClient::disconnect()
 ```
 
 函数功能：与视觉设备断开连接。
@@ -155,7 +155,7 @@ void hy::HYGRPCClient::disconnect()
 ### 设置成像距离
 
 ```cpp
-void hy::HYGRPCClient::distance(int min, int max)
+void hrl::HYGRPCClient::distance(int min, int max)
 ```
 
 函数功能：设置物距最小值和最大值，成像后只保留物距范围内的数据。
@@ -169,7 +169,7 @@ void hy::HYGRPCClient::distance(int min, int max)
 ### 配置成像fov
 
 ```cpp
-void hy::HYGRPCClient::fov(int x, int y, int width, int height)
+void hrl::HYGRPCClient::fov(int x, int y, int width, int height)
 ```
 
 函数功能：绘制一块由顶点坐标和宽、高定义的矩形区域，只保留区域内的数据。(0, 0, 0, 0)表示全场景。
@@ -187,7 +187,7 @@ void hy::HYGRPCClient::fov(int x, int y, int width, int height)
 ### 配置亮度
 
 ```cpp
-int hy::HYGRPCClient::current(uint8_t r, uint8_t g, uint8_t b)
+int hrl::HYGRPCClient::current(uint8_t r, uint8_t g, uint8_t b)
 ```
 
 函数功能：设置投影仪亮度 。
@@ -205,7 +205,7 @@ int hy::HYGRPCClient::current(uint8_t r, uint8_t g, uint8_t b)
 ### 配置曝光时间
 
 ```cpp
-int hy::HYGRPCClient::exposure(uint32_t exposure, uint32_t period)
+int hrl::HYGRPCClient::exposure(uint32_t exposure, uint32_t period)
 ```
 
 函数功能：设置投影仪触发曝光和触发周期 。
@@ -221,7 +221,7 @@ int hy::HYGRPCClient::exposure(uint32_t exposure, uint32_t period)
 ### 控制相机取图
 
 ```cpp
-int hy::HYGRPCClient::capture()
+int hrl::HYGRPCClient::capture()
 ```
 
 函数功能：控制相机进行取图操作 。
@@ -231,7 +231,7 @@ int hy::HYGRPCClient::capture()
 ### 触发取图并获取相机图片
 
 ```cpp
-int hy::HYGRPCClient::capture(std::vector<cv::Mat>& images)
+int hrl::HYGRPCClient::capture(std::vector<cv::Mat>& images)
 ```
 
 函数功能：控制相机进行取图操作并获取图像 。
@@ -245,7 +245,7 @@ int hy::HYGRPCClient::capture(std::vector<cv::Mat>& images)
 ### 生成获取彩色图和深度图
 
 ```cpp
-int hy::HYGRPCClient::compute(cv::Mat& color, cv::Mat& depth)
+int hrl::HYGRPCClient::compute(cv::Mat& color, cv::Mat& depth)
 ```
 
 函数功能：控制相机进行取图操作并生成彩色图和深度图。

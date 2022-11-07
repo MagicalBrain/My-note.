@@ -8,7 +8,7 @@
 #include <common/HYPluginFactory.hpp>
 #include <io/TCPClient.h>
 
-class BorunteRobotPlugin :public hy::HYRobotPlugin
+class BorunteRobotPlugin :public hrl::HYRobotPlugin
 {
 public:
 	BorunteRobotPlugin();
@@ -47,7 +47,7 @@ public:
 	/// @param loc 
 	/// @param type 
 	/// @return 
-	virtual int pose(std::vector<double>& loc, int type = hy::ROBOT_POSE_TCP) override;
+	virtual int pose(std::vector<double>& loc, int type = hrl::ROBOT_POSE_TCP) override;
 
 	/// @brief     远程发送要运动的点位loc (mm) 寄存器地址800给borunte
 	/// @details   以绝对坐标直线运动方式运动
@@ -55,13 +55,13 @@ public:
 	/// @param loc 
 	/// @param type 
 	/// @return 
-	virtual int move(const std::vector<double>& loc, int type = hy::ROBOT_POSE_TCP) override;
+	virtual int move(const std::vector<double>& loc, int type = hrl::ROBOT_POSE_TCP) override;
 
 	/// @brief 抓取程序函数，由HyPick调用，完成后触发软件取图信号
 	/// @param param 
 	/// @param type 
 	/// @return 
-	virtual int navigation(const hy::NavigationParam& param, int type = hy::ROBOT_POSE_TCP) override;
+	virtual int navigation(const hrl::NavigationParam& param, int type = hrl::ROBOT_POSE_TCP) override;
 
 	/// @brief 
 	/// @return 
@@ -74,7 +74,7 @@ public:
 	/// @param task 
 	/// @return 
 	virtual int run(const std::string& task) override;
-	//int moveto(const std::vector<double>& loc, int addr, int type = hy::ROBOT_POSE_TCP);
+	//int moveto(const std::vector<double>& loc, int addr, int type = hrl::ROBOT_POSE_TCP);
 	
 	/// @brief 给定坐标和寄存器地址发送到borunte
  	/// @details   需要事先在borunte上定义好对应寄存器地址和数据类型
@@ -82,11 +82,11 @@ public:
 	/// @param addr 
 	/// @param type 
 	/// @return 
-	int setPos(const std::vector<double>& loc, int addr, int type = hy::ROBOT_POSE_TCP);
+	int setPos(const std::vector<double>& loc, int addr, int type = hrl::ROBOT_POSE_TCP);
 
 private:
 	/// @brief 
-	hy::TCPClient::Ptr client_;
+	hrl::TCPClient::Ptr client_;
 
 	/// @brief 
 	const static size_t buffer_length_ = 1024;

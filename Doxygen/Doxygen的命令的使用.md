@@ -26,7 +26,7 @@
 /// @param loc 
 /// @param type 
 /// @return 
-virtual int pose(std::vector<double>& loc, int type = hy::ROBOT_POSE_TCP) override;
+virtual int pose(std::vector<double>& loc, int type = hrl::ROBOT_POSE_TCP) override;
 ```
 
 ## 控制文档生成

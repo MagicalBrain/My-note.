@@ -16,7 +16,7 @@ copy $(TargetPath) $(SolutionDir)test4recognition\algorithm-plugin\$(TargetFileN
 
 还可以通过下面的计算结果来检查命令写的对不对，例如上面的计算结果：
 ```bash
-copy C:\hy\HinYeun-HRL\algorithmDemoPlugin-HRL\x64\Release\recognizeCloseObjectPlugin.dll C:\hy\HinYeun-HRL\algorithmDemoPlugin-HRL\test4recognition\algorithm-plugin\recognizeCloseObjectPlugin.dll
+copy C:\hrl\HinYeun-HRL\algorithmDemoPlugin-HRL\x64\Release\recognizeCloseObjectPlugin.dll C:\hrl\HinYeun-HRL\algorithmDemoPlugin-HRL\test4recognition\algorithm-plugin\recognizeCloseObjectPlugin.dll
 ```
 
 ```bash
