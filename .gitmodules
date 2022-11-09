@@ -13,9 +13,6 @@
 [submodule "Qt"]
 	path = Qt
 	url = https://gitee.com/CPLASF000000/qt-notes.git
-[submodule "DesignPattern(设计模式)"]
-	path = DesignPattern(设计模式)
-	url = https://gitee.com/CPLASF000000/design-pattern-notes.git
 [submodule "Eigen-Learning"]
 	path = Eigen-Learning
 	url = https://gitee.com/CPLASF000000/eigen-notes.git
