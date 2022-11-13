@@ -10,9 +10,6 @@
 [submodule "Linux"]
 	path = Linux
 	url = https://gitee.com/CPLASF000000/linux-notes.git
-[submodule "Qt"]
-	path = Qt
-	url = https://gitee.com/CPLASF000000/qt-notes.git
 [submodule "Eigen-Learning"]
 	path = Eigen-Learning
 	url = https://gitee.com/CPLASF000000/eigen-notes.git
@@ -22,15 +19,6 @@
 [submodule "计算机图形学"]
 	path = 计算机图形学
 	url = https://gitee.com/CPLASF000000/compute-graphics-notes.git
-[submodule "数学/高等数学"]
-	path = 数学/高等数学
-	url = https://gitee.com/CPLASF000000/advanced-mathematics-notes.git
-[submodule "数学/线性代数"]
-	path = 数学/线性代数
-	url = https://gitee.com/CPLASF000000/linear-algebra-notes.git
-[submodule "数学/数理统计与概率论"]
-	path = 数学/数理统计与概率论
-	url = https://gitee.com/CPLASF000000/probabllity-statistics-notes.git
 [submodule "OpenCV-Learning"]
 	path = OpenCV-Learning
 	url = https://gitee.com/CPLASF000000/open-cv-notes.git
