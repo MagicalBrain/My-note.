@@ -1,4 +1,0 @@
-include "OpenXPSDocument.rnc"
-include "OpenXPSResourceDictionaryKey.rnc"
-include "xml.rnc"
-start = oxps_FixedDocumentSequence
