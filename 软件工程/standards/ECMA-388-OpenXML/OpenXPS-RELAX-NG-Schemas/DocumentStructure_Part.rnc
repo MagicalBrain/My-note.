@@ -1,3 +1,0 @@
-include "OpenXPSDocumentStructure.rnc"
-include "xml.rnc"
-start = ds_DocumentStructure
