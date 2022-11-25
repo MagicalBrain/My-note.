@@ -14,4 +14,9 @@ sudo apt-get install open-vm-tools
 sudo apt-get install open-vm-tools-desktop
 ```
 
+上面的安装语句可以合并成下面一条命令
+```bash
+sudo apt-get install open-vm-tools open-vm-tools-desktop
+```
+
 然后重启虚拟机即可
