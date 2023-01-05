@@ -26,3 +26,13 @@ sudo docker run --rm dockcross/linux-arm64-lts > ./docker-linux-arm64-lts
 chmod +x ./docker-linux-arm64-lts
 ./docker-linux-arm64-lts bash -c '$CC test/C/hello.c -o hello_arm'
 ```
+
+运行命令进入命令行：
+
+```bash
+./docker-linux-arm64-lts bash
+# 如果有权限问题就
+sudo ./docker-linux-arm64-lts bash
+```
+
+实测这个编译出来的文件可以直接复制到nano上运行

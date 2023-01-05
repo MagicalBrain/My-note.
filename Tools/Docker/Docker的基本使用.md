@@ -16,7 +16,7 @@
 
 由于工作上用的是Ubuntu18.04，这里就搞个Ubuntu18.04吧。
 
-```
+```bash
 docker pull ubuntu:18.04
 ```
 
@@ -24,7 +24,7 @@ win10和Linux其实也就创建镜像，并用该镜像启动容器有一些差�
 
 ### 查看镜像
 
-```
+```bash
 docker images
 ```
 
@@ -36,32 +36,50 @@ docker images
 
 #### 保存镜像
 
-```
+```bash
 docker save filename.tar
 ```
 
 #### 载入镜像
 
-```
+```bash
 docker load filename.tar
 ```
 
 ## 容器
 
+### 创建容器
+
+```bash
+# docker create -it ubuntu:16.04
+
+docker create -p 3000:80 --name [name] [image\'s repo]
+sudo docker create -p 3000:80 --name dockcross01 dockcross/linux-arm64-lts
+```
+
 ### 查看容器
 
-```
+创建过容器之后才能查看到容器，否则列表是空的
+
+```bash
 docker ps
+```
+
+```bash
+docker ps -a --no-trunc
 ```
 
 ### 启动容器
 
-```
+一般创建容器之后，容器处于停止的状态，需要start命令来启动：
+
+```bash
 docker run -it ubuntu:18.04
 ```
 
 启动用过的容器
-```
+
+```bash
 docker start ID
 docker exec -it ID /bin/bash
 # 或
@@ -72,8 +90,40 @@ docker exec -it name /bin/bash
 
 推荐使用`powershell`。
 
-```
+```bash
 docker cp filename1 name:filename2
 ```
 
 命令类似`scp`
+
+### 删除容器
+
+#### 删除制定的容器
+
+```bash
+docker rm -f <containerid>
+```
+
+#### 删除未启动成功的容器
+
+```bash
+docker rm $(docker ps -a|grep Created|awk '{print $1}')
+或者
+docker rm $(docker ps -qf status=created)
+```
+
+#### 删除退出状态的容器
+
+```bash
+docker rm $(docker ps -a|grep Exited|awk '{print $1}')
+或者
+docker rm $(docker ps -qf status=exited)
+```
+
+#### 删除所有未运行的容器
+
+```bash
+docker rm $(docker ps -a -q) #正在运行的删除不了，所有未运行的都被删除了
+或者
+docker container prune #Docker 1.13版本以后，可以使用 docker containers prune 命令，删除孤立的容器
+```
