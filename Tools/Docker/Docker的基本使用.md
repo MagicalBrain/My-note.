@@ -127,3 +127,15 @@ docker rm $(docker ps -a -q) #正在运行的删除不了，所有未运行的�
 或者
 docker container prune #Docker 1.13版本以后，可以使用 docker containers prune 命令，删除孤立的容器
 ```
+
+### 保存容器的修改
+
+```bash
+# 使用 docker commit 命令
+# 新建一个宿主机terminal 来查看容器id并执行命令
+# option:
+# -m "[注释，这次保存了？东西]]"
+# [容器id]
+# [镜像repo名] dockcross/linux-arm64-lts:20221230-9387e59
+sudo docker commit -m "install ifconfig" e8355caf2c92 dockcross/linux-arm64-lts:20221230-9387e59
+```
