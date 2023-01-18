@@ -46,6 +46,14 @@ docker save filename.tar
 docker load filename.tar
 ```
 
+#### 删除镜像
+
+```bash
+docker image rm [id]
+```
+
+
+
 ## 容器
 
 ### 创建容器
