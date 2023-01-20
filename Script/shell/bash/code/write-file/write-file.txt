@@ -1,0 +1,5 @@
+asdfg
+
+# 以上是文件里已经有的内容
+add somethind
+add something

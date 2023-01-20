@@ -94,6 +94,10 @@ docker exec -it ID /bin/bash
 docker exec -it name /bin/bash
 ```
 
+```bash
+sudo docker run -it ubuntu:18.04 /bin/bash
+```
+
 ### 在容器和宿主机之间复制文件
 
 推荐使用`powershell`。

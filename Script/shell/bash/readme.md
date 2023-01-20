@@ -170,9 +170,44 @@ if [[ "$option" == "y" ]]   # 正确的用法，注意区分！
 ### 文件系统简介
 
 ### 文件权限
+
 ### 读取文件
 
+假设读取的文件为当期目录下的 test.txt 文件，内容如下：
+
+```bash
+Google 
+Runoob
+Taobao
+```
+
+实例 1
+```bash
+#!/bin/bash
+
+while read line
+do
+    echo $line
+done < test.txt
+```
+
+执行输出结果为：
+
+```bash
+Google
+Runoob
+Taobao
+```
+
+https://www.runoob.com/w3cnote/shell-read-line.html
+
 ### 写入文件
+
+```bash
+
+```
+
+https://www.yiibai.com/bash/bash-write-file.html#:~:text=%E8%A6%81%E5%B0%86Bash%E5%91%BD%E4%BB%A4%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%8F%B3%E5%B0%96%E6%8B%AC%E5%8F%B7%E7%AC%A6%E5%8F%B7,%28%3E%29%E6%88%96%E5%8F%8C%E5%8F%B3%E5%B0%96%E7%AC%A6%E5%8F%B7%20%28%3E%3E%29%EF%BC%9A
 
 ## 定义函数
 
