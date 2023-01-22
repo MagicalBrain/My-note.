@@ -207,6 +207,10 @@ https://www.runoob.com/w3cnote/shell-read-line.html
 
 ```
 
+@import "./code/write-file/write-file.sh"
+
+即可实现在末尾加入你想要的内容了
+
 https://www.yiibai.com/bash/bash-write-file.html#:~:text=%E8%A6%81%E5%B0%86Bash%E5%91%BD%E4%BB%A4%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%8F%B3%E5%B0%96%E6%8B%AC%E5%8F%B7%E7%AC%A6%E5%8F%B7,%28%3E%29%E6%88%96%E5%8F%8C%E5%8F%B3%E5%B0%96%E7%AC%A6%E5%8F%B7%20%28%3E%3E%29%EF%BC%9A
 
 ## 定义函数
