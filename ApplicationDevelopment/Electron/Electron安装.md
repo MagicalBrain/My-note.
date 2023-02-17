@@ -50,6 +50,9 @@ sudo apt-get install npm
 npm install electron --save-dev
 ```
 
+注意：这个命令虽说是安装electron的，但是会直接将运行命令的目录当作是当前工作项目目录（就是将当前目录当成是项目目录并创建了一些文件）；
+所以如果能够安装成功的话，最好把文件删除了，然后新建一个工作项目目录[初始化Electron项目]
+
 ### ubuntu18 安装出错
 
 ```bash
