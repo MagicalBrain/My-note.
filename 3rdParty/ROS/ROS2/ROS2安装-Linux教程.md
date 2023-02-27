@@ -6,6 +6,8 @@
 
 在下载安装ros2支持我们需要知道ros2支持的系统版本是不是我们目前正在使用的版本
 
+**Ubuntu18** 对应的版本是 ==ros-eloquent==
+
 [官方文档对ROS2各版本支持的系统列表](https://www.ros.org/reps/rep-2000.html#foxy-fitzroy-may-2020-may-2023)
 
 [Ubuntu18.04安装ROS2](https://blog.csdn.net/fanshuaifang/article/details/114399792?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-10-114399792-blog-122810537.t0_searchtargeting_v1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-10-114399792-blog-122810537.t0_searchtargeting_v1&utm_relevant_index=17)
@@ -73,3 +75,40 @@ source /opt/ros/humble/setup.bash
 echo " source /opt/ros/humble/setup.bash" >> ~/.bashrc
 ```
 
+## Ubuntu18 安装ros2报错
+
+### 找不到ros2软件包
+
+```bash
+# 输入命令安装ros2
+sudo apt install ros-eloquent-desktop
+# 报错
+E: Unable to locate package ros-eloquent-desktop
+```
+
+可能是软件源的问题
+运行一下命令可能会解决
+
+```bash
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+
+sudo sh -c 'echo "deb [arch=amd64] http://packages.ros.org/ros2/ubuntu bionic main" > /etc/apt/sources.list.d/ros2-latest.list'
+# 如果是arm64 例如jetson nano
+sudo sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu bionic main" > /etc/apt/sources.list.d/ros2-latest.list'
+
+sudo apt update
+```
+
+### GPG无效
+
+```bash
+sudo apt-get update
+# 报错：
+W: GPG error: http://packages.ros.org/ros2/ubuntu bionic InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY F42ED6FBAB17C654
+```
+
+解决办法：
+
+```bash
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654
+```
