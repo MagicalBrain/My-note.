@@ -81,6 +81,9 @@ cd ~/dev_ws/src
 ros2 pkg create --build-type ament_cmake learning_pkg_c               # C++
 # 创建一个python功能包
 ros2 pkg create --build-type ament_python learning_pkg_python         # Python
+
+# 创建一个C++功能包 且带有Apache-2.0证书
+ros2 pkg create --build-type ament_cmake learning_pkg_c --license 'Apache-2.0'
 ```
 
 ## pkg executables
