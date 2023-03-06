@@ -28,7 +28,7 @@ sudo apt install curl gnupg2 lsb-release
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 ```
 
-如果允许的时候报错：
+如果运行的时候报错：
 
 ```bash
 url: (7) Failed to connect to raw.githubusercontent.com port 443 after 8 ms: Connection refused
