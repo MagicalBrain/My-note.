@@ -34,3 +34,6 @@
 [submodule "00 编程语言(Program-Languages)/Python"]
 	path = 00 编程语言(Program-Languages)/Python
 	url = https://gitee.com/CPLASF000000/python-notes.git
+[submodule "3rdParty/ROS"]
+	path = 3rdParty/ROS
+	url = https://gitee.com/CPLASF000000/ros-note.git
