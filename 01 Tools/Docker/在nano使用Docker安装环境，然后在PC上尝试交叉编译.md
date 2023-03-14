@@ -4,7 +4,7 @@
 
 ```bash
 # C++ 开发基本依赖
-sudo apt-get install build-esstential
+sudo apt-get install build-essential
 # cmake 3.24
 
 # boost 1.65
