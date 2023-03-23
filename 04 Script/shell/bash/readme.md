@@ -42,6 +42,53 @@ statements
 fi
 ```
 
+##### 比较变量的值是否是整数
+
+```bash
+# 检查当前是否处于root状态，否则提示“需要root权限”并退出
+
+if [ "$UID" -eq 0 ]; then
+    echo "Yes, has been root."
+else
+    echo "需要root权限"
+    exit 1
+fi
+```
+
+##### 判断字符串变量是否相等
+
+```bash
+# 作为编译脚本的范本
+
+sudo rm -r build
+echo "start build my process"
+mkdir build && cd build
+cmake .. -DBUILD_LIB=TRUE
+make -j$(nproc)
+
+echo "make is finished, do you want to install it?(y/n)"
+read y
+if [[ "$y" == "y" ]]; then
+	sudo make install
+fi
+```
+
+##### 测试变量 判断是否存在
+
+```bash
+#! /bin/bash
+
+# 检查系统中是否存在 HRL环境变量
+
+if [ -v HOME ]
+then
+    echo "env exists!"
+    echo $HOME
+else
+    echo "env doesn't exists"
+fi
+```
+
 ```bash
 if [ expression_1 ] && [ expression_2 ];  
 then  
