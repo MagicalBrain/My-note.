@@ -23,3 +23,7 @@ vscode 尝试创建目录但失败，没有访问权限……
 参考链接：
 
 https://blog.csdn.net/LearnerzzZ/article/details/115406542
+
+## vscode在ubuntu上暗黑模式菜单栏仍然有白色边
+
+ 选择 设置 << 用户 << 窗口 << Title Bar Style << 更改选项为 “custom”
