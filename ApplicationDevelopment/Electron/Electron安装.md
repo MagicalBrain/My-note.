@@ -9,9 +9,15 @@ Ubuntu:
 sudo apt-get install npm
 ```
 
-#### Ubuntu18 安装不了解决办法
+#### Ubuntu18 安装
 
 ==**建议直接用ubuntu20及以上，要不就装旧版的**==
+
+```bash
+sudo apt-get install nodejs-dev node-gyp libssl1.0-dev
+sudo apt-get install npm
+```
+
 
 ```bash
 sudo apt-get install npm
@@ -30,11 +36,56 @@ The following packages have unmet dependencies:
 E: Unable to correct problems, you have held broken packages.
 ```
 
+#### ubuntu 20
+
+#### ubuntu 22
+
+
 ```bash
 sudo apt-get install nodejs-dev node-gyp libssl1.0-dev
 sudo apt-get install npm
 ```
 
+`sudo apt-get install nodejs-dev node-gyp libssl1.0-dev`这里会报错：
+
+```bash
+sudo apt-get install nodejs-dev node-gyp libssl1.0-dev
+
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package libssl1.0-dev is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+
+Package nodejs-dev is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+However the following packages replace it:
+  libnode-dev
+
+E: Package 'nodejs-dev' has no installation candidate
+E: Package 'libssl1.0-dev' has no installation candidate
+```
+
+尝试`sudo apt-get install libnode-dev`来替代
+
+然后直接npm安装electron
+
+```bash
+mkdir -p $USER/electron_demo
+npm install electron --save-dev
+```
+
+然后过程有点慢：
+
+```bash
+
+```
+
+因为要从github下载？
+
+解决办法：
 
 ### Window
 
