@@ -125,6 +125,54 @@ HTML5中常见的操作元素包括：
 
 除了这些操作元素外，HTML5还有一些其他的元素和API，可以用于实现各种特殊的功能和效果。
 
+### 标题
+
+由于markdown兼容html元素，所以以下源码可以直接预览
+
+```html
+<h1>这是一个标题</h1>
+<h2>这是一个标题</h2>
+<h3>这是一个标题</h3>
+```
+
+<h1>标题1</h1>
+<h2>标题2</h2>
+<h3>标题3</h3>
+
+### 段落
+
+```html
+<p>这是一个段落。</p>
+<p>这是另外一个段落。</p>
+```
+
+<p>这是一个段落。</p>
+<p>这是另外一个段落。</p>
+
+### 水平分割线
+
+```html
+<hr>
+```
+
+<hr>
+
+### html链接
+
+```html
+<a href="https://www.runoob.com">这是一个链接</a>
+```
+
+<a href="https://www.runoob.com">这是一个链接</a>
+
+### html图像
+
+```html
+<img decoding="async" src="/images/logo.png" width="258" height="39" />
+```
+
+<img decoding="async" src="/images/logo.png" width="258" height="39" />
+
 ## 属性
 
 HTML元素的属性有很多种，下面列出一些常见的属性：
