@@ -55,21 +55,3 @@ p
 </body>
 </html>
 
-## id 选择器
-
-id 选择器可以为标有特定 id 的 HTML 元素指定特定的样式。
-
-HTML元素以id属性来设置id选择器,CSS 中 id 选择器以 "#" 来定义。
-
-以下的样式规则应用于元素属性 id="para1":
-
-实例
-```html
-#para1
-{
-    text-align:center;
-    color:red;
-}
-```
-
-## class选择器
