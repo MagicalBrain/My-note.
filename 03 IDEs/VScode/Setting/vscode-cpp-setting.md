@@ -2,9 +2,38 @@
 
 主要是四个文件
 
-## c_cpp.json
+## c_cpp_properties.json
 
 主要是配置cpp的环境变量，头文件路径……
+
+配置路径的时候使用环境变量`${env:Name}`
+
+```json
+{
+  "configurations": [
+      {
+          "name": "Linux",
+          "includePath": [
+              "${workspaceFolder}/**",
+              "${env:HOME}/ros2_ws/install/robot_localization/include/**",
+              "${env:HOME}/ros2_ws/install/openslam_gmapping/include/**",
+              "/opt/ros/${env:ROS_DISTRO}/include/**",
+              "${env:HOME}/cuda_ros2_ws/src/ros2_cuda_learning/ament_cmake_packages/cuda_ament_cmake/include/**",
+              "${env:HOME}/cuda_ros2_ws/src/ros2_cuda_learning/Sensor/pwc-angstrong/include/**",
+              "${env:HOME}/cuda_ros2_ws/src/ros2_cuda_learning/Sensor/pwc-realsense/include/**",
+              "include/**",
+              "/usr/include/**"
+          ],
+          "defines": [],
+          "compilerPath": "/usr/bin/gcc",
+          "cStandard": "c99",
+          "cppStandard": "c++14",
+          "intelliSenseMode": "clang-x64"
+      }
+  ],
+  "version": 4
+}
+```
 
 https://code.visualstudio.com/docs/cpp/c-cpp-properties-schema-reference
 
