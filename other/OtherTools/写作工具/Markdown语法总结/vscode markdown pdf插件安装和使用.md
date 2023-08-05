@@ -33,4 +33,7 @@ C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe
 }
 ```
 
+## Markdown-Notes-Pack
 
+为了提升在vscode里写markdown体验，还可以安装
+`Markdown-Notes-Pack`这个插件
