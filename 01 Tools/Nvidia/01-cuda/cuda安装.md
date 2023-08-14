@@ -4,7 +4,7 @@
 
 ## WSL2
 
-[我自己的WSL2安装cuda笔记](../../02%20OperationSystem%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/WSL/WSL%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Cuda.md)
+[我自己的WSL2安装cuda笔记](../../../02%20OperationSystem%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/WSL/WSL%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Cuda.md)
 
 ## Linux
 
