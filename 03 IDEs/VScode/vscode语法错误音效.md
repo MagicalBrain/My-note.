@@ -1,3 +1,11 @@
+<!--
+ * @Author: MB's Legion PC 374870361@qq.com
+ * @Date: 2023-09-03 17:06:24
+ * @LastEditors: MB's Legion PC 374870361@qq.com
+ * @LastEditTime: 2023-09-04 22:18:09
+ * @FilePath: \MyNotes\03 IDEs\VScode\vscode语法错误音效.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 # vscode语法错误音效
 
 今天一边用耳机听歌一边写代码的时候，耳机偶尔会传来奇怪的“噗噗”声，我第一反应是我那服役了六七年的老耳机出毛病了。
