@@ -136,6 +136,10 @@ $$\lim_{x \to+ \infty}$$
 
 $\lim\limits_{x \to+ \infty}$
 
+### 梯度符号
+
+$\nabla f$
+
 ## 线性代数
 ### 矩阵
 $$
