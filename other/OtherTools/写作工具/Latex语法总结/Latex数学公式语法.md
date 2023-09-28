@@ -141,6 +141,33 @@ $\lim\limits_{x \to+ \infty}$
 $\nabla f$
 
 ## 线性代数
+
+### 向量
+
+如果只是行向量那么只用圆括号$(1, 2)$即可
+
+如果是列向量
+
+$(1, 2)^T$
+
+或
+
+$$
+\begin{pmatrix}
+  1 \\ 2
+\end{pmatrix}
+$$
+
+### 行列式
+
+$$
+\begin{vmatrix}
+  1 & 2 & 3 \\ 
+  2 & 1 & 2 \\
+  3 & 2 & 1
+\end{vmatrix}
+$$
+
 ### 矩阵
 $$
 \begin{pmatrix}
