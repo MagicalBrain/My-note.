@@ -1,3 +1,11 @@
+<!--
+ * @Author: MB's X13 374870361@qq.com
+ * @Date: 2023-04-30 17:52:33
+ * @LastEditors: MB's X13 374870361@qq.com
+ * @LastEditTime: 2023-09-28 09:57:55
+ * @FilePath: \Notes\MyNotes\03 IDEs\VScode\Plugin\Markdown\markdown-preview-enhanced导出pdf.md
+ * @Description: 
+-->
 # vscode的markdown插件 preview enhanced 导出pdf
 
 参考：
@@ -27,3 +35,13 @@ https://blog.csdn.net/m0_37639589/article/details/91349425
 ```
 
 然后重启vscode，就可以用了。
+
+### 导出的pdf数学公式不显示问题
+
+在开头加上：
+
+```html
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });</script>
+
+```
