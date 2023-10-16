@@ -1,3 +1,11 @@
+<!--
+ * @Author: MB's X13 374870361@qq.com
+ * @Date: 2023-06-27 00:33:28
+ * @LastEditors: MB's X13 374870361@qq.com
+ * @LastEditTime: 2023-10-16 16:59:47
+ * @FilePath: \Notes\MyNotes\03 IDEs\VScode\vscode搜索功能.md
+ * @Description: 
+-->
 # vscode搜索功能
 
 快捷键是ctrl F
@@ -39,6 +47,14 @@ ros2 是其中一个关键字
 然后在结果页面中再ctrl+F，输入`.*vscode.*`来进行搜索，如图：
 
 ![](./vscode搜索功能.asset/vscode-search.png)
+
+推荐使用正则表达式如下：
+
+```bash
+(ros.*)(.*vscode)
+# 或
+(.*ros.*)(.*vscode.*)
+```
 
 ### 如果多个关键字不在同一行
 
