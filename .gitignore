@@ -1,2 +1,7 @@
+
 *.vscode
+
+.gitmodules
+
 *.DS_Store
+
