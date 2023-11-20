@@ -74,3 +74,7 @@ services.msc
 然后重启电脑后再通过上面的操作打开组策略
 
 这个脚本运行结束后会生成一个`List.txt`脚本，运行后可以删除了。
+
+## 参考链接
+
+https://mp.weixin.qq.com/s/GGGqNSq7WyAvSJC1Pe1LpA
