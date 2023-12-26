@@ -1,5 +1,5 @@
 # 设置 my.exe 文件的路径
-$exePath = "C:\path\to\my.exe"
+$exePath = "G:\HRL-WorkSpace\HNNK_Meditation_V1\release\HNNK_1024.exe"
 
 # 调用 dumpbin.exe 工具并将输出重定向到临时文件
 $tempFile = [System.IO.Path]::GetTempFileName()
