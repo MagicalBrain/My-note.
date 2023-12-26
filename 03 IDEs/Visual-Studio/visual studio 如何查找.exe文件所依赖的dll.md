@@ -1,6 +1,6 @@
 # visual studio 如何查找.exe文件所依赖的dll
 
-首先我们需要按照visual studio，然后使用`dumpbin.exe`
+首先我们需要安装visual studio，然后使用`dumpbin.exe`
 
 如果没有的话则需要借助第三方开源工具
 
