@@ -2,10 +2,16 @@
  * @Author: MB's X13 374870361@qq.com
  * @Date: 2023-12-26 16:24:51
  * @LastEditors: MB's X13 374870361@qq.com
- * @LastEditTime: 2023-12-26 16:24:59
+ * @LastEditTime: 2023-12-26 17:46:19
  * @Description: 
 -->
 # 使用PowerShell脚本来获取exe文件依赖dll文件的列表
+
+## 结果
+
+不太行
+
+## 示例
 
 以下是一个示例的 PowerShell 脚本，它使用 `dumpbin.exe` 工具来找出 `my.exe` 所依赖的所有 DLL，并将文件名保存到一个文本文件中：
 

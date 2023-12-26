@@ -1,19 +1,32 @@
-# è®¾ç½® my.exe æ–‡ä»¶çš„è·¯å¾„
-$exePath = "G:\HRL-WorkSpace\HNNK_Meditation_V1\release\HNNK_1024.exe"
+# Write-Host "×¼±¸Ö´ĞĞ£¬½Å±¾Ö´ĞĞÂíÉÏ¿ªÊ¼£¡ "
 
-# è°ƒç”¨ dumpbin.exe å·¥å…·å¹¶å°†è¾“å‡ºé‡å®šå‘åˆ°ä¸´æ—¶æ–‡ä»¶
-$tempFile = [System.IO.Path]::GetTempFileName()
-& "dumpbin.exe" /DEPENDENTS $exePath > $tempFile
+# ÁÙÊ±ÈÆ¹ıÇ©ÃûÏŞÖÆ
+PowerShell -ExecutionPolicy Bypass -File .\Find_All_Dlls.ps1
 
-# è¯»å–ä¸´æ—¶æ–‡ä»¶ï¼Œæå– DLL æ–‡ä»¶å
-$dllNames = Get-Content $tempFile | Select-String -Pattern "^\s+([^\s]+\.dll)" | ForEach-Object { $_.Matches.Groups[1].Value }
+# Write-Host "¿ªÊ¼Ö´ĞĞ½Å±¾"
 
-# å°† DLL æ–‡ä»¶åä¿å­˜åˆ° txt æ–‡ä»¶
-$outputFile = "dll_list.txt"
-$dllNames | Out-File -FilePath $outputFile -Encoding UTF8
+# ÉèÖÃ my.exe ÎÄ¼şµÄÂ·¾¶
+# $exePath = "G:\HRL-WorkSpace\HNNK_Meditation_V1\release\HNNK_1024.exe"
+$exePath = "C:\Users\hrl\AppData\Local\youdao\dict\Application\YoudaoDict.exe"
 
-# æ˜¾ç¤ºæˆåŠŸæ¶ˆæ¯
-Write-Host "DLL æ–‡ä»¶åå·²ä¿å­˜åˆ° $outputFile"
+# µ÷ÓÃ dumpbin.exe ¹¤¾ß²¢½«Êä³öÖØ¶¨Ïòµ½ÁÙÊ±ÎÄ¼ş
+# $tempFile = [System.IO.Path]::GetTempFileName()
 
-# åˆ é™¤ä¸´æ—¶æ–‡ä»¶
-Remove-Item $tempFile
+$tempFile = "tempfile.txe"
+# & "dumpbin.exe" /DEPENDENTS $exePath > $tempFile
+# "dumpbin.exe" /DEPENDENTS $exePath > $tempFile
+"dumpbin.exe /DEPENDENTS $exePath" | Out-File -FilePath $tempFile
+
+# ¶ÁÈ¡ÁÙÊ±ÎÄ¼ş£¬ÌáÈ¡ DLL ÎÄ¼şÃû
+# $dllNames = Get-Content $tempFile | Select-String -Pattern "^\s+([^\s]+\.dll)" | ForEach-Object { $_.Matches.Groups[1].Value }
+
+# # ½« DLL ÎÄ¼şÃû±£´æµ½ txt ÎÄ¼ş
+# $outputFile = "dll_list.txt"
+# $dllNames | Out-File -FilePath $outputFile -Encoding UTF8
+
+# ÏÔÊ¾³É¹¦ÏûÏ¢
+# Write-Host "DLL ÎÄ¼şÃûÒÑ±£´æµ½ $outputFile"
+# Write-Output "DLL ÎÄ¼şÃûÒÑ±£´æµ½ $outputFile"
+
+# É¾³ıÁÙÊ±ÎÄ¼ş
+# Remove-Item $tempFile
