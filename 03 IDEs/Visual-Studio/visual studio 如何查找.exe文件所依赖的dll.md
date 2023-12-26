@@ -88,3 +88,7 @@ File Type: EXECUTABLE IMAGE
         1000 .rsrc
        48000 .text
 ```
+
+## 比较便捷的用法
+
+直接将dumplebin.exe所在的目录添加到环境变量里，然后在powershell里直接调用，或者使用脚本
