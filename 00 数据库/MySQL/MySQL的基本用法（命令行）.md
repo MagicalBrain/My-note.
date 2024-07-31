@@ -8,18 +8,66 @@
 
 # MySQL的基本用法（命令行）
 
-首先要对数据库里的数据有个基本概念：
+## 连接数据库
+
+```bash
+mysql -u your_username -p
+
+# 登录 root
+mysql -u root -p
+```
+
+## 用户创建
+
+首先要先创建用户并授权，然后才能对数据库进行操作
+
+创建用户
+要创建一个新用户，你可以使用以下 SQL 命令：
+
+```sql
+CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+
+--- 假设创建 hrl 用户
+CREATE USER 'hrl'@'localhost' IDENTIFIED BY 'password';
+```
+
+然后就可以用 hrl来连接mysql了:
+
+```bash
+mysql -u hrl -p
+```
+
+## 授权权限
+
+创建用户后，你需要授予他们访问权限，使用 GRANT 命令来授予权限：
+
+```sql
+GRANT privileges ON database_name.* TO 'username'@'host';
+--- 授权给 hrl 不然只能登录啥也干不了
+GRANT ALL PRIVILEGES ON test.* TO 'hrl'@'localhost';
+```
+
+----
+
+以后一个服务就用一个用户对应的数据库来进行数据管理
+
+## 数据库
+
+对数据库里的数据有个基本概念：
 
 数据库
 
-
-## 数据库
 
 ### 创建一个数据库
 
 ```sql
 CREATE DATABASE test;
 ```
+
+#### 授权用户访问数据库
+
+root权限下创建数据库，然后创建用户并授权其使用
+普通用户才能用，普通用户貌似还没有权限创建数据库
 
 ### 查看当前所有数据库
 
@@ -181,4 +229,6 @@ DROP TABLE table_name;
 
 ## 关联字段
 
+## 参考链接
 
+https://www.runoob.com/mysql/mysql-connection.html
