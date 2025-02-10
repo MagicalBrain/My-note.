@@ -59,6 +59,11 @@ SET: 集合类型，用于存储多个值，可以选择多个预定义的集合
 
 GEOMETRY, POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION: 用于存储空间数据（地理信息、几何图形等）。
 
+## 如何在sql中的一列存储数组
+
+1. 字符串：直接将数组转为带分隔符的字符串进行存储（例如用逗号隔开的）
+2. json：将数据转为json字符串来存储
+
 ## 参考链接
 
 https://www.runoob.com/mysql/mysql-data-types.html
