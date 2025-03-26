@@ -7,3 +7,5 @@
 ## 本地
 
 需要下载java和graphviz
+
+本地配置居然还有按照java，我还不如直接用 draw.io 画呢
