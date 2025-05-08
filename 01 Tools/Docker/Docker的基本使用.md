@@ -37,13 +37,13 @@ docker images
 #### 保存镜像
 
 ```bash
-docker save filename.tar
+docker save -o filename.tar
 ```
 
 #### 载入镜像
 
 ```bash
-docker load filename.tar
+docker load -i filename.tar
 ```
 
 #### 删除镜像
@@ -52,7 +52,7 @@ docker load filename.tar
 docker image rm [id]
 ```
 
-
+注意这里保存导入的都是镜像而不是容器，启动后的修改不会保存下来
 
 ## 容器
 
@@ -151,3 +151,11 @@ docker container prune #Docker 1.13版本以后，可以使用 docker containers
 # [镜像repo名] dockcross/linux-arm64-lts:20221230-9387e59
 sudo docker commit -m "install ifconfig" e8355caf2c92 dockcross/linux-arm64-lts:20221230-9387e59
 ```
+
+### 导出容器
+
+```bash
+docker export
+```
+
+应该不用`docker commit`也可以导出容器到宿主机
