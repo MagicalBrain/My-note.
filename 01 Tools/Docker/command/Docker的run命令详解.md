@@ -1,5 +1,7 @@
 # Docker的run命令详解
 
+docker run 命令用于创建并启动一个新的容器。
+
 运行帮助命令，以查看帮助：
 ```bash
 docker run --help
