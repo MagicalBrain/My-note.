@@ -23,6 +23,7 @@ https://blog.csdn.net/Ning2019/article/details/144770404
 
 ```bash
 bcdedit /set hypervisorlanuchtype auto
+bcdedit /set hypervisorlaunchtype auto
 ```
 
 运行完重启电脑
