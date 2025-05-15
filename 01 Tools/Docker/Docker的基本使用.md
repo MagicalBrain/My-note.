@@ -159,3 +159,29 @@ docker export
 ```
 
 应该不用`docker commit`也可以导出容器到宿主机
+
+### 容器如何开放端口并绑定
+
+如果没有容器需要先从镜像创建一个：
+
+```bash
+docker run -it --name [container_name] -p [主机端口:容器端口] -d [image_name]
+```
+
+例如：我用 `golang-hrl-images` 镜像创建一个名为 `golang-ssh` 的容器，并绑定容器的22端口到主机的5678，用来实现ssh登录：
+
+```bash
+docker run -it --name golang-ssh -p 5678:22 -d golang-hrl-images
+```
+
+如果容器已启动且已经安装了一些东西并修改了文件，那么只能先 `docker commit`将当前容器保存为一个新的镜像，然后从新的镜像创建容器，因为端口开放和绑定貌似只能在容器创建的时候设置:
+
+```bash
+# 假设当前已经有了一个名为 golang-ssh 的容器
+# commit 信息：save ssh config files
+# 然后保存的新镜像为 golang-hrl
+docker commit -m "[commit_info]" golang-ssh golang-hrl:latest
+
+# 保存成功后再从新镜像创建名为 golang-web 的容器并绑定端口 5678:22 8888:8080
+docker run -it --name golang-web -p 5678:22 -p 8888:8080 -d golang-hrl
+```

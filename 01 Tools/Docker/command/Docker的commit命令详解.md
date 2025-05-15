@@ -20,6 +20,10 @@ Options:
   -p, --pause            Pause container during commit (default true)
 ```
 
+----
+
+如果要查看 docker commit 的提交记录就只能通过 docker history 命令了
+
 ## 参考
 
 https://www.runoob.com/docker/docker-commit-command.html
