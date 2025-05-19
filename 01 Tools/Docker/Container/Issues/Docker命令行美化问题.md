@@ -71,7 +71,7 @@ function parse_git_dirty {
         fi
 }
 
-export PS1='\[\033[01;32m\]\u@\h:\w\[\033[01;36m\]$(parse_git_branch)\[\033[00m\] \$'
+export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w \[\033[01;36m\]$(parse_git_branch)\[\033[00m\]\$\[\e[0m\]'
 ```
 
 如果主机名字太长，那么可将上面最后一行的export改成：
@@ -82,5 +82,5 @@ export PS1='\[\033[01;32m\]\u:\w\[\033[01;36m\]$(parse_git_branch)\[\033[00m\] \
 
 ## 参考资料
 
-[Git设置脚本](../../Git/setting/Git设置脚本.md)
-[Bash美化-git bash](../../../04%20Script/shell/bash/Bash美化.md)
+[Git设置脚本](../../../Git/setting/Git设置脚本.md)
+[Bash美化-git bash](../../../../04%20Script/shell/bash/Bash美化.md)
