@@ -37,3 +37,6 @@
 [submodule "3rdParty/ROS"]
 	path = 3rdParty/ROS
 	url = https://gitee.com/CPLASF000000/ros-note.git
+[submodule "01 Tools/Cursor"]
+	path = 01 Tools/Cursor
+	url = https://gitee.com/CPLASF000000/cursor-notes.git
