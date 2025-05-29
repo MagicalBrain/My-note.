@@ -27,5 +27,9 @@
         "https://mirrors.tuna.tsinghua.edu.cn/",
         "http://mirrors.sohu.com/"
     ],
+    "insecure-registries": [
+        "registry.docker-cn.com",
+        "docker.mirrors.ustc.edu.cn"
+    ],
 }
 ```

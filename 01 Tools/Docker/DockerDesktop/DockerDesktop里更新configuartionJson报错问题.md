@@ -2,3 +2,10 @@
 
 报错信息：
 
+
+
+```bash
+This can prevent Docker from starting, reset your daemon settings if it hangs.
+```
+
+
