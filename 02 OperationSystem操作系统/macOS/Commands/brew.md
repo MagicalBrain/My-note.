@@ -1,5 +1,7 @@
 # brew
 
+[官网](https://docs.brew.sh/Installation)
+
 ## 下载安装
 
 如果提示 brew 命令不存在，需要先安装 Homebrew。安装步骤如下：
