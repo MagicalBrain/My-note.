@@ -1,4 +1,4 @@
-# brew
+# brews
 
 [官网](https://docs.brew.sh/Installation)
 
