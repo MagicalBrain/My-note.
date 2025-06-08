@@ -20,6 +20,8 @@ curl www.example.com
 
 服务器返回内容会自动输出
 
+## -i
+
 ## -A
 
 -A参数指定客户端的用户代理标头，即User-Agent。curl 的默认用户代理字符串是curl/[version]。
