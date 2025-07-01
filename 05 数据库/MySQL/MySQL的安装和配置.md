@@ -1,5 +1,27 @@
 # MySQL的安装和配置
 
+## docker
+
+```bash
+docker pull mysql
+```
+
+简单起见，直接下载最新的docker镜像
+
+然后运行：
+
+```bash
+docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
+```
+
+`-p 3306:3306` ：映射容器服务的 3306 端口到宿主机的 3306 端口，外部主机可以直接通过 宿主机ip:3306 访问到 MySQL 的服务。
+`MYSQL_ROOT_PASSWORD=123456`：设置 MySQL 服务 root 用户的密码
+
+----
+
+https://www.runoob.com/docker/docker-install-mysql.html
+https://blog.csdn.net/qq_25482375/article/details/126250746
+
 ## windows
 
 ### 下载
