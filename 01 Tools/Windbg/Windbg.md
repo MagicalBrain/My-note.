@@ -1,5 +1,9 @@
 # Windbg
 
+笔记更新请移步 [Cpp-Advanced-Notes]()
+
+----
+
 Windows平台的强大的调试工具
 Windbg之于Windows，就如GDB之于Linux
 
