@@ -7,6 +7,16 @@
 -->
 # win10如何关闭自动更新
 
+## 直接使用三方工具
+
+https://www.bilibili.com/opus/904672369138729017
+
+百度网盘 Win11轻松使用 下载后点击运行即可
+
+下面的不用看了，坐等大佬更新即可
+
+----
+
 打开cmd，输入命令：
 ```bash
 services.msc
@@ -73,6 +83,8 @@ services.msc
 通过修改注册表，手动设置系统停止更新到永久，Win+Q搜索注册表编辑器并打开，进入下面这个路径，计算机
 
 \HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings，找到名为FlightSettingsMaxPauseDays的DWORD项，然后选中，鼠标右键点“修改”，将小窗里的 十六进制 改为 十进制，之后将小窗里的数据数据改为“你想暂停的最大天数”。
+
+如果没有这个DWORD项，那么可以手动创建一个
 
 https://mp.weixin.qq.com/s/GGGqNSq7WyAvSJC1Pe1LpA
 

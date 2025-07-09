@@ -3,16 +3,29 @@
 ## docker
 
 ```bash
-docker pull mysql
+docker pull mysql:8.0-debian
+# 不推荐直接下最新的，有可能下载下来的是 orcale based linux 不方便使用
+# docker pull mysql
 ```
 
-简单起见，直接下载最新的docker镜像
+这里推荐下载 debian 版的mysql镜像
 
 然后运行：
 
 ```bash
 docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
 ```
+
+-itd (三个参数的组合)
+-i (interactive): 保持标准输入打开，即使没有连接到容器
+-t (tty): 分配一个伪终端
+-d (detached): 在后台运行容器（守护进程模式）
+
+-e MYSQL_ROOT_PASSWORD=123456
+环境变量设置
+-e 表示设置环境变量
+MYSQL_ROOT_PASSWORD=123456 设置MySQL root用户的密码为123456
+这是MySQL官方镜像要求的环境变量
 
 `-p 3306:3306` ：映射容器服务的 3306 端口到宿主机的 3306 端口，外部主机可以直接通过 宿主机ip:3306 访问到 MySQL 的服务。
 `MYSQL_ROOT_PASSWORD=123456`：设置 MySQL 服务 root 用户的密码

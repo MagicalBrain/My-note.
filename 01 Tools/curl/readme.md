@@ -6,6 +6,17 @@ Windows也可用
 
 由于学习后台开发经常需要测试url，所以这个工具很有用
 
+## 如果没有安装curl
+
+```bash
+curl --version
+bash: curl command not found
+```
+
+```bash
+sudo apt-get install -y curl
+```
+
 ## 基本用法
 
 ```bash
