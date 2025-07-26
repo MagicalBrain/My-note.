@@ -1,6 +1,13 @@
 # Docker的pull命令详解
 
-## 拉取制定结构的镜像
+## 拉取制定架构的镜像
+
+```bash
+docker pull --platform linux/arm64 openjdk
+```
+
+## 拉取 one-api 镜像（指定 amd64 架构）
+docker pull --platform linux/amd64 justsong/one-api
 
 ## help 详细
 
